@@ -33,6 +33,11 @@ O alfabeto português têm 120 letras, e a distribuição delas no jogo é a seg
 |          8       |        X        |         1         |
 |          8       |        Z        |         1         | 
 
+### Começo do jogo
+Cada jogador recebe uma letra, começará quem tiver a letra mais perto de A. Quem tiver uma ficha em branco começará.
+Depois devem devolver a ficha e pegar 7 e o jogo continuará em sentido horário.
+O primer jogador deve colocar sua palavra no centro do tabuleiro
+
 ### Troca de fichas
 Todos os jogadores podem trocar suas fichas durante seus turnos. Devem baixar todas as fichas que quiserem trocar, sem mostrá-las, pegar o mesmo número de fichas da bolsa e depois colocar as fichas separadas na bolsa.
 Quando é feita a troca, o jogador não pode colocar uma palavra no tabuleiro.
