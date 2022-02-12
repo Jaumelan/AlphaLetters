@@ -5,7 +5,6 @@
 ###Quantidade de letras
 O alfabeto português têm 120 letras, e a distribuição delas no jogo é a seguinte:
 
- - pontua
 |      Pontuação   |     Letra       |    Quantidade     |
 |------------------|-----------------|------------------ |
 |          0       |   Em branco     |         3         |
