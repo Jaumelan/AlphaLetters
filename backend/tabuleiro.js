@@ -20,3 +20,10 @@ const letters = ['A','B','C','Ç','D','E','F','G','H','I','J','L','M','N','O','P
 const lettersCount = [14,3,4,2,5,11,2,2,2,10,2,5,6,4,10,4,1,6,8,5,7,2,1,1];
 const lettersValues = [1,3,2,3,2,1,4,4,4,1,5,2,1,3,1,2,6,1,1,1,1,4,8,8];
 const jokersNumber = 3;
+
+/* class Scrabble {
+    #numberOfPlayers
+    constructor() {
+        this.#
+    }
+} */
