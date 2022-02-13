@@ -3,7 +3,7 @@ const port = 3000;
 const app = express();
 
 //middlewares
-app.use(express,json());
+app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 //module import for router

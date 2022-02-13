@@ -3,7 +3,7 @@
 ## Regras para Português
 
 ###Quantidade de letras
-O alfabeto português têm 120 letras, e a distribuição delas no jogo é a seguinte:
+Para o alfabeto português, o jogo tem 120 fichas de letras, e a distribuição delas no jogo é a seguinte:
 
 |      Pontuação   |     Letra       |    Quantidade     |
 |------------------|-----------------|------------------ |
