@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
 const port = 3003;
-
+app.use(express.static('public'));
 //middlewares
-app.use("/game", express.static("./public/game"));
+app.use("/", express.static("./pages/home"));
 
 app.listen(port, err => {
     if(err) {
