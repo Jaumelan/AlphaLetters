@@ -31,12 +31,11 @@ main {
     font-size: 40px;
 	width: 80px;
 	height: 80px;
-	/* background-image: url("indice.jpg"); */
     border-radius: 4px;
     font-weight: 700;
     margin: 10px 3px;
     box-shadow: 3px 3px 4px #c8c8c8, 3px 0 2px rgba(213, 178, 146, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(107, 107, 107, 0.6) inset;
-	background-image: url("../../public/img/indice.jpg"); 
+	background-image: url("../../public/img/indice.jpg");
 }
 
 .piece-number {
@@ -44,5 +43,12 @@ main {
 	position: relative;
 	right: -1px;
 	top: 13px;
+}
 
+.rotate1 {
+    transform: rotate(3deg);
+}
+
+.rotate2 {
+    transform: rotate(-3deg);
 }
