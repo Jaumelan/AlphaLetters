@@ -3,15 +3,46 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+
 main {
 	width: 100vw;
 	height: 100vh;
 	display: flex;
+    flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
+
+#firstTitle, #secondTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 7px
+}
+
 .piece {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 40px;
 	width: 80px;
 	height: 80px;
-	background-image: url("../../public/img/índice.jpg");
+	/* background-image: url("indice.jpg"); */
+    border-radius: 4px;
+    font-weight: 700;
+    margin: 10px 3px;
+    box-shadow: 3px 3px 4px #c8c8c8, 3px 0 2px rgba(213, 178, 146, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(107, 107, 107, 0.6) inset;
+	background-image: url("../../public/img/indice.jpg"); 
+}
+
+.piece-number {
+    font-size: 13px;
+	position: relative;
+	right: -1px;
+	top: 13px;
+
 }
