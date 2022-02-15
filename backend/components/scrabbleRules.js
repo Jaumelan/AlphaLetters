@@ -74,6 +74,7 @@ module.exports = class Scrabble {
         for(let i=0; i<7; i++) {
             indexletter = this.randomIndex();
             if(this.lettersCount[indexletter] !== 0) {
+                while(sendLetters.length < 7)
                 sendLetters.push(this.letters[indexletter]);
                 this.lettersCount[indexletter] --
             } else {
