@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const port = 3003;
 const cors = require('cors')
-//middlewares
 
+//middlewares
+app.use(cors());
 app.use("/", express.static("./pages/home"));
 app.use("/game", express.static("./pages/game"));
 
