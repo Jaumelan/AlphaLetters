@@ -108,3 +108,7 @@ header {
 .tripleWord {
     background-color: #ff5823 !important;
 }
+
+.row {
+    display: flex;
+}
