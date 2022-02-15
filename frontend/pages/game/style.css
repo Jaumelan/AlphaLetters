@@ -3,3 +3,36 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
+
+header {
+	display: flex;
+    justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+#firstTitle, #secondTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 7px
+}
+
+.piece {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Walter Turncoat', cursive;
+    font-size: 40px;
+    color: rgba(253, 253, 253, 0.4);
+	width: 80px;
+	height: 80px;
+	background-image: url('indice.jpg');
+    border-radius: 4px;
+    font-weight: 700;
+    margin: 10px 3px;
+    box-shadow: 3px 3px 4px #ffffff, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
+}
