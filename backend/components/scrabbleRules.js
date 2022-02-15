@@ -67,7 +67,7 @@ module.exports = class Scrabble {
         return sendLetters
     }
 
-    shuffleLetters(player) {
+    drawFirst7Letters(player) {
         let sendLetters = [];
         let indexletter; 
 
