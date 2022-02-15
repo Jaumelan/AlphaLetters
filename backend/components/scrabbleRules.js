@@ -67,28 +67,38 @@ module.exports = class Scrabble {
         return sendLetters
     }
 
-    drawFirst7Letters(player) {
-        let sendLetters = [];
-        let indexletter; 
+        drawFirst7Letters(player, amountRequested) {
+      let sendLetters = [];
+      let indexletter;
+      let amountRemaining = this.lettersCount.reduce((x, y) => x + y);
+      let piecesSentBack = 0;
+      let counter = 0;
 
-        for(let i=0; i<7; i++) {
-            indexletter = this.randomIndex();
-            if(this.lettersCount[indexletter] !== 0) {
-                while(sendLetters.length < 7)
-                sendLetters.push(this.letters[indexletter]);
-                this.lettersCount[indexletter] --
-            } else {
-                indexletter = this.randomIndex();
-            }
+      if (amountRequested <= amountRemaining) {
+        piecesSentBack = amountRequested;
+      } else {
+        piecesSentBack = amountRemaining;
+      }
+
+      while (counter < piecesSentBack) {
+
+        indexletter = this.randomIndex();
+
+        if (this.lettersCount[indexletter] > 0) {
+          sendLetters.push(this.letters[indexletter]);
+          this.lettersCount[indexletter]--;
+          counter++;
         }
+      }
 
-        if (player === 1) {
-            this.player1.lettersReceived.push(sendLetters);
-        } else {
-            this.player2.lettersReceived.push(sendLetters);
-        }       
+      if (player === 1) {
+        this.player1.lettersReceived.push(sendLetters);
+      } else {
+        this.player2.lettersReceived.push(sendLetters);
+      }
 
-        return sendLetters
+      return sendLetters
     }
+  }
 }
 
