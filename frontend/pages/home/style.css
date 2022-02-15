@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
 
 main {
 	width: 100vw;
@@ -13,6 +13,7 @@ main {
     flex-direction: column;
 	justify-content: center;
 	align-items: center;
+    background-image: url("chalkboard.png");
 }
 
 #firstTitle, #secondTitle{
@@ -27,15 +28,17 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Walter Turncoat', cursive;
     font-size: 40px;
+    color: white;
 	width: 80px;
 	height: 80px;
+	background: transparent;
     border-radius: 4px;
     font-weight: 700;
     margin: 10px 3px;
-    box-shadow: 3px 3px 4px #c8c8c8, 3px 0 2px rgba(213, 178, 146, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(107, 107, 107, 0.6) inset;
-	background-image: url("../../public/img/indice.jpg");
+    box-shadow: 3px 3px 4px #ffffff, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
+	/* background-image: url("../../public/img/índice.jpg"); */
 }
 
 .piece-number {
@@ -45,10 +48,34 @@ main {
 	top: 13px;
 }
 
+.piece:hover {
+    box-shadow: 3px 3px 4px #8d90b9, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
+    color: #8d90b9;
+}
+
 .rotate1 {
     transform: rotate(3deg);
 }
 
 .rotate2 {
     transform: rotate(-3deg);
+}
+
+button {
+    margin-top: 25px;
+    border: 2px solid #d2bdff;
+    height: 70px;
+    font-family: 'Walter Turncoat', cursive;
+    font-size: 30px;
+    color: #d2bdff;
+    width: 180px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    background: transparent;
+}
+
+button:hover {
+    color: rgb(41, 40, 40);
+    text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #82bedc, 0 0 30px #82bedc, 0 0 40px #82bedc, 0 0 50px #82bedc, 0 0 60px #82bedc;
 }
