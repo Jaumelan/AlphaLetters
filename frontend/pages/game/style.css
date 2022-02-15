@@ -8,7 +8,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
 
 body {
-    background-image: url('wood-grain-texture.jpg');
+    /* background-image: url('wood-grain-texture.jpg'); */
+    background-color: rgb(131, 179, 224);
 }
 header {
 	display: flex;
@@ -63,11 +64,16 @@ header {
     min-height: 542px;
     border: outset darkred 6px;
     margin: 40px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 #gameboard-holder #gameboard {
     background-color: white;
     padding: 1px;
+    display: block !important;
 }
 
 #gameboard-holder #gameboard .row {
@@ -84,7 +90,7 @@ header {
     color: rgba(0, 0, 0, .6);
 }
 
-#gameboard-holder #gameboard .row .cell::after {
+/* #gameboard-holder #gameboard .row .cell::after {
     width: 33%;
     height: 33%;
     background-color: transparent;
@@ -97,4 +103,8 @@ header {
     line-height: 140%;
     text-align: right;
     z-index: 999;
+} */
+
+.tripleWord {
+    background-color: #ff5823 !important;
 }
