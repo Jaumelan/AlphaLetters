@@ -3,9 +3,9 @@ const app = express();
 const port = 3003;
 const cors = require('cors')
 //middlewares
-app.use(cors())
-//app.use("/", express.static("./pages/home"));
-app.use("/", express.static("./pages/game"));
+
+app.use("/", express.static("./pages/home"));
+app.use("/game", express.static("./pages/game"));
 
 app.listen(port, err => {
     if(err) {
