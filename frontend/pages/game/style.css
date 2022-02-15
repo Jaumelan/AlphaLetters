@@ -2,10 +2,14 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+    position: relative;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
 
+body {
+    background-image: url('wood-grain-texture.jpg');
+}
 header {
 	display: flex;
     justify-content: center;
@@ -15,7 +19,6 @@ header {
 
 #firstTitle, #secondTitle{
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 7px
@@ -27,12 +30,71 @@ header {
     align-items: center;
     font-family: 'Walter Turncoat', cursive;
     font-size: 40px;
-    color: rgba(253, 253, 253, 0.4);
-	width: 80px;
-	height: 80px;
+    color: rgb(110, 57, 57);
+	width: 70px;
+	height: 70px;
 	background-image: url('indice.jpg');
     border-radius: 4px;
     font-weight: 700;
     margin: 10px 3px;
-    box-shadow: 3px 3px 4px #ffffff, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
+    box-shadow: 3px 3px 4px #e4e2e2, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+.piece-number {
+    font-size: 13px;
+	position: relative;
+	right: -1px;
+	top: 13px;
+}
+
+.rotate1 {
+    transform: rotate(3deg);
+}
+
+.rotate2 {
+    transform: rotate(-3deg);
+}
+
+#gameboard-holder {
+    width: 542px;
+    height: 542px;
+    background-color: maroon;
+    min-width: 542px;
+    min-height: 542px;
+    border: outset darkred 6px;
+    margin: 40px auto;
+}
+
+#gameboard-holder #gameboard {
+    background-color: white;
+    padding: 1px;
+}
+
+#gameboard-holder #gameboard .row {
+    height: 36px;
+}
+
+#gameboard-holder #gameboard .row .cell {
+    width: 32px;
+    height: 32px;
+    background-color: beige;
+    border: solid white 2px;
+    display: inline-block;
+    font: bold 46.6666666667% "Open Sans", sans-serif;
+    color: rgba(0, 0, 0, .6);
+}
+
+#gameboard-holder #gameboard .row .cell::after {
+    width: 33%;
+    height: 33%;
+    background-color: transparent;
+    content: '0';
+    content: attr(data-value);
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 70%;
+    line-height: 140%;
+    text-align: right;
+    z-index: 999;
 }
