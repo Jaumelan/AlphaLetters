@@ -1,7 +1,7 @@
 const express = require('express');
 const port = 3000;
 const app = express();
-
+const test = [];
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
