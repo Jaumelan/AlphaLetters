@@ -18,6 +18,12 @@ header {
 	gap: 10px;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #firstTitle, #secondTitle{
     display: flex;
     justify-content: center;
@@ -56,14 +62,33 @@ header {
     transform: rotate(-3deg);
 }
 
+#boards {
+    margin-top: 20px;
+    display: flex;
+    justify-content:center;
+    align-items: start;
+    gap: 10px;
+}
+
+#blackboard-holder {
+    background-image: url('Chalkboard.png');
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 300px;
+}
+
 #gameboard-holder {
-    width: 542px;
-    height: 542px;
+    width: fit-content;
+    /* box-sizing: ;
+    width: 543px;
+    height: 467px; */
     background-color: maroon;
-    min-width: 542px;
-    min-height: 542px;
+    /* min-width: 542px;
+    min-height: 542px; */
     border: outset darkred 6px;
-    margin: 40px auto;
+    /* margin: 40px auto */;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -81,35 +106,40 @@ header {
 }
 
 #gameboard-holder #gameboard .row .cell {
-    width: 32px;
-    height: 32px;
+    width: 31px;
+    height: 31px;
     background-color: beige;
     border: solid white 2px;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font: bold 46.6666666667% "Open Sans", sans-serif;
     color: rgba(0, 0, 0, .6);
 }
 
 .tripleWord {
     background-color: #ff5823 !important;
-    text-align: center !important;
+    
 }
 
 .row {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
 }
 
 .doubleWord {
     background-color: #F8A582 !important;
-    text-align: center !important;
+    
 }
 
 .tripleLetter {
     background-color: #3088B4 !important;
-    text-align: center !important;
+    
 }
 
 .doubleLetter {
     background-color: #BEE3EE !important;
-    text-align: center !important;
+    
 }
