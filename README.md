@@ -94,5 +94,5 @@ O jogo finaliza quando:
  3. Todos os jogadores passaram sua vez duas vezes consecutivas.
 
 ### API dicionário de português
-https://api.dicionario-aberto.net/index.html
-https://api.dicionario-aberto.net/word/cavalo retorna a entrada cavalo do dicionário
+https://significado.herokuapp.com/cavalo
+ retorna a entrada cavalo do dicionário
