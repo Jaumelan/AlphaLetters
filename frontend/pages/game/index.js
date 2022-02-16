@@ -63,4 +63,13 @@ $(document).ready(function() {
         console.log(palavraOK)
       })
   })
-})
+  $(".piece").draggable();
+  $( ".droppable" ).droppable({
+    drop: function( event, ui ) {
+      $( this )
+        .addClass( "ui-state-highlight" )
+        .find( "p" )
+          .html( "Dropped!" );
+    }
+  });
+});
