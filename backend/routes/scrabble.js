@@ -12,10 +12,11 @@ router.get('/initialize', (req,res) => {
         
     res.send(scrabblePortugues.chooseLetters())
 })
-.get('/drawfirstletters/:whichplayer', (req, res) => {
-    let player = req.params;
-    console.log(player);
-    res.send(scrabblePortugues.drawFirst7Letters(player));
+.get('/drawletters/:whichplayer/:amountOfLetters', (req, res) => {
+    let data = req.params;
+    console.log(data);
+
+    res.send(scrabblePortugues.drawLetters(data.whichplayer, data.amountOfLetters));
 
 })
 
