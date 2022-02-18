@@ -1,12 +1,15 @@
 $(document).ready(function() {
-
+  //declare the positions where the player gets bonuses
   const tripleWord = [ [0,0], [0,7], [0,14], [7,0], [7,14], [14,0], [14,7], [14,14] ];
   const doubleWord = [ [1,1], [2,2], [3,3], [4,4], [4,10], [7,7], [3,11], [2,12], [1,13], [13,1], [12,2], [11,3], [10,4], [10,10], [11,11], [12,12], [13,13]];
   const tripleLetter = [ [5,1], [1,5], [5,5], [9,1], [9,5], [13,5], [1,9], [5,9], [5,13], [9,9], [9,13], [13,9]];
   const doubleLetter = [ [3,0], [11,0], [0,3], [0,11], [6,2], [2,6], [7,3], [3,7], [8,2], [2,8], [6,6], [8,8], [6,8], [8,6], [14,3], [3,14], [6,12], [12,6], [11,7], [7,11], [12,8], [8,12], [14,11], [11,14]];
-    
+  //not allowed type of words
   const classesNaoPermitidas = ["prefixo", "sufixo", ""];
   let allowedWord = true;
+  const submitedWords = [
+    {player1: []}
+  ]
 
   function boardCreator() {
     for (let i = 0; i < 15; i++) {
@@ -17,14 +20,25 @@ $(document).ready(function() {
           newCell.attr("column-number", j);
           newCell.attr("xy", `${i}-${j}`);
           newCell.addClass("droppable")
+          // Helpful info: https://api.jqueryui.com/droppable/#event-out
           $(".droppable").droppable({
             drop: function(event,ui) {
               let draggedID = ui.draggable.attr("id");
               let droppedPosition = $(this).attr("xy");
               console.log("Tile "+ draggedID + " dropped on " + droppedPosition);
               //console.log("dropped at row " + event.target.getAttribute("row-number") + " column " + event.target.getAttribute("column-number"))
+              //check as dropped on the board cell
+              //game_board[find_board_pos(droppableID)].tile = draggableID; <---------------
+              //wordCheck(word) <--------------
+              //If the player remove the letter:
+            },
+            out: function(event,ui) {
+                let draggedID = ui.draggable.attr("id");
+                let droppedPosition = $(this).attr("xy");
+                //create a function to handle moving another one by mistake
             }
           })
+        
           newRow.append(newCell);
           tripleWord.forEach(xy => {
             if(xy[0] === i && xy[1] === j) {
@@ -101,7 +115,7 @@ $(document).ready(function() {
     {lettersleft:0}
   ];
   const url = "http://localhost:3000/scrabble/drawletters/";
-  let player1Turn = true;
+  const firstPlayerTurn = {is: true};
 
   //Depois passar todas estas funções para um arquivo separado
   //1. Função para começar o jogo: Depois de ter criado o avatar e ter apertado algum botão.
@@ -166,20 +180,40 @@ $(document).ready(function() {
     }
     createDeck(player);
   }
-  console.log(player1Turn)
-  //function to handle vez, and let player drag tiles to the board
-  $("#playButton").click(function(player1Turn){
-    console.log(player1Turn);
-    if(player1Turn) {
-      tilesPlayer1.forEach(tile => $(`#${tile.id}`).draggable() );
+
+  //function to handle turn, and let player drag tiles to the board
+  //the tile will only be draggable when it's player's turn
+  //check here for references https://jqueryui.com/draggable/
+  $("#playButton").click(function(){
+    tilesPlayer1.forEach(tile => $(`#${tile.id}`).draggable({disabled:true}) );
+    tilesPlayer2.forEach(tile => $(`#${tile.id}`).draggable({disabled:true}) );
+    if(firstPlayerTurn.is) {
+      tilesPlayer1.forEach(tile => $(`#${tile.id}`).draggable("option", "disabled", false) );
+      
     } else {
-      tilesPlayer2.forEach(tile => $(`#${tile.id}`).draggable() );
+      tilesPlayer2.forEach(tile => $(`#${tile.id}`).draggable("option", "disabled", false) );
+     
     }
-    player1Turn = false;
+
+    changePlayer()
+    
   })
 
-  //function to handle drop events
-  
+  function changePlayer() {
+    return firstPlayerTurn.is = !firstPlayerTurn.is;
+  };
+
+  //function to get drop events on the board
+  function find_letter(given_id) {
+    // Go through the 7 pieces,
+    for(var i = 0; i < 7; i++) {
+      // If we found the piece we're looking for, awesome!
+      if(game_tiles[i].id == given_id) {
+        // Just return its letter!
+        return game_tiles[i].letter;
+      }
+    }
+  }
 
   //function to check if is allowed word
   function wordCheck(word) {
