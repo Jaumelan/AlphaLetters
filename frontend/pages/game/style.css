@@ -8,7 +8,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
 
 body {
-    /* background-image: url('wood-grain-texture.jpg'); */
     background-color: rgb(131, 179, 224);
 }
 header {
@@ -18,8 +17,51 @@ header {
 	gap: 10px;
 }
 
+#modal {
+    position: fixed;
+    z-index: 1;
+    background-color: #195877;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#avatar-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.group-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.avatar-figures {
+    width: 100px;
+    align-items: center;
+}
+
+.avatar-figures>img {
+    object-fit: contain;
+    width: 100%;
+}
+
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -40,7 +82,7 @@ main {
     color: rgb(110, 57, 57);
 	width: 70px;
 	height: 70px;
-	background-image: url('indice.jpg');
+	background-image: url('img/indice.jpg');
     border-radius: 4px;
     font-weight: 700;
     margin: 10px 3px;
@@ -48,6 +90,28 @@ main {
 }
 
 .piece-number {
+    font-size: 13px;
+	position: relative;
+	right: -1px;
+	top: 13px;
+}
+
+.pieceSmall {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    font-family: 'Walter Turncoat', cursive;
+    color: rgb(110, 57, 57);
+	width: 31px;
+	height: 31px;
+	background-image: url('img/indice.jpg');
+    border-radius: 4px;
+    font-weight: 700;
+    margin: 2px 2px;
+    box-shadow: 3px 3px 4px #e4e2e2, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
+}
+
+.piece-numberSmall {
     font-size: 13px;
 	position: relative;
 	right: -1px;
@@ -71,7 +135,7 @@ main {
 }
 
 #blackboard-holder {
-    background-image: url('Chalkboard.png');
+    background-image: url('img/Chalkboard.png');
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -81,14 +145,8 @@ main {
 
 #gameboard-holder {
     width: fit-content;
-    /* box-sizing: ;
-    width: 543px;
-    height: 467px; */
     background-color: maroon;
-    /* min-width: 542px;
-    min-height: 542px; */
     border: outset darkred 6px;
-    /* margin: 40px auto */;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -119,7 +177,6 @@ main {
 
 .tripleWord {
     background-color: #ff5823 !important;
-    
 }
 
 .row {
@@ -131,15 +188,26 @@ main {
 
 .doubleWord {
     background-color: #F8A582 !important;
-    
 }
 
 .tripleLetter {
     background-color: #3088B4 !important;
-    
 }
 
 .doubleLetter {
-    background-color: #BEE3EE !important;
-    
+    background-color: #BEE3EE !important;  
+}
+
+#racks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#deck0, #deck1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
 }
