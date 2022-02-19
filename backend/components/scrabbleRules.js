@@ -71,6 +71,7 @@ module.exports = class Scrabble {
   drawLetters(player, amountRequested) {
     let send = {
       letters: [],
+      values: [],
       lettersLeft: 0,
     };
     let indexletter = [];
@@ -105,6 +106,7 @@ module.exports = class Scrabble {
     //pegar o índice e criar o array com as letras e tirar uma letra do contador
     indexletter.forEach(index=> {
       send.letters.push(this.letters[index]);
+      send.values.push(this.lettersValues[index]);
       this.lettersCount[index] --
     });
     
