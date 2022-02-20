@@ -121,10 +121,66 @@ $(document).ready(function () {
     } else {
       let index = submitedLetters[1].playerId.indexOf(id);
       if (index > -1) {
-        submitedLetters[1].player1.splice(index, 1);
+        submitedLetters[1].player2.splice(index, 1);
         submitedLetters[1].playerId.splice(index, 1);
         submitedLetters[2].boardId.splice(index, 1);
       }
+    }
+  }
+
+  //function to rearrange array by column
+  function rearrangeRowbyColumn(player) {
+    if (player) {
+      let y = selectTheRow(submitedLetters[2].boardId);
+      let copyY = [...y];
+      let orderedY = copyY.sort((a, b) => a - b);
+      let rearrangedIndexes = [];
+      orderedY.forEach(item=> rearrangedIndexes.push(y.indexOf(item)) );
+      /* let orderedPos = rearrangedIndexes.map( i => submitedLetters[2].boardId[i]) */
+      submitedLetters[2].boardId = rearrangedIndexes.map( i => submitedLetters[2].boardId[i]);
+      /* let orderedLetters = rearrangedIndexes.map( i => submitedLetters[0].player1[i]); */
+      submitedLetters[0].player1 = rearrangedIndexes.map( i => submitedLetters[0].player1[i]);
+      submitedLetters[0].playerId = rearrangedIndexes.map( i => submitedLetters[0].playerId[i]);
+      return true
+    } else {
+      let y = selectTheRow(submitedLetters[2].boardId);
+      let copyY = [...y];
+      let orderedY = copyY.sort((a, b) => a - b);
+      let rearrangedIndexes = [];
+      orderedY.forEach(item=> rearrangedIndexes.push(y.indexOf(item)) )
+      /* let orderedPos = rearrangedIndexes.map( i => submitedLetters[2].boardId[i]) */
+      submitedLetters[2].boardId = rearrangedIndexes.map( i => submitedLetters[2].boardId[i]);
+      /* let orderedLetters = rearrangedIndexes.map( i => submitedLetters[0].player1[i]); */
+      submitedLetters[1].player2 = rearrangedIndexes.map( i => submitedLetters[1].player2[i]);
+      submitedLetters[1].playerId = rearrangedIndexes.map( i => submitedLetters[1].playerId[i]);
+      return true
+    }
+    
+  }
+
+  //function to rearrange array by row
+  function rearrangeColumnbyRow(player) {
+    if (player) {
+      let x = selectTheColumn(submitedLetters[2].boardId);
+      let copyX = [...x];
+      console.log(copyX)
+      let orderedX = copyX.sort( (a,b) => a - b );
+      let rearrangedIndexes = [];
+      orderedX.forEach( item => rearrangedIndexes.push(x.indexOf(item)) );
+      submitedLetters[2].boardId = rearrangedIndexes.map( i => submitedLetters[2].boardId[i] );
+      submitedLetters[0].player1 = rearrangedIndexes.map( i => submitedLetters[0].player1[i]);
+      submitedLetters[0].playerId = rearrangedIndexes.map( i => submitedLetters[0].playerId[i]);
+      return true
+    } else {
+      let x = selectTheColumn(submitedLetters[2].boardId);
+      let copyX = [...x];
+      let orderedX = copyX.sort( (a,b) => a - b );
+      let rearrangedIndexes = [];
+      orderedX.forEach( item => rearrangedIndexes.push(x.indexOf(item)) );
+      submitedLetters[2].boardId = rearrangedIndexes.map( i => submitedLetters[2].boardId[i] );
+      submitedLetters[1].player2 = rearrangedIndexes.map( i => submitedLetters[1].player2[i]);
+      submitedLetters[1].playerId = rearrangedIndexes.map( i => submitedLetters[1].playerId[i]);
+      return true
     }
   }
 
@@ -277,48 +333,35 @@ $(document).ready(function () {
   });
 
   $("#endTurn").on("click", function () {
-    let orderedIndexes = [];
+    
     if (firstPlayerTurn.is) {
       if (submitedLetters[0].player1.length > 0) {
         if (isInRowDirection(submitedLetters[2].boardId)) {
           //sort letters by the column number
-         
-          let y = selectTheRow(submitedLetters[2].boardId);
-          let copyY = [...y];
+          rearrangeRowbyColumn(firstPlayerTurn.is)
+          console.log (submitedLetters);
           
-          let orderedY = copyY.sort((a, b) => a - b);
-          let rearrangedIndexes = orderedY.forEach(item=>{
-            return y.indexOf(item)
-          })
-          console.log(rearrangedIndexes);
-         
-          /* orderedY.forEach((item) => {
-             console.log(item); 
-            console.log(y.indexOf(item));
-            orderedIndexes.push(y.indexOf(item));
-          });
-          console.log(orderedIndexes);
-          let rearrangedLetters = [];
-          orderedIndexes.forEach((index) =>
-            rearrangedLetters.push(submitedLetters[0].player1[index])
-          );
-          console.log( rearrangedLetters ) */
-
-          /* let ordered = submitedLetters[2].boardId.sort((a, b) => {
-            a.y - b.y;
-          });
-          console.log( submitedLetters[2].boardId ordered); */
         } else {
           //sort letters by the row number
+          rearrangeColumnbyRow(firstPlayerTurn.is);
+          console.log(submitedLetters);
         }
       } else {
-        if (submitedLetters[1].player1.length > 0) {
-          if (isInRowDirection(submitedLetters[2].boardId)) {
-            //sort letters by the column number
-          } else {
-            console.log("opa");
-          }
+        console.log("player didn't play any tile");
+      }
+    } else {
+      if (submitedLetters[1].player2.length > 0) {
+        if (isInRowDirection(submitedLetters[2].boardId)) {
+          //sort letters by the column number
+          rearrangeRowbyColumn(firstPlayerTurn.is);
+          console.log(submitedLetters);
+        } else {
+          //sort letters by the row number
+          rearrangeColumnbyRow(firstPlayerTurn.is);
+          console.log(submitedLetters);
         }
+      } else {
+        console.log("player didn't play any tile");
       }
     }
 
