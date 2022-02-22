@@ -1,20 +1,20 @@
-import {boardCreator , tripleWord , tripleLetter , doubleLetter , doubleWord } from './boardCreator.js'
+/* import {boardCreator , tripleWord , tripleLetter , doubleLetter , doubleWord } from './boardCreator.js' */
 $(document).ready(function () {
   //declare the positions where the player gets bonuses
   
-  /* const tripleWord = [ [0, 0], [0, 7], [0, 14], [7, 0], [7, 14], [14, 0], [14, 7], [14, 14] ];
+  const tripleWord = [ [0, 0], [0, 7], [0, 14], [7, 0], [7, 14], [14, 0], [14, 7], [14, 14] ];
   const doubleWord = [[1, 1],[2, 2],[3, 3],[4, 4],[4, 10],[7, 7],[3, 11],[2, 12],[1, 13],[13, 1],[12, 2],[11, 3],[10, 4],[10, 10],[11, 11],[12, 12],[13, 13] ];
   const tripleLetter = [ [5, 1], [1, 5], [5, 5], [9, 1], [9, 5], [13, 5], [1, 9], [5, 9], [5, 13], [9, 9], [9, 13], [13, 9] ];
-  const doubleLetter = [ [3, 0], [11, 0], [0, 3], [0, 11], [6, 2], [2, 6], [7, 3], [3, 7], [8, 2], [2, 8], [6, 6], [8, 8], [6, 8], [8, 6], [14, 3], [3, 14], [6, 12], [12, 6], [11, 7], [7, 11], [12, 8], [8, 12], [14, 11], [11, 14] ]; */
+  const doubleLetter = [ [3, 0], [11, 0], [0, 3], [0, 11], [6, 2], [2, 6], [7, 3], [3, 7], [8, 2], [2, 8], [6, 6], [8, 8], [6, 8], [8, 6], [14, 3], [3, 14], [6, 12], [12, 6], [11, 7], [7, 11], [12, 8], [8, 12], [14, 11], [11, 14] ];
   //not allowed type of words
   const classesNaoPermitidas = ["prefixo", "sufixo", ""];
   let allowedWord = false;
   const nicknames = { player1: "Papagaio", player2: "Anta" };
-  const submitedLetters = [
+  {const submitedLetters = [
     { player1: [], playerId: [] },
     { player2: [], playerId: [] },
     { boardId: [] },
-  ];
+  ];}
   //data received from get route drawletters
   const receivedData = [
     { letters: [], values: [], whichPlayer: "player1" },
@@ -27,6 +27,78 @@ $(document).ready(function () {
     drawletters: "https://alpha-letters-backend.herokuapp.com/scrabble/drawletters/",
   }; */
   const firstPlayerTurn = { is: true };
+
+  function boardCreator() {
+  
+    for (let i = 0; i < 15; i++) {
+      let newRow = $('<div class="row"></div>');
+      for (let j = 0; j < 15; j++) {
+        let newCell = $('<div class="cell"></div>');
+        newCell.attr("row-number", i);
+        newCell.attr("column-number", j);
+        newCell.attr("x", `${i}`);
+        newCell.attr("y", `${j}`);
+        newCell.addClass("droppable");
+        // Helpful info: https://api.jqueryui.com/droppable/#event-out
+        $(".droppable").droppable({
+          drop: function (event, ui) {
+            let draggedID = ui.draggable.attr("id");
+            let draggedLetter = ui.draggable.attr("letter");
+            let droppedPositionX = $(this).attr("x");
+            let droppedPositionY = $(this).attr("y");
+
+            wordDraftCreator(
+              draggedID,
+              draggedLetter,
+              droppedPositionX,
+              droppedPositionY,
+              firstPlayerTurn.is
+            );
+
+            //function to check when finished the game
+            //game_board[find_board_pos(droppableID)].tile = draggableID; <---------------
+            //wordCheck(word) <--------------
+            //If the player remove the letter:
+          },
+          out: function (event, ui) {
+            let draggedID = ui.draggable.attr("id");
+
+            let droppedPosition = $(this).attr("xy");
+            takeWordFromDraft(draggedID, firstPlayerTurn.is);
+            //create a function to handle moving another one by mistake
+          },
+        });
+
+        newRow.append(newCell);
+        tripleWord.forEach((xy) => {
+          if (xy[0] === i && xy[1] === j) {
+            newCell.addClass("tripleWord");
+            newCell.html("TP");
+          }
+        });
+        doubleWord.forEach((xy) => {
+          if (xy[0] === i && xy[1] === j) {
+            newCell.addClass("doubleWord");
+            newCell.html("DP");
+          }
+        });
+        tripleLetter.forEach((xy) => {
+          if (xy[0] === i && xy[1] === j) {
+            newCell.addClass("tripleLetter");
+            newCell.html("TL");
+          }
+        });
+
+        doubleLetter.forEach((xy) => {
+          if (xy[0] === i && xy[1] === j) {
+            newCell.addClass("doubleLetter");
+            newCell.html("DL");
+          }
+        });
+      }
+      $("#gameboard").append(newRow);
+    }
+}
 
   //function to validate the moves
   function validateTheMove(board_positions, players_turn, direction) {
@@ -122,6 +194,9 @@ $(document).ready(function () {
 
     return answer
   }
+
+  //function to fill gaps with letters <-----------------------------------------------------------
+  
 
   boardCreator();
 
@@ -360,7 +435,22 @@ function selectTheColumn(ids) {
     }
   });
 
-  //function
+  //function return tiles to player
+  function returnTilestoPlayersDeck(player) {
+    console.log("destructor! birrr")
+    
+    if(player) {
+      console.log("primeiro jogador")
+      tilesPlayer1.forEach(tile=>{ $(`#${tile.id}`).remove(); })
+      let { letters, values, whichPlayer } = { ...receivedData[0] };
+      lettersToPlayersDeck(letters, values, whichPlayer);
+    } else {
+      console.log("segundo jogador")
+      tilesPlayer2.forEach(tile=>{ $(`#${tile.id}`).remove(); })
+      let { letters, values, whichPlayer } = { ...receivedData[1] };
+      lettersToPlayersDeck(letters, values, whichPlayer);
+    }
+  }
 
   //function to change player
   function changePlayer() {
@@ -392,9 +482,7 @@ function selectTheColumn(ids) {
       }
     } else {
       console.log("you should not pass!")
-      if(player) {
-        
-      }
+      
     }
   };
 
@@ -427,6 +515,36 @@ function selectTheColumn(ids) {
         submitedLetters[1].playerId.splice(index, 1);
         submitedLetters[2].boardId.splice(index, 1);
       }
+    }
+  }
+
+  function getLettersFromBoard(gaps_array) {
+    let letters = [];
+    gaps_array.forEach(gap=>{
+      boardRecord.forEach( record => {
+        if(gap == record.xy) {
+          letters.push(record.letter);
+        }
+      })
+    })
+    return letters;
+  }
+
+  //function to delete player's letters from it's deck and place it on the board
+  function removeFromDeck(player) {
+    console.log("vou tirar os ids");
+    if(player) {
+      submitedLetters[0].playerId.forEach(id => {
+        $(`#${id}`).draggable({ disabled: true });
+        $(`#${id}`).addClass("placed");
+        $(`#${id}`).attr('id', '');
+      })
+    } else {
+      submitedLetters[1].playerId.forEach(id => {
+        $(`#${id}`).draggable({ disabled: true });
+        $(`#${id}`).addClass("placed");
+        $(`#${id}`).attr('id', '');
+      })
     }
   }
 
@@ -485,13 +603,15 @@ function selectTheColumn(ids) {
   //function to check if is allowed word
   async function wordChecker(word) {
     /* let isAllowed = $("#word").val(); */
-    $.ajax({ url: `https://significado.herokuapp.com/${word}` }).done(data => {
+    $.ajax({ url: `https://significado.herokuapp.com/${word}`, statusCode: {400: returnTilestoPlayersDeck(firstPlayerTurn.is)} }).done(data => {
         if ( !classesNaoPermitidas.includes(data[0].class) ) {
           allowedWord = true;
           pushLetters(allowedWord, firstPlayerTurn.is)
           //tirar o draggable da peça
-          //
-        } 
+          removeFromDeck(firstPlayerTurn.is)
+        } else {
+          returnTilestoPlayersDeck(firstPlayerTurn.is)
+        }
         
         //colocar o significado (só teste)
         /* if (allowedWord) {
@@ -505,7 +625,7 @@ function selectTheColumn(ids) {
         console.log(allowedWord);
         
         return allowedWord;
-      }).fail( er => console.log(er) )
+      })
       
   }
 
