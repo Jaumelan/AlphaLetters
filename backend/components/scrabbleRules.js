@@ -1,4 +1,3 @@
-//criar aqui todas as funções do jogo
 const board = [
   [ "3p", "1", "1", "2l", "1", "1", "1", "3p", "1", "1", "1", "2l", "1", "1", "3p", ],
   [ "1", "2p", "1", "1", "1", "3l", "1", "1", "1", "3l", "1", "1", "1", "2p", "1",  ],
@@ -6,8 +5,8 @@ const board = [
   [ "2l", "1", "1", "2p", "1", "1", "1", "2l", "1", "1", "1", "2p", "1", "1", "2l", ],
   [  "1",  "1", "1", "1", "2p", "1", "1", "1", "1", "1", "2p", "1", "1", "1", "1",  ],
   [ "1", "3l", "1", "1", "1", "3l", "1", "1", "1", "3l", "1", "1", "1", "3l", "1",  ],
-  [ "1", "1", "2l", "1", "1", "1", "2l", "1", "2l", "1", "1", "1", "2l", "1", "1",  ],
-  [ "3p", "1", "1", "2l", "1", "1", "1", "1", "1", "1", "1", "2l", "1", "1", "3p",  ],
+  [ "1", "1", "2l", "1", "1", "1", "2l", "1", "2l", "1", "1", "1", "2l", "1", "1", ],
+  [ "3p", "1", "1", "2l", "1", "1", "1", "2p", "1", "1", "1", "2l", "1", "1", "3p",  ],
   [ "1", "1", "2l", "1", "1", "1", "2l", "1", "2l", "1", "1", "1", "2l", "1", "1",  ],
   [ "1", "3l", "1", "1", "1", "3l", "1", "1", "1", "3l", "1", "1", "1", "3l", "1",  ],
   [ "1", "1", "1",  "1", "2p", "1", "1", "1", "1",  "1", "2p", "1", "1", "1", "1",  ],
@@ -16,11 +15,6 @@ const board = [
   [ "1", "2p", "1", "1", "1", "3l", "1", "1", "1", "3l", "1", "1", "1", "2p", "1",  ],
   [ "3p", "1", "1", "2l", "1", "1", "1", "3p", "1", "1", "1", "2l", "1", "1", "3p", ],
 ];
-
-/* const letters = ['A','B','C','Ç','D','E','F','G','H','I','J','L','M','N','O','P','Q','R','S','T','U','V','X','Z'];
-const lettersCount = [14,3,4,2,5,11,2,2,2,10,2,5,6,4,10,4,1,6,8,5,7,2,1,1];
-const lettersValues = [1,3,2,3,2,1,4,4,4,1,5,2,1,3,1,2,6,1,1,1,1,4,8,8];
-const jokersNumber = 3; */
 
 //Set the game for two players only
 
@@ -122,4 +116,43 @@ module.exports = class Scrabble {
   }
 
   //função para enviar a pontuação
+  sendScore(letters_received, positions_received) {
+    
+    let letters_check = JSON.parse(letters_received);
+    letters_check = letters_check[0];
+    let positions_check = JSON.parse(positions_received);
+    
+    let score = 0;
+    let values = [];
+    let index;
+    
+    for(let i = 0; i<positions_check.length; i++) {
+      index = this.letters.indexOf(letters_check[i]);
+      let localValue ;
+      
+      if(board[positions_check[i].posx][positions_check[i].posy] === "2l") {
+        localValue = this.lettersValues[index] * 2;
+        values.push(localValue);
+      } else if (board[positions_check[i].posx][positions_check[i].posy] === "3l") {
+        localValue = this.lettersValues[index] * 3;
+        values.push(localValue);
+      } else {
+        localValue = this.lettersValues[index];
+        console.log(localValue);
+        values.push(localValue);
+      }
+    };
+
+    positions_check.forEach(item=>{
+      if (board[item.posx][item.posy] === "2p") {
+        values.map(value=> value*2);
+      } else if( board[item.posx][item.posy] === "3p") {
+        values.map(value=>value*3);
+      }
+    })
+    score = values.reduce((i,value)=>i+value,0)
+
+    return score;
+
+  }
 };
