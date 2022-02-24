@@ -1,4 +1,3 @@
-/* import {boardCreator , tripleWord , tripleLetter , doubleLetter , doubleWord } from './boardCreator.js' */
 $(document).ready(function () {
   //declare the positions where the player gets bonuses
 
@@ -7,7 +6,7 @@ $(document).ready(function () {
   const tripleLetter = [ [5, 1], [1, 5], [5, 5], [9, 1], [9, 5], [13, 5], [1, 9], [5, 9], [5, 13], [9, 9], [9, 13], [13, 9] ];
   const doubleLetter = [[3, 0],[11, 0],[0, 3],[0, 11],[6, 2],[2, 6],[7, 3],[3, 7],[8, 2],[2, 8],[6, 6],[8, 8],[6, 8],[8, 6],[14, 3],[3, 14],[6, 12],[12, 6],[11, 7],[7, 11],[12, 8],[8, 12],[14, 11],[11, 14] ];
   //not allowed type of words
-  const classesNaoPermitidas = ["prefixo", "sufixo", ""];
+  const classesNaoPermitidas = ["prefixo", "sufixo"];
   let allowedWord = false;
   let newBoard = [
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
@@ -57,7 +56,29 @@ $(document).ready(function () {
     receivedData[1].letters = [];
     receivedData[1].values = [];
     receivedData[2];
-  }
+  };
+
+  //record of letters of each player's deck
+  const tilesPlayer1 = [
+    { id: "deck0_piece0", letter: "", value: 0 },
+    { id: "deck0_piece1", letter: "", value: 0 },
+    { id: "deck0_piece2", letter: "", value: 0 },
+    { id: "deck0_piece3", letter: "", value: 0 },
+    { id: "deck0_piece4", letter: "", value: 0 },
+    { id: "deck0_piece5", letter: "", value: 0 },
+    { id: "deck0_piece6", letter: "", value: 0 },
+  ];
+
+  const tilesPlayer2 = [
+    { id: "deck1_piece0", letter: "", value: 0 },
+    { id: "deck1_piece1", letter: "", value: 0 },
+    { id: "deck1_piece2", letter: "", value: 0 },
+    { id: "deck1_piece3", letter: "", value: 0 },
+    { id: "deck1_piece4", letter: "", value: 0 },
+    { id: "deck1_piece5", letter: "", value: 0 },
+    { id: "deck1_piece6", letter: "", value: 0 },
+  ];
+
   function boardCreator() {
     for (let i = 0; i < 15; i++) {
       let newRow = $('<div class="row"></div>');
@@ -139,17 +160,17 @@ $(document).ready(function () {
       board_positions.forEach((position) => {
         if (position.positionx === "7" && position.positiony === "7") {
           if (allowedDirections.includes(direction)) {
-            console.log("entrei primeiro movimento avaliador");
+            
             valid = true;
           }
         }
       });
     } else if (allowedDirections.includes(direction)) {
       //if isn't the first move, then check if is in row or column direction
-      console.log("entrei no de linha-coluna");
+      
       //check if is next to a tile in the board
       if (isNextToATile(board_positions)) {
-        console.log("validei se está do lado");
+        
         valid = true;
       }
     }
@@ -165,7 +186,6 @@ $(document).ready(function () {
             diff = copy[i + 1] - copy[i];
             if (diff > 1) {
               gapsExist = true;
-              console.log("tem gaps");
             }
           }
         } else {
@@ -177,7 +197,6 @@ $(document).ready(function () {
             diff = copy[i + 1] - copy[i];
             if (diff > 1) {
               gapsExist = true;
-              console.log("tem gaps");
             }
           }
         }
@@ -188,13 +207,15 @@ $(document).ready(function () {
       valid = false;
     }
     return valid;
-  }
-
+  };
+  
   //function to check if the tiles are next to any placed tile on the board
   function isNextToATile(tiles_positions) {
+    
     let answer = false;
     let condition = "";
     boardRecord.forEach((board_position) => {
+      
       tiles_positions.forEach((tile_position) => {
         let xUp = Number(tile_position.positionx) - 1;
         let xDown = Number(tile_position.positionx) + 1;
@@ -206,16 +227,12 @@ $(document).ready(function () {
           `${positionstoString[1]}${tile_position.positiony}`,
           `${tile_position.positionx}${positionstoString[2]}`,
           `${tile_position.positionx}${positionstoString[3]}`,
+          console.log("here")
         ];
-        if (
-          board_position.xy ===
-          `${tile_position.positionx}${tile_position.positiony}`
-        ) {
+        if (board_position.xy === `${tile_position.positionx}${tile_position.positiony}`) {
           condition = "over";
-          console.log(condition);
         } else if (positions.includes(board_position.xy)) {
           condition = "next";
-          console.log(condition);
         }
       });
     });
@@ -224,9 +241,7 @@ $(document).ready(function () {
     }
 
     return answer;
-  }
-
-  boardCreator();
+  };
 
   //function to find gap between letters
   function getGaps(placed_positions) {
@@ -275,35 +290,6 @@ $(document).ready(function () {
     }
 
     return gaps;
-  }
-
-  //programação do modal
-  const avatars = Array.from(document.getElementsByClassName("avatars"));
-  const avatarIDs = [
-    "avatar1",
-    "avatar2",
-    "avatar3",
-    "avatar4",
-    "avatar5",
-    "avatar6",
-  ];
-  const avatarsTags = [
-    "$('#avatar1')",
-    "$('#avatar2')",
-    "$('#avatar3')",
-    "$('#avatar4')",
-    "$('#avatar5')",
-    "$('#avatar6')",
-  ];
-
-  function modalhandler() {
-    avatars.map((avatar) => {
-      avatar.addEventListener("click", (event) => {
-        //aqui estava querendo mudar o fundo da tag figure que contém a img para mostrar que selecionou
-        let parentID = event.target.parentNode.id;
-        $(parentID).css("background-color", "yellow");
-      });
-    });
   }
 
   //function to push letters when the word is allowed
@@ -442,17 +428,17 @@ $(document).ready(function () {
       }
       
     }
-    console.log(draft);
-      if (draft.length < 2) {
-        draft = [];
-      } else {
-        drafts.push(draft);
-        positions.push(position);
-      }
+    
+    if (draft.length < 2) {
+      draft = [];
+    } else {
+      drafts.push(draft);
+      positions.push(position);
+    }
     if(which_array === 1) {
       answer = drafts;
     } else {
-      answer = positions;
+      answer = position/* positions */;
     }
     console.log(answer);
     return answer;
@@ -461,29 +447,30 @@ $(document).ready(function () {
   //function to request scores
   function requestScores() {
     let positions = verifyWordsOnBoard(submitedLetters[2].boardId, 2);
-    let letters = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
-
-  }
-
-  //record of letters of each player's deck
-  const tilesPlayer1 = [
-    { id: "deck0_piece0", letter: "", value: 0 },
-    { id: "deck0_piece1", letter: "", value: 0 },
-    { id: "deck0_piece2", letter: "", value: 0 },
-    { id: "deck0_piece3", letter: "", value: 0 },
-    { id: "deck0_piece4", letter: "", value: 0 },
-    { id: "deck0_piece5", letter: "", value: 0 },
-    { id: "deck0_piece6", letter: "", value: 0 },
-  ];
-  const tilesPlayer2 = [
-    { id: "deck1_piece0", letter: "", value: 0 },
-    { id: "deck1_piece1", letter: "", value: 0 },
-    { id: "deck1_piece2", letter: "", value: 0 },
-    { id: "deck1_piece3", letter: "", value: 0 },
-    { id: "deck1_piece4", letter: "", value: 0 },
-    { id: "deck1_piece5", letter: "", value: 0 },
-    { id: "deck1_piece6", letter: "", value: 0 },
-  ];
+    positions = JSON.stringify(positions);
+    let letters = JSON.stringify(verifyWordsOnBoard(submitedLetters[2].boardId, 1));
+    console.log("pos ", positions, "letters ", letters);
+    $.get("http://localhost:3000/scrabble/score",{positions, letters})
+    .done(answer => {
+      let score = JSON.parse(answer)
+      return score}).done(score => {
+      
+      if (firstPlayerTurn.is) {
+        $("#player1-score").text("");
+        $("#player1-score").text(score);
+      } else {
+        $("#player2-score").text("");
+        $("#player2-score").text(score);
+      }
+      
+    }).done(()=> {
+      removeTiles(firstPlayerTurn.is);
+      resetVariables();
+      changePlayer();
+    }) 
+      
+      return true
+  };
 
   //function to display which players turn is
   function changeDisplayTurn() {
@@ -495,62 +482,7 @@ $(document).ready(function () {
       $("#playButton").text(`Jogar Jogador ${nicknames.player2}`);
     }
   }
-  //Depois passar todas estas funções para um arquivo separado
-  //1. Função para começar o jogo: Depois de ter criado o avatar e ter apertado algum botão.
-  //A função realiza dois fetchs, um para cada jogador, recebe as letras e as coloca no deck do jogador
-  $("#requestButton").click(function requestFirstLetters() {
-    const url = "http://localhost:3000/scrabble/drawletters/";
-    let amount = 0;
-    if (!firstMove) {
-      //request the first 7 letters for player1
-      $.get(/* url.drawletters */ url + "1/7", function (data) {
-        receivedData[0].letters.push(data.letters);
-        receivedData[0].values.push(data.values);
-        receivedData[0].whichPlayer = "player1";
-        let { letters, values, whichPlayer } = { ...receivedData[0] };
-        lettersToPlayersDeck(letters, values, whichPlayer);
-      });
-      //request the first 7 letters for player2
-      $.get(/* url.drawletters */ url + "2/7", function (data) {
-        receivedData[1].letters.push(data.letters);
-        receivedData[1].values.push(data.values);
-        receivedData[1].whichPlayer = "player2";
-        receivedData[2].lettersleft = data.lettersLeft;
-        let { letters, values, whichPlayer } = { ...receivedData[1] };
-        lettersToPlayersDeck(letters, values, whichPlayer);
-      });
-    } else {
-      if(firstPlayerTurn.is) {
-        tilesPlayer1.forEach(tile =>{
-          if(tile.letter = "") {
-            amount++
-          }
-        });
-        $.get(/* url.drawletters */ url + "1/"+ amount, function (data) {
-          receivedData[0].letters.push(data.letters);
-          receivedData[0].values.push(data.values);
-          receivedData[0].whichPlayer = "player1";
-          let { letters, values, whichPlayer } = { ...receivedData[0] };
-          lettersToPlayersDeck(letters, values, whichPlayer);
-        });
-      } else {
-        tilesPlayer1.forEach(tile =>{
-          if(tile.letter = "") {
-            amount++
-          }
-        });
-        $.get(/* url.drawletters */ url + "2/"+ amount, function (data) {
-          receivedData[1].letters.push(data.letters);
-          receivedData[1].values.push(data.values);
-          receivedData[1].whichPlayer = "player2";
-          receivedData[2].lettersleft = data.lettersLeft;
-          let { letters, values, whichPlayer } = { ...receivedData[1] };
-          lettersToPlayersDeck(letters, values, whichPlayer);
-        });
-      }
-    }
-    
-  });
+  
 
   //2. Create a function to create each player's deck
   function createDeck(player) {
@@ -627,28 +559,7 @@ $(document).ready(function () {
       });
     }
     createDeck(player);
-  }
-
-  //function to handle turn, and let player drag tiles to the board
-  //the tile will only be draggable when it's player's turn
-  //check here for references https://jqueryui.com/draggable/
-  $("#playButton").on("click", function () {
-    tilesPlayer1.forEach((tile) =>
-      $(`#${tile.id}`).draggable({ disabled: true }, { revert: "invalid" })
-    );
-    tilesPlayer2.forEach((tile) =>
-      $(`#${tile.id}`).draggable({ disabled: true }, { revert: "invalid" })
-    );
-    if (firstPlayerTurn.is) {
-      tilesPlayer1.forEach((tile) =>
-        $(`#${tile.id}`).draggable("option", "disabled", false)
-      );
-    } else {
-      tilesPlayer2.forEach((tile) =>
-        $(`#${tile.id}`).draggable("option", "disabled", false)
-      );
-    }
-  });
+  };
 
   //function return tiles to player
   function returnTilestoPlayersDeck(player) {
@@ -670,6 +581,30 @@ $(document).ready(function () {
       lettersToPlayersDeck(letters, values, whichPlayer);
     }
   }
+
+  //Function to remove played letters from player's hand
+  function removeTiles(player) {
+    console.log("removing ids")
+    if(player) {
+      submitedLetters[0].playerId.forEach(sub_Tile=>{
+        tilesPlayer1.forEach( tile=> {
+          if(tile.id === sub_Tile.playerId) {
+            tile.letter = "";
+            tile.value = 0;
+          }
+        })
+      })
+    } else {
+      submitedLetters[1].playerId.forEach(sub_Tile=>{
+        tilesPlayer2.forEach( tile=> {
+          if(tile.id === sub_Tile.playerId) {
+            tile.letter = "";
+            tile.value = 0;
+          }
+        })
+      })
+    }
+  };
 
   //function to change player
   function changePlayer() {
@@ -749,19 +684,22 @@ $(document).ready(function () {
   }
 
   //function to delete player's letters from it's deck and place it on the board
-  function removeFromDeck(player) {
+  function removeFromDeck() {
     console.log("vou tirar os ids");
-    if (player) {
-      submitedLetters[0].playerId.forEach((id) => {
-        $(`#${id}`).draggable({ disabled: true });
+    
+    if (firstPlayerTurn.is) {
+      console.log(submitedLetters[0].playerId);
+      submitedLetters[0].playerId.forEach(id => {
+        $(`#${id}`).draggable("option", "disabled", true );
         $(`#${id}`).addClass("placed");
-        $(`#${id}`).attr("id", "");
+        $(`#${id}`).removeAttr("id");
       });
     } else {
+      console.log("tirei jogador 2")
       submitedLetters[1].playerId.forEach((id) => {
-        $(`#${id}`).draggable({ disabled: true });
+        $(`#${id}`).draggable("option", "disabled", true);
         $(`#${id}`).addClass("placed");
-        $(`#${id}`).attr("id", "");
+        $(`#${id}`).removeAttr("id");
       });
     }
   }
@@ -841,20 +779,23 @@ $(document).ready(function () {
   }
 
   //function to check if is allowed word
-  async function wordChecker(word) {
+   async function wordChecker(word) {
     /* let isAllowed = $("#word").val(); */
-    $.ajax({
-      url: `https://significado.herokuapp.com/${word}`,
-      statusCode: { 400: returnTilestoPlayersDeck(firstPlayerTurn.is) },
-    }).done((data) => {
-      if (!classesNaoPermitidas.includes(data[0].class)) {
+    let wordCheck = $.ajax({url: `https://significado.herokuapp.com/${word}`, statusCode:  { 400: () =>  returnTilestoPlayersDeck(firstPlayerTurn.is)  } ,});
+    wordCheck.done((data) => {
+      console.log(data)
+      if (!classesNaoPermitidas.includes(data[0].class) && data[0].meanings.length > 0) {
+        
         allowedWord = true;
+        console.log("got here")
         pushLetters(allowedWord, firstPlayerTurn.is);
-        //tirar o draggable da peça
-        removeFromDeck(firstPlayerTurn.is);
-      } else {
+        removeFromDeck();
+        requestScores();
+      }  else {
         returnTilestoPlayersDeck(firstPlayerTurn.is);
+        changePlayer();
       }
+
 
       //colocar o significado (só teste)
       /* if (allowedWord) {
@@ -868,7 +809,98 @@ $(document).ready(function () {
       console.log(allowedWord);
       return allowedWord;
     });
-  }
+  };
+
+  boardCreator();
+
+  //Depois passar todas estas funções para um arquivo separado
+  //1. Função para começar o jogo: Depois de ter criado o avatar e ter apertado algum botão.
+  //A função realiza dois fetchs, um para cada jogador, recebe as letras e as coloca no deck do jogador
+  $("#requestButton").click(function requestFirstLetters() {
+    const url = "http://localhost:3000/scrabble/drawletters/";
+    let amount = 0;
+    if (!firstMove) {
+      //request the first 7 letters for player1
+      $.get(/* url.drawletters */ url + "1/7", function (data) {
+        receivedData[0].letters.push(data.letters);
+        receivedData[0].values.push(data.values);
+        receivedData[0].whichPlayer = "player1";
+        let { letters, values, whichPlayer } = { ...receivedData[0] };
+        lettersToPlayersDeck(letters, values, whichPlayer);
+      });
+      //request the first 7 letters for player2
+      $.get(/* url.drawletters */ url + "2/7", function (data) {
+        receivedData[1].letters.push(data.letters);
+        receivedData[1].values.push(data.values);
+        receivedData[1].whichPlayer = "player2";
+        receivedData[2].lettersleft = data.lettersLeft;
+        let { letters, values, whichPlayer } = { ...receivedData[1] };
+        lettersToPlayersDeck(letters, values, whichPlayer);
+      });
+    } else {
+      if(firstPlayerTurn.is) {
+        console.log("first player");
+        tilesPlayer1.forEach(tile =>{
+          if(tile.letter === "") {
+            amount++
+          }
+        });
+        if (amount > 0) {
+          $.get(/* url.drawletters */ url + "1/"+ amount, function (data) {
+            receivedData[0].letters.push(data.letters);
+            receivedData[0].values.push(data.values);
+            receivedData[0].whichPlayer = "player1";
+            let { letters, values, whichPlayer } = { ...receivedData[0] };
+            lettersToPlayersDeck(letters, values, whichPlayer);
+          });
+        }
+        
+      } else {
+        console.log("2 player")
+        tilesPlayer2.forEach(tile =>{
+          if(tile.letter === "") {
+            amount++
+          }
+        });
+        if (amount > 0) {
+          $.get(/* url.drawletters */ url + "2/"+ amount, function (data) {
+            receivedData[1].letters.push(data.letters);
+            receivedData[1].values.push(data.values);
+            receivedData[1].whichPlayer = "player2";
+            receivedData[2].lettersleft = data.lettersLeft;
+            let { letters, values, whichPlayer } = { ...receivedData[1] };
+            lettersToPlayersDeck(letters, values, whichPlayer);
+          });
+        }
+      }
+    }
+
+    if(!firstMove) {
+      firstMove = true;
+    }
+    
+  });
+
+  //function to handle turn, and let player drag tiles to the board
+  //the tile will only be draggable when it's player's turn
+  //check here for references https://jqueryui.com/draggable/
+  $("#playButton").on("click", function () {
+    tilesPlayer1.forEach((tile) =>
+      $(`#${tile.id}`).draggable({ disabled: true }, { revert: "invalid" })
+    );
+    tilesPlayer2.forEach((tile) =>
+      $(`#${tile.id}`).draggable({ disabled: true }, { revert: "invalid" })
+    );
+    if (firstPlayerTurn.is) {
+      tilesPlayer1.forEach((tile) =>
+        $(`#${tile.id}`).draggable("option", "disabled", false)
+      );
+    } else {
+      tilesPlayer2.forEach((tile) =>
+        $(`#${tile.id}`).draggable("option", "disabled", false)
+      );
+    }
+  });
 
   //event listeners
   $("#endTurn").on("click", function () {
@@ -885,18 +917,15 @@ $(document).ready(function () {
           rearrangeRowbyColumn(firstPlayerTurn.is);
           console.log(submitedLetters);
           //validation of player's move
-          if ( validateTheMove(
-              submitedLetters[2].boardId,
-              firstMove,
-              submittedDirection
-            )
-          ) {
+          if ( validateTheMove( submitedLetters[2].boardId,firstMove, submittedDirection)) {
             pushLettersToNewBoard(firstPlayerTurn.is);
             draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
+            let pos = verifyWordsOnBoard(submitedLetters[2].boardId, 2)
+            console.log(pos);
             draft.forEach((array) => {
               word = array.join("");
               console.log(word);
-              wordChecker(word);
+              wordChecker(word)
             });
           }
         } else {
@@ -911,6 +940,8 @@ $(document).ready(function () {
           ) {
             pushLettersToNewBoard(firstPlayerTurn.is);
             draft = verifyWordsOnBoard(submitedLetters[2].boardId,1);
+            let pos = verifyWordsOnBoard(submitedLetters[2].boardId, 2)
+            console.log(pos);
             draft.forEach((array) => {
               word = array.join("");
               console.log(word);
@@ -923,17 +954,12 @@ $(document).ready(function () {
       }
       //player 2 validations
     } else {
-      if (submitedLetters[1].player2.length > 0) {
+      if (submitedLetters[1].player2.length > 1) {
         if (submittedDirection === "row") {
           //sort letters by the column number
           rearrangeRowbyColumn(firstPlayerTurn.is);
           console.log(submitedLetters);
-          if ( validateTheMove(
-              submitedLetters[2].boardId,
-              firstMove,
-              submittedDirection
-            )
-          ) {
+          if ( validateTheMove( submitedLetters[2].boardId,firstMove, submittedDirection) ) {
             pushLettersToNewBoard(firstPlayerTurn.is);
             draft = verifyWordsOnBoard(submitedLetters[2].boardId,1);
             draft.forEach((array) => {
@@ -946,13 +972,7 @@ $(document).ready(function () {
           //sort letters by the row number
           rearrangeColumnbyRow(firstPlayerTurn.is);
           console.log(submitedLetters);
-          if (
-            validateTheMove(
-              submitedLetters[2].boardId,
-              firstMove,
-              submittedDirection
-            )
-          ) {
+          if ( validateTheMove(submitedLetters[2].boardId,firstMove,submittedDirection )) {
             pushLettersToNewBoard(firstPlayerTurn.is);
             draft = verifyWordsOnBoard(submitedLetters[2].boardId,1);
             draft.forEach((array) => {
@@ -963,8 +983,22 @@ $(document).ready(function () {
 
           }
         }
+      } else if (submitedLetters[1].player2.length === 1){
+        
+        if ( isNextToATile(submitedLetters[2].boardId)) {
+          console.log("validei")
+          pushLettersToNewBoard(firstPlayerTurn.is);
+          draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
+          let pos = verifyWordsOnBoard(submitedLetters[2].boardId, 2)
+          console.log(pos);
+          draft.forEach((array) => {
+            word = array.join("");
+            console.log(word);
+            wordChecker(word)
+          });
+        }
       } else {
-        console.log("player didn't play any tile");
+        console.log("any tile placed")
       }
     }
 
@@ -974,8 +1008,7 @@ $(document).ready(function () {
 
 
     allowedWord = false;
-    changePlayer();
-    changeDisplayTurn();
+    
+    
   });
 });
-
