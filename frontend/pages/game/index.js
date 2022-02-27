@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   //declare the positions where the player gets bonuses
 
@@ -38,13 +39,14 @@ $(document).ready(function () {
     { lettersleft: 0 },
   ];
   let firstMove = false; //default false
-  const boardRecord = [{ xy: "88", letter: "M" }];
+  let boardRecord = [/* { xy: "88", letter: "M" } */];
   /*  const url = {
     drawletters: "https://alpha-letters-backend.herokuapp.com/scrabble/drawletters/",
   }; */
   const firstPlayerTurn = { is: true };
 
   function resetVariables() {
+    console.log("reset variables", submitedLetters);
     submitedLetters[0].player1 = [];
     submitedLetters[0].playerId = [];
     submitedLetters[1].player2 = [];
@@ -88,6 +90,7 @@ $(document).ready(function () {
         newCell.attr("column-number", j);
         newCell.attr("x", `${i}`);
         newCell.attr("y", `${j}`);
+        newCell.attr("id", `${i}${j}`);
         newCell.addClass("droppable");
         // Helpful info: https://api.jqueryui.com/droppable/#event-out
         $(".droppable").droppable({
@@ -96,6 +99,7 @@ $(document).ready(function () {
             let draggedLetter = ui.draggable.attr("letter");
             let droppedPositionX = $(this).attr("x");
             let droppedPositionY = $(this).attr("y");
+            /* $(this).appendTo(ui); */
 
             wordDraftCreator(
               draggedID,
@@ -146,92 +150,100 @@ $(document).ready(function () {
   }
 
   //function to validate the moves
-  function validateTheMove(board_positions, players_turn, direction) {
+  function validateTheMove(boardPositions, secondMove, direction) {
     const allowedDirections = ["row", "column"];
     let valid = false;
     let same_value;
     let different_values;
-    let gapsExist = false;
     let copy;
     let diff;
+    let center = false;
+       
 
-    if (!players_turn) {
-      //if is the first move check if has one tile in the center of the board
-      board_positions.forEach((position) => {
+    if (!secondMove) {
+      let gapsExist = false;
+      // is it the center?
+      boardPositions.forEach( position => {
         if (position.positionx === "7" && position.positiony === "7") {
-          if (allowedDirections.includes(direction)) {
-            
-            valid = true;
-          }
+          center = true;
         }
       });
+      //check if has only one tile
+      if (boardPositions.length === 1) {
+        if (center) {
+          valid = true;
+        }
+      } else if ( allowedDirections.includes(direction) ) {
+        if (direction === "row") {
+          same_value = boardPositions[0].positionx;
+          different_values = selectTheRow(boardPositions);
+          copy = [...different_values];
+          copy.map((value) => Number(value));
+          for (let i = 0; i < copy.length; i++) {
+            diff = copy[i + 1] - copy[i];
+            if (diff > 1) {
+              gapsExist = true;
+            }
+          }
+        } else if (direction === "column") {
+          same_value = boardPositions[0].positiony;
+          different_values = selectTheColumn(boardPositions);
+          copy = [...different_values];
+          copy.map((value) => Number(value));
+          for (let i = 0; i < copy.length; i++) {
+            diff = copy[i + 1] - copy[i];
+            if (diff > 1) {
+              gapsExist = true;
+            }
+          }
+        }
+      }
+      if (!gapsExist) {
+        valid = true;
+      }
+    } else if (boardPositions.length === 1) {
+      if (isNextToATile(boardPositions)) {
+        valid = true;
+      }
     } else if (allowedDirections.includes(direction)) {
       //if isn't the first move, then check if is in row or column direction
-      
+
       //check if is next to a tile in the board
-      if (isNextToATile(board_positions)) {
-        
+      if (isNextToATile(boardPositions)) {
+
         valid = true;
       }
     }
-
-    if (!players_turn) {
-      if (board_positions.length > 1) {
-        if (direction === "row") {
-          same_value = board_positions[0].positionx;
-          different_values = selectTheRow(board_positions);
-          copy = [...different_values];
-          copy.map((value) => Number(value));
-          for (let i = 0; i < copy.length; i++) {
-            diff = copy[i + 1] - copy[i];
-            if (diff > 1) {
-              gapsExist = true;
-            }
-          }
-        } else {
-          same_value = board_positions[0].positiony;
-          different_values = selectTheColumn(board_positions);
-          copy = [...different_values];
-          copy.map((value) => Number(value));
-          for (let i = 0; i < copy.length; i++) {
-            diff = copy[i + 1] - copy[i];
-            if (diff > 1) {
-              gapsExist = true;
-            }
-          }
-        }
-      }
-    }
-
-    if (gapsExist) {
-      valid = false;
-    }
-    return valid;
-  };
+    
+      return valid;
+  }
   
   //function to check if the tiles are next to any placed tile on the board
   function isNextToATile(tiles_positions) {
     
     let answer = false;
     let condition = "";
-    boardRecord.forEach((board_position) => {
+    console.log(boardRecord);
+    boardRecord.forEach( boardPosition => {
       
-      tiles_positions.forEach((tile_position) => {
+      tiles_positions.forEach(tile_position => {
         let xUp = Number(tile_position.positionx) - 1;
         let xDown = Number(tile_position.positionx) + 1;
         let yLeft = Number(tile_position.positiony) - 1;
         let yRight = Number(tile_position.positiony) + 1;
-        let positionstoString = [xUp, xDown, yLeft, yRight];
+        let nextPositions = [xUp, xDown, yLeft, yRight];
         let positions = [
-          `${positionstoString[0]}${tile_position.positiony}`,
-          `${positionstoString[1]}${tile_position.positiony}`,
-          `${tile_position.positionx}${positionstoString[2]}`,
-          `${tile_position.positionx}${positionstoString[3]}`,
-          console.log("here")
+          `${nextPositions[0]}${tile_position.positiony}`,
+          `${nextPositions[1]}${tile_position.positiony}`,
+          `${tile_position.positionx}${nextPositions[2]}`,
+          `${tile_position.positionx}${nextPositions[3]}`,
+          
         ];
-        if (board_position.xy === `${tile_position.positionx}${tile_position.positiony}`) {
+        console.log("positions ", positions, "boardposition.xy", boardPosition.xy);
+        if (boardPosition.xy === `${tile_position.positionx}${tile_position.positiony}`) {
+          //the player has placed over a tile <-----------------------------------------------
           condition = "over";
-        } else if (positions.includes(board_position.xy)) {
+        } else if (positions.includes(boardPosition.xy)) {
           condition = "next";
         }
       });
@@ -239,7 +251,8 @@ $(document).ready(function () {
     if (condition === "next") {
       answer = true;
     }
-
+    
+    console.log("next to a tile ",answer);
     return answer;
   };
 
@@ -450,6 +463,7 @@ $(document).ready(function () {
     positions = JSON.stringify(positions);
     let letters = JSON.stringify(verifyWordsOnBoard(submitedLetters[2].boardId, 1));
     console.log("pos ", positions, "letters ", letters);
+    console.log("antes do score ",submitedLetters);
     $.get("http://localhost:3000/scrabble/score",{positions, letters})
     .done(answer => {
       let score = JSON.parse(answer)
@@ -465,10 +479,12 @@ $(document).ready(function () {
       
     }).done(()=> {
       removeTiles(firstPlayerTurn.is);
-      resetVariables();
+     
+    }).done(()=>{
+      /* resetVariables(); */
       changePlayer();
-    }) 
-      
+    })   
+     
       return true
   };
 
@@ -513,7 +529,7 @@ $(document).ready(function () {
       x.push(item.positionx);
       y.push(item.positiony);
     });
-
+    
     if (x.every((elem, i, arr) => elem === arr[0])) {
       direction = "row";
     } else if (y.every((elem, i, arr) => elem == arr[0])) {
@@ -563,7 +579,7 @@ $(document).ready(function () {
 
   //function return tiles to player
   function returnTilestoPlayersDeck(player) {
-    console.log("destructor! birrr");
+    console.log("destroying");
 
     if (player) {
       console.log("primeiro jogador");
@@ -586,24 +602,30 @@ $(document).ready(function () {
   function removeTiles(player) {
     console.log("removing ids")
     if(player) {
-      submitedLetters[0].playerId.forEach(sub_Tile=>{
+      console.log(submitedLetters)
+      submitedLetters[0].playerId.forEach(subTile=>{
         tilesPlayer1.forEach( tile=> {
-          if(tile.id === sub_Tile.playerId) {
+          if(tile.id === subTile) {
             tile.letter = "";
             tile.value = 0;
           }
         })
       })
+      console.log(tilesPlayer1);
     } else {
-      submitedLetters[1].playerId.forEach(sub_Tile=>{
+      console.log(submitedLetters)
+      submitedLetters[1].playerId.forEach(subTile=>{
         tilesPlayer2.forEach( tile=> {
-          if(tile.id === sub_Tile.playerId) {
+          if(tile.id === subTile) {
             tile.letter = "";
             tile.value = 0;
           }
         })
       })
+      console.log(tilesPlayer2);
     }
+    console.log("entrar reset");
+    resetVariables()
   };
 
   //function to change player
@@ -612,30 +634,25 @@ $(document).ready(function () {
   }
 
   //function to push letters when the word is allowed
-  function pushLetters(word_passed, player) {
+  function pushLetters(player) {
     console.log("moving letters");
-    let obj = { xy: "", letter: "" };
-    if (word_passed) {
-      if (player) {
-        for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
-          obj.xy = `${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`;
-          obj.letter = `${submitedLetters[0].player1[i]}`;
-          boardRecord.push(obj);
-        }
-        //destroy draggable
-        //delete letter from tilesPlayer1
-      } else {
-        console.log("moving player2 letters");
-        for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
-          obj.xy = `${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`;
-          obj.letter = `${submitedLetters[1].player2[i]}`;
-          boardRecord.push(obj);
-        }
-        //destroy draggable
-        //delete letter from tilesPlayer2
+    let xy = "";
+    let letter = "";
+    
+    if (player) {
+      for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
+        xy = `${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`;
+        letter = `${submitedLetters[0].player1[i]}`;
+        boardRecord.push({xy,letter});
       }
+      
     } else {
-      console.log("you should not pass!");
+      console.log("moving player2 letters");
+      for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
+        xy = `${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`;
+        letter = `${submitedLetters[1].player2[i]}`;
+        boardRecord.push({xy,letter});
+      }
     }
   }
 
@@ -685,7 +702,7 @@ $(document).ready(function () {
 
   //function to delete player's letters from it's deck and place it on the board
   function removeFromDeck() {
-    console.log("vou tirar os ids");
+    console.log("removing ids");
     
     if (firstPlayerTurn.is) {
       console.log(submitedLetters[0].playerId);
@@ -694,8 +711,9 @@ $(document).ready(function () {
         $(`#${id}`).addClass("placed");
         $(`#${id}`).removeAttr("id");
       });
+      console.log()
     } else {
-      console.log("tirei jogador 2")
+      console.log("removed from 2")
       submitedLetters[1].playerId.forEach((id) => {
         $(`#${id}`).draggable("option", "disabled", true);
         $(`#${id}`).addClass("placed");
@@ -787,8 +805,8 @@ $(document).ready(function () {
       if (!classesNaoPermitidas.includes(data[0].class) && data[0].meanings.length > 0) {
         
         allowedWord = true;
-        console.log("got here")
-        pushLetters(allowedWord, firstPlayerTurn.is);
+        console.log("check word")
+        pushLetters( firstPlayerTurn.is);
         removeFromDeck();
         requestScores();
       }  else {
@@ -847,16 +865,18 @@ $(document).ready(function () {
         });
         if (amount > 0) {
           $.get(/* url.drawletters */ url + "1/"+ amount, function (data) {
+            console.log("player 1 new data: ",data);
             receivedData[0].letters.push(data.letters);
             receivedData[0].values.push(data.values);
             receivedData[0].whichPlayer = "player1";
             let { letters, values, whichPlayer } = { ...receivedData[0] };
+            /* $("#deck0").empty(); */
             lettersToPlayersDeck(letters, values, whichPlayer);
           });
         }
         
       } else {
-        console.log("2 player")
+        console.log("Second player")
         tilesPlayer2.forEach(tile =>{
           if(tile.letter === "") {
             amount++
@@ -864,22 +884,37 @@ $(document).ready(function () {
         });
         if (amount > 0) {
           $.get(/* url.drawletters */ url + "2/"+ amount, function (data) {
+            console.log("player 2 new data :", data)
             receivedData[1].letters.push(data.letters);
             receivedData[1].values.push(data.values);
             receivedData[1].whichPlayer = "player2";
             receivedData[2].lettersleft = data.lettersLeft;
             let { letters, values, whichPlayer } = { ...receivedData[1] };
+            /* $("#deck1").empty(); */
             lettersToPlayersDeck(letters, values, whichPlayer);
           });
         }
       }
     }
 
-    if(!firstMove) {
-      firstMove = true;
-    }
+    
     
   });
+
+  $('#resetGame').on("click", function(){
+    tilesPlayer1.forEach((tile) => {
+      $(`#${tile.id}`).remove();
+    });
+    tilesPlayer2.forEach((tile) => {
+      $(`#${tile.id}`).remove();
+    });
+    resetVariables();
+    boardRecord = [];
+    firstMove = false;
+    firstPlayerTurn.is = true;
+    //delete players names
+    $.get("http://localhost:3000/scrabble/reset",).done(ans => console.log(ans))
+  })
 
   //function to handle turn, and let player drag tiles to the board
   //the tile will only be draggable when it's player's turn
@@ -917,7 +952,8 @@ $(document).ready(function () {
           rearrangeRowbyColumn(firstPlayerTurn.is);
           console.log(submitedLetters);
           //validation of player's move
-          if ( validateTheMove( submitedLetters[2].boardId,firstMove, submittedDirection)) {
+          console.log( validateTheMove(submitedLetters[2].boardId, firstMove, submittedDirection));
+          if ( validateTheMove(submitedLetters[2].boardId, firstMove, submittedDirection)) {
             pushLettersToNewBoard(firstPlayerTurn.is);
             draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
             let pos = verifyWordsOnBoard(submitedLetters[2].boardId, 2)
@@ -932,12 +968,7 @@ $(document).ready(function () {
           //sort letters by the row number
           rearrangeColumnbyRow(firstPlayerTurn.is);
           console.log(submitedLetters);
-          if ( validateTheMove(
-              submitedLetters[2].boardId,
-              firstMove,
-              submittedDirection
-            )
-          ) {
+          if ( validateTheMove( submitedLetters[2].boardId, firstMove, submittedDirection) ) {
             pushLettersToNewBoard(firstPlayerTurn.is);
             draft = verifyWordsOnBoard(submitedLetters[2].boardId,1);
             let pos = verifyWordsOnBoard(submitedLetters[2].boardId, 2)
@@ -954,6 +985,7 @@ $(document).ready(function () {
       }
       //player 2 validations
     } else {
+      submittedDirection = findDirection(submitedLetters[2].boardId);
       if (submitedLetters[1].player2.length > 1) {
         if (submittedDirection === "row") {
           //sort letters by the column number
