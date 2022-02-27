@@ -1,3 +1,4 @@
+//criar aqui todas as funções do jogo
 const board = [
   [ "3p", "1", "1", "2l", "1", "1", "1", "3p", "1", "1", "1", "2l", "1", "1", "3p", ],
   [ "1", "2p", "1", "1", "1", "3l", "1", "1", "1", "3l", "1", "1", "1", "2p", "1",  ],
@@ -115,6 +116,18 @@ module.exports = class Scrabble {
     return send;
   }
 
+  resetVariables() {
+    this.lettersCount = [ 14, 3, 4, 2, 5, 11, 2, 2, 2, 10, 2, 5, 6, 4, 10, 4, 1, 6, 8, 5, 7, 2, 1, 1, ];
+    this.player1 = {
+      score: 0,
+      lettersReceived: [],
+    };
+    this.player2 = {
+      score: 0,
+      lettersReceived: [],
+    };
+  }
+
   //função para enviar a pontuação
   sendScore(letters_received, positions_received) {
     
@@ -145,9 +158,9 @@ module.exports = class Scrabble {
 
     positions_check.forEach(item=>{
       if (board[item.posx][item.posy] === "2p") {
-        values.map(value=> value*2);
+        values = values.map(value=> value*2);
       } else if( board[item.posx][item.posy] === "3p") {
-        values.map(value=>value*3);
+        values = values.map(value=>value*3);
       }
     })
     score = values.reduce((i,value)=>i+value,0)
