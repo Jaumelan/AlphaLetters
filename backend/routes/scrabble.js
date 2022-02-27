@@ -19,5 +19,16 @@ router.get('/initialize', (req,res) => {
     res.send(scrabblePortugues.drawLetters(data.whichplayer, data.amountOfLetters));
 
 })
+.get('/score', (req,res) => {
+    let positions = req.query.positions;
+    let letters = req.query.letters;
+    console.log("positions", positions, "letters ", letters);
+    let answer = scrabblePortugues.sendScore(letters,positions);
+    res.send(JSON.stringify(answer));
+})
+.get('/reset', (req,res) => {
+    scrabblePortugues.resetVariables();
+    res.sendStatus(200);
+})
 
 module.exports = router;
