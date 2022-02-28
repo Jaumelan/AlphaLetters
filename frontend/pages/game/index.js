@@ -1,64 +1,64 @@
 
-$(document).ready(function () {
   //declare the positions where the player gets bonuses
+  import {boardCreator} from './boardCreator.js'
+  import { submitedLetters, receivedData, resetVariables} from './resetVariables.js'
+  import {pushLettersToNewBoard, verifyWordsOnBoard} from './newBoard.js'
+$(document).ready(function () {
 
-  const tripleWord = [ [0, 0], [0, 7], [0, 14], [7, 0], [7, 14], [14, 0], [14, 7], [14, 14] ];
-  const doubleWord = [ [1, 1], [2, 2], [3, 3], [4, 4], [4, 10], [7, 7], [3, 11], [2, 12], [1, 13], [13, 1], [12, 2], [11, 3], [10, 4], [10, 10], [11, 11], [12, 12], [13, 13] ];
-  const tripleLetter = [ [5, 1], [1, 5], [5, 5], [9, 1], [9, 5], [13, 5], [1, 9], [5, 9], [5, 13], [9, 9], [9, 13], [13, 9] ];
-  const doubleLetter = [[3, 0],[11, 0],[0, 3],[0, 11],[6, 2],[2, 6],[7, 3],[3, 7],[8, 2],[2, 8],[6, 6],[8, 8],[6, 8],[8, 6],[14, 3],[3, 14],[6, 12],[12, 6],[11, 7],[7, 11],[12, 8],[8, 12],[14, 11],[11, 14] ];
+  // const tripleWord = [ [0, 0], [0, 7], [0, 14], [7, 0], [7, 14], [14, 0], [14, 7], [14, 14] ];
+  // const doubleWord = [ [1, 1], [2, 2], [3, 3], [4, 4], [4, 10], [7, 7], [3, 11], [2, 12], [1, 13], [13, 1], [12, 2], [11, 3], [10, 4], [10, 10], [11, 11], [12, 12], [13, 13] ];
+  // const tripleLetter = [ [5, 1], [1, 5], [5, 5], [9, 1], [9, 5], [13, 5], [1, 9], [5, 9], [5, 13], [9, 9], [9, 13], [13, 9] ];
+  // const doubleLetter = [[3, 0],[11, 0],[0, 3],[0, 11],[6, 2],[2, 6],[7, 3],[3, 7],[8, 2],[2, 8],[6, 6],[8, 8],[6, 8],[8, 6],[14, 3],[3, 14],[6, 12],[12, 6],[11, 7],[7, 11],[12, 8],[8, 12],[14, 11],[11, 14] ];
   //not allowed type of words
   const classesNaoPermitidas = ["prefixo", "sufixo"];
   let allowedWord = false;
-  let newBoard = [
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-  ];
+  // let newBoard = [
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  // ];
   const nicknames = { player1: "Papagaio", player2: "Anta" };
-  const submitedLetters = [
-    { player1: [], playerId: [] },
-    { player2: [], playerId: [] },
-    { boardId: [] },
-  ];
-  //data received from get route drawletters
-  const receivedData = [
-    { letters: [], values: [], whichPlayer: "player1" },
-    { letters: [], values: [], whichPlayer: "player2" },
-    { lettersleft: 0 },
-  ];
+  // const submitedLetters = [
+  //   { player1: [], playerId: [] },
+  //   { player2: [], playerId: [] },
+  //   { boardId: [] },
+  // ];
+  // //data received from get route drawletters
+  // const receivedData = [
+  //   { letters: [], values: [], whichPlayer: "player1" },
+  //   { letters: [], values: [], whichPlayer: "player2" },
+  //   { lettersleft: 0 },
+  // ];
   let firstMove = false; //default false
   let boardRecord = [/* { xy: "88", letter: "M" } */];
-  /*  const url = {
-    drawletters: "https://alpha-letters-backend.herokuapp.com/scrabble/drawletters/",
-  }; */
   const firstPlayerTurn = { is: true };
 
-  function resetVariables() {
-    console.log("reset variables", submitedLetters);
-    submitedLetters[0].player1 = [];
-    submitedLetters[0].playerId = [];
-    submitedLetters[1].player2 = [];
-    submitedLetters[1].playerId = [];
-    submitedLetters[2].boardId = [];
+  // function resetVariables() {
+  //   console.log("reset variables", submitedLetters);
+  //   submitedLetters[0].player1 = [];
+  //   submitedLetters[0].playerId = [];
+  //   submitedLetters[1].player2 = [];
+  //   submitedLetters[1].playerId = [];
+  //   submitedLetters[2].boardId = [];
 
-    receivedData[0].letters = [];
-    receivedData[0].values = [];
-    receivedData[1].letters = [];
-    receivedData[1].values = [];
-    receivedData[2];
-  };
+  //   receivedData[0].letters = [];
+  //   receivedData[0].values = [];
+  //   receivedData[1].letters = [];
+  //   receivedData[1].values = [];
+  //   receivedData[2];
+  // };
 
   //record of letters of each player's deck
   const tilesPlayer1 = [
@@ -83,74 +83,74 @@ $(document).ready(function () {
 
   let droppedID = []
 
-  function boardCreator() {
-    for (let i = 0; i < 15; i++) {
-      let newRow = $('<div class="row"></div>');
-      for (let j = 0; j < 15; j++) {
-        let newCell = $('<div class="cell"></div>');
-        newCell.attr("row-number", i);
-        newCell.attr("column-number", j);
-        newCell.attr("x", `${i}`);
-        newCell.attr("y", `${j}`);
-        newCell.attr("id", `${i}${j}`);
-        newCell.addClass("droppable");
-        // Helpful info: https://api.jqueryui.com/droppable/#event-out
-        $(".droppable").droppable({
-          drop: function (event, ui) {
-            let draggedID = ui.draggable.attr("id");
-            let draggedLetter = ui.draggable.attr("letter");
-            let droppedPositionX = $(this).attr("x");
-            let droppedPositionY = $(this).attr("y");
-            /* let iddropito = $(this).attr("id");
-            console.log(iddropito); */
+  // function boardCreator() {
+  //   for (let i = 0; i < 15; i++) {
+  //     let newRow = $('<div class="row"></div>');
+  //     for (let j = 0; j < 15; j++) {
+  //       let newCell = $('<div class="cell"></div>');
+  //       newCell.attr("row-number", i);
+  //       newCell.attr("column-number", j);
+  //       newCell.attr("x", `${i}`);
+  //       newCell.attr("y", `${j}`);
+  //       newCell.attr("id", `${i}${j}`);
+  //       newCell.addClass("droppable");
+  //       // Helpful info: https://api.jqueryui.com/droppable/#event-out
+  //       $(".droppable").droppable({
+  //         drop: function (event, ui) {
+  //           let draggedID = ui.draggable.attr("id");
+  //           let draggedLetter = ui.draggable.attr("letter");
+  //           let droppedPositionX = $(this).attr("x");
+  //           let droppedPositionY = $(this).attr("y");
+  //           /* let iddropito = $(this).attr("id");
+  //           console.log(iddropito); */
 
-            wordDraftCreator(
-              draggedID,
-              draggedLetter,
-              droppedPositionX,
-              droppedPositionY,
-              firstPlayerTurn.is
-            );
-          },
-          out: function (event, ui) {
-            let draggedID = ui.draggable.attr("id");
+  //           wordDraftCreator(
+  //             draggedID,
+  //             draggedLetter,
+  //             droppedPositionX,
+  //             droppedPositionY,
+  //             firstPlayerTurn.is
+  //           );
+  //         },
+  //         out: function (event, ui) {
+  //           let draggedID = ui.draggable.attr("id");
 
-            let droppedPosition = $(this).attr("xy");
-            takeWordFromDraft(draggedID, firstPlayerTurn.is);
-            //create a function to handle moving another one by mistake
-          },
-        });
+  //           let droppedPosition = $(this).attr("xy");
+  //           takeWordFromDraft(draggedID, firstPlayerTurn.is);
+  //           //create a function to handle moving another one by mistake
+  //         },
+  //       });
 
-        newRow.append(newCell);
-        tripleWord.forEach((xy) => {
-          if (xy[0] === i && xy[1] === j) {
-            newCell.addClass("tripleWord");
-            newCell.html("TP");
-          }
-        });
-        doubleWord.forEach((xy) => {
-          if (xy[0] === i && xy[1] === j) {
-            newCell.addClass("doubleWord");
-            newCell.html("DP");
-          }
-        });
-        tripleLetter.forEach((xy) => {
-          if (xy[0] === i && xy[1] === j) {
-            newCell.addClass("tripleLetter");
-            newCell.html("TL");
-          }
-        });
+  //       newRow.append(newCell);
+  //       tripleWord.forEach((xy) => {
+  //         if (xy[0] === i && xy[1] === j) {
+  //           newCell.addClass("tripleWord");
+  //           newCell.html("TP");
+  //         }
+  //       });
+  //       doubleWord.forEach((xy) => {
+  //         if (xy[0] === i && xy[1] === j) {
+  //           newCell.addClass("doubleWord");
+  //           newCell.html("DP");
+  //         }
+  //       });
+  //       tripleLetter.forEach((xy) => {
+  //         if (xy[0] === i && xy[1] === j) {
+  //           newCell.addClass("tripleLetter");
+  //           newCell.html("TL");
+  //         }
+  //       });
 
-        doubleLetter.forEach((xy) => {
-          if (xy[0] === i && xy[1] === j) {
-            newCell.addClass("doubleLetter");
-            newCell.html("DL");
-          }
-        });
-      }
-      $("#gameboard").append(newRow);
-    }
-  }
+  //       doubleLetter.forEach((xy) => {
+  //         if (xy[0] === i && xy[1] === j) {
+  //           newCell.addClass("doubleLetter");
+  //           newCell.html("DL");
+  //         }
+  //       });
+  //     }
+  //     $("#gameboard").append(newRow);
+  //   }
+  // }
 
   //function to validate the moves
   function validateTheMove(boardPositions, secondMove, direction) {
@@ -309,156 +309,156 @@ $(document).ready(function () {
   }
 
   //function to push letters when the word is allowed
-  function pushLettersToNewBoard(player) {
-    console.log("moving letters");
-    let x;
-    let y;
-    let letter;
+  // function pushLettersToNewBoard(player) {
+  //   console.log("moving letters");
+  //   let x;
+  //   let y;
+  //   let letter;
 
-    if (player) {
-      for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
-        x = Number(submitedLetters[2].boardId[i].positionx);
-        y = Number(submitedLetters[2].boardId[i].positiony);
-        newBoard[x][y] = `${submitedLetters[0].player1[i]}`;
-      }
-    } else {
-      console.log("moving player2 letters");
-      for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
-        x = Number(submitedLetters[2].boardId[i].positionx);
-        y = Number(submitedLetters[2].boardId[i].positiony);
-        newBoard[x][y] = `${submitedLetters[1].player2[i]}`;
-      }
-    }
-    return true;
-  }
+  //   if (player) {
+  //     for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
+  //       x = Number(submitedLetters[2].boardId[i].positionx);
+  //       y = Number(submitedLetters[2].boardId[i].positiony);
+  //       newBoard[x][y] = `${submitedLetters[0].player1[i]}`;
+  //     }
+  //   } else {
+  //     console.log("moving player2 letters");
+  //     for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
+  //       x = Number(submitedLetters[2].boardId[i].positionx);
+  //       y = Number(submitedLetters[2].boardId[i].positiony);
+  //       newBoard[x][y] = `${submitedLetters[1].player2[i]}`;
+  //     }
+  //   }
+  //   return true;
+  // }
 
-  function verifyWordsOnBoard(positions_placed, which_array) {
-    let draft = [];
-    let position = [];
-    let amount_of_tiles = positions_placed.length;
-    let first_x = Number(positions_placed[0].positionx);
-    let first_y = Number(positions_placed[0].positiony);
-    let last_x = Number(positions_placed[amount_of_tiles - 1].positionx);
-    let last_y = Number(positions_placed[amount_of_tiles - 1].positiony);
-    let diff_x = last_x - first_x;
-    let diff_y = last_y - first_y;
-    let drafts = [];
-    let positions = [];
-    let answer;
+  // function verifyWordsOnBoard(positions_placed, which_array) {
+  //   let draft = [];
+  //   let position = [];
+  //   let amount_of_tiles = positions_placed.length;
+  //   let first_x = Number(positions_placed[0].positionx);
+  //   let first_y = Number(positions_placed[0].positiony);
+  //   let last_x = Number(positions_placed[amount_of_tiles - 1].positionx);
+  //   let last_y = Number(positions_placed[amount_of_tiles - 1].positiony);
+  //   let diff_x = last_x - first_x;
+  //   let diff_y = last_y - first_y;
+  //   let drafts = [];
+  //   let positions = [];
+  //   let answer;
 
-    if (amount_of_tiles > 1) {
-      //is row or column?
-      if (findDirection(positions_placed) === "row") {
-        ///values in x still equal
-        //try to find letters before my first y
-        let j = 1;
-        while (newBoard[first_x][first_y - j] !== "" ) {
-          draft.unshift(newBoard[first_x][first_y - j]);
-          position.unshift({posx:`${first_x}`,posy:`${first_y - j}`});
-          j++;
-        }
-        //get the first letter
-        draft.push(newBoard[first_x][first_y]);
-        position.push({posx:`${first_x}`,posy:`${first_y}`})
+  //   if (amount_of_tiles > 1) {
+  //     //is row or column?
+  //     if (findDirection(positions_placed) === "row") {
+  //       ///values in x still equal
+  //       //try to find letters before my first y
+  //       let j = 1;
+  //       while (newBoard[first_x][first_y - j] !== "" ) {
+  //         draft.unshift(newBoard[first_x][first_y - j]);
+  //         position.unshift({posx:`${first_x}`,posy:`${first_y - j}`});
+  //         j++;
+  //       }
+  //       //get the first letter
+  //       draft.push(newBoard[first_x][first_y]);
+  //       position.push({posx:`${first_x}`,posy:`${first_y}`})
 
-        //try to fill the gaps if they are
-        for (let index = 1; index < diff_y; index++) {
-          draft.push(newBoard[first_x][first_y + index]);
-          position.push({posx:`${first_x}`,posy:`${first_y + index}`});
-        }
-        //get the last letter
-        draft.push(newBoard[last_x][last_y]);
-        position.push({posx:`${last_x}`,posy:`${last_y}`});
-        j = 1;
-        //try to add letters at the end if exist
-        while (newBoard[first_x][last_y + j] !== "") {
-          draft.push(newBoard[first_x][last_y + j]);
-          position.push({posx:`${first_x}`,posy:`${last_y + j}`});
-          j++;
-        }
-      } else {
-        let i = 1;
-        while (newBoard[first_x - i][first_y] !== "") {
-          draft.unshift(newBoard[first_x - i][first_y]);
-          position.push({posx:`${first_x - i}`,posy:`${first_y}`});
-          i++;
-        }
+  //       //try to fill the gaps if they are
+  //       for (let index = 1; index < diff_y; index++) {
+  //         draft.push(newBoard[first_x][first_y + index]);
+  //         position.push({posx:`${first_x}`,posy:`${first_y + index}`});
+  //       }
+  //       //get the last letter
+  //       draft.push(newBoard[last_x][last_y]);
+  //       position.push({posx:`${last_x}`,posy:`${last_y}`});
+  //       j = 1;
+  //       //try to add letters at the end if exist
+  //       while (newBoard[first_x][last_y + j] !== "") {
+  //         draft.push(newBoard[first_x][last_y + j]);
+  //         position.push({posx:`${first_x}`,posy:`${last_y + j}`});
+  //         j++;
+  //       }
+  //     } else {
+  //       let i = 1;
+  //       while (newBoard[first_x - i][first_y] !== "") {
+  //         draft.unshift(newBoard[first_x - i][first_y]);
+  //         position.push({posx:`${first_x - i}`,posy:`${first_y}`});
+  //         i++;
+  //       }
 
-        draft.push(newBoard[first_x][first_y]);
-        position.push({posx:`${first_x}`,posy:`${first_y}`});
+  //       draft.push(newBoard[first_x][first_y]);
+  //       position.push({posx:`${first_x}`,posy:`${first_y}`});
 
-        for (let index = 1; index < diff_x; index++) {
-          draft.push(newBoard[first_x + index][first_y]);
-          position.push({posx:`${first_x + index}`,posy:`${first_y}`});
-        }
+  //       for (let index = 1; index < diff_x; index++) {
+  //         draft.push(newBoard[first_x + index][first_y]);
+  //         position.push({posx:`${first_x + index}`,posy:`${first_y}`});
+  //       }
 
-        draft.push(newBoard[last_x][last_y]);
-        position.push({posx:`${last_x}`,posy:`${last_y}`});
-        i = 1;
-        while (newBoard[last_x + i][last_y] !== "") {
-          draft.push(newBoard[last_x + i][last_y]);
-          position.push({posx:`${last_x + i}`,posy:`${last_y}`});
-          i++;
-        }
-      }
-      //for only one tile placed on board
-    } else {
-      let j = 1;
-      while (newBoard[first_x][first_y - j] !== "") {
-        draft.unshift(newBoard[first_x][first_y - j]);
-        position.unshift({posx:`${first_x}`,posy:`${first_y - j}`});
-        j++;
-      }
-      draft.push(newBoard[first_x][first_y]);
-      position.push({posx:`${first_x}`,posy:`${first_y}`});
-      j = 1;
-      while (newBoard[first_x][last_y + j] !== "") {
-        draft.push(newBoard[first_x][last_y + j]);
-        position.push({posx:`${first_x}`,posy:`${last_y + j}`});
-        j++;
-      }
+  //       draft.push(newBoard[last_x][last_y]);
+  //       position.push({posx:`${last_x}`,posy:`${last_y}`});
+  //       i = 1;
+  //       while (newBoard[last_x + i][last_y] !== "") {
+  //         draft.push(newBoard[last_x + i][last_y]);
+  //         position.push({posx:`${last_x + i}`,posy:`${last_y}`});
+  //         i++;
+  //       }
+  //     }
+  //     //for only one tile placed on board
+  //   } else {
+  //     let j = 1;
+  //     while (newBoard[first_x][first_y - j] !== "") {
+  //       draft.unshift(newBoard[first_x][first_y - j]);
+  //       position.unshift({posx:`${first_x}`,posy:`${first_y - j}`});
+  //       j++;
+  //     }
+  //     draft.push(newBoard[first_x][first_y]);
+  //     position.push({posx:`${first_x}`,posy:`${first_y}`});
+  //     j = 1;
+  //     while (newBoard[first_x][last_y + j] !== "") {
+  //       draft.push(newBoard[first_x][last_y + j]);
+  //       position.push({posx:`${first_x}`,posy:`${last_y + j}`});
+  //       j++;
+  //     }
 
-      if (draft.length < 2) {
-        draft = [];
-        position = [];
-      } else {
-        drafts.push(draft);
+  //     if (draft.length < 2) {
+  //       draft = [];
+  //       position = [];
+  //     } else {
+  //       drafts.push(draft);
 
-      }
-      draft = [];
-      let i = 1;
-      while (newBoard[first_x - i][first_y] !== "") {
-        draft.unshift(newBoard[first_x - i][first_y]);
-        position.unshift({posx:`${first_x - i}`,posy:`${first_y}`});
-        i++;
-      }
+  //     }
+  //     draft = [];
+  //     let i = 1;
+  //     while (newBoard[first_x - i][first_y] !== "") {
+  //       draft.unshift(newBoard[first_x - i][first_y]);
+  //       position.unshift({posx:`${first_x - i}`,posy:`${first_y}`});
+  //       i++;
+  //     }
 
-      draft.push(newBoard[first_x][first_y]);
-      position.push({posx:`${first_x}`,posy:`${first_y}`});
+  //     draft.push(newBoard[first_x][first_y]);
+  //     position.push({posx:`${first_x}`,posy:`${first_y}`});
 
-      i = 1;
-      while (newBoard[last_x + i][last_y] !== "") {
-        draft.push(newBoard[last_x + i][last_y]);
-        position.push({posx:`${last_x + i}`,posy:`${last_y}`});
-        i++;
-      }
+  //     i = 1;
+  //     while (newBoard[last_x + i][last_y] !== "") {
+  //       draft.push(newBoard[last_x + i][last_y]);
+  //       position.push({posx:`${last_x + i}`,posy:`${last_y}`});
+  //       i++;
+  //     }
       
-    }
+  //   }
     
-    if (draft.length < 2) {
-      draft = [];
-    } else {
-      drafts.push(draft);
-      positions.push(position);
-    }
-    if(which_array === 1) {
-      answer = drafts;
-    } else {
-      answer = position/* positions */;
-    }
-    console.log(answer);
-    return answer;
-  }
+  //   if (draft.length < 2) {
+  //     draft = [];
+  //   } else {
+  //     drafts.push(draft);
+  //     positions.push(position);
+  //   }
+  //   if(which_array === 1) {
+  //     answer = drafts;
+  //   } else {
+  //     answer = position/* positions */;
+  //   }
+  //   console.log(answer);
+  //   return answer;
+  // }
 
   //function to request scores
   function requestScores() {
