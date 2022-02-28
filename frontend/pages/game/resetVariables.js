@@ -1,16 +1,5 @@
-export const submitedLetters = [
-    { player1: [], playerId: [] },
-    { player2: [], playerId: [] },
-    { boardId: [] },
-  ];
-  //data received from get route drawletters
-  export const receivedData = [
-    { letters: [], values: [], whichPlayer: "player1" },
-    { letters: [], values: [], whichPlayer: "player2" },
-    { lettersleft: 0 },
-  ];
-
-  export function resetVariables() {
+ import { submitedLetters, receivedData } from "./constants.js";
+ export function resetVariables() {
     console.log("reset variables", submitedLetters);
     submitedLetters[0].player1 = [];
     submitedLetters[0].playerId = [];
