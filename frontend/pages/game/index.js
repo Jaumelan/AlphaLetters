@@ -472,14 +472,15 @@ $(document).ready(function () {
       let score = JSON.parse(answer)
       return score}).done(score => {
       let value;
+      
       if (firstPlayerTurn.is) {
-        value = Number($("#player1-score").val());
+        value = Number($("#player1-score").text()) + Number(score);   
         $("#player1-score").text("");
-        $("#player1-score").text(score);
+        $("#player1-score").text(value);
       } else {
-        value = Number($("#player2-score").val())
+        value = Number($("#player2-score").text()) + Number(score);
         $("#player2-score").text("");
-        $("#player2-score").text(score);
+        $("#player2-score").text(value);
       }
       
     }).done(()=> {
