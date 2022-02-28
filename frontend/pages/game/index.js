@@ -81,6 +81,8 @@ $(document).ready(function () {
     { id: "deck1_piece6", letter: "", value: 0 },
   ];
 
+  let droppedID = []
+
   function boardCreator() {
     for (let i = 0; i < 15; i++) {
       let newRow = $('<div class="row"></div>');
@@ -99,7 +101,8 @@ $(document).ready(function () {
             let draggedLetter = ui.draggable.attr("letter");
             let droppedPositionX = $(this).attr("x");
             let droppedPositionY = $(this).attr("y");
-            /* $(this).appendTo(ui); */
+            /* let iddropito = $(this).attr("id");
+            console.log(iddropito); */
 
             wordDraftCreator(
               draggedID,
@@ -468,16 +471,20 @@ $(document).ready(function () {
     .done(answer => {
       let score = JSON.parse(answer)
       return score}).done(score => {
-      
+      let value;
       if (firstPlayerTurn.is) {
+        value = Number($("#player1-score").val());
         $("#player1-score").text("");
         $("#player1-score").text(score);
       } else {
+        value = Number($("#player2-score").val())
         $("#player2-score").text("");
         $("#player2-score").text(score);
       }
       
     }).done(()=> {
+      //clonar o id clone()
+      appendToBoard(firstPlayerTurn.is)
       removeTiles(firstPlayerTurn.is);
      
     }).done(()=>{
@@ -487,6 +494,31 @@ $(document).ready(function () {
      
       return true
   };
+
+  //function to append to board-game
+  function appendToBoard(player) {
+    console.log("appendando, meus parça")
+    if(player) {
+      console.log("jogador 1")
+      for (let i=0; i<submitedLetters[0].playerId.length;i++) {
+        
+          $(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).text("");
+          $(`#${submitedLetters[0].playerId[i]}`).attr("id",`piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+          $(`#piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).appendTo(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+          .css("left","0px")
+          .css("top", "0px");
+      }
+    } else {
+      for (let i=0; i<submitedLetters[1].playerId.length;i++) {
+        
+        $(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).text("");
+        $(`#${submitedLetters[1].playerId[i]}`).attr("id",`piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+        $(`#piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).appendTo(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+        .css("left","0px")
+        .css("top", "0px");
+    }
+    }
+  }
 
   //function to display which players turn is
   function changeDisplayTurn() {
@@ -709,7 +741,7 @@ $(document).ready(function () {
       submitedLetters[0].playerId.forEach(id => {
         $(`#${id}`).draggable("option", "disabled", true );
         $(`#${id}`).addClass("placed");
-        $(`#${id}`).removeAttr("id");
+        /* $(`#${id}`).removeAttr("id"); */
       });
       console.log()
     } else {
@@ -717,7 +749,7 @@ $(document).ready(function () {
       submitedLetters[1].playerId.forEach((id) => {
         $(`#${id}`).draggable("option", "disabled", true);
         $(`#${id}`).addClass("placed");
-        $(`#${id}`).removeAttr("id");
+        /* $(`#${id}`).removeAttr("id"); */
       });
     }
   }
@@ -870,7 +902,7 @@ $(document).ready(function () {
             receivedData[0].values.push(data.values);
             receivedData[0].whichPlayer = "player1";
             let { letters, values, whichPlayer } = { ...receivedData[0] };
-            /* $("#deck0").empty(); */
+            $("#deck0").empty();
             lettersToPlayersDeck(letters, values, whichPlayer);
           });
         }
@@ -890,7 +922,7 @@ $(document).ready(function () {
             receivedData[1].whichPlayer = "player2";
             receivedData[2].lettersleft = data.lettersLeft;
             let { letters, values, whichPlayer } = { ...receivedData[1] };
-            /* $("#deck1").empty(); */
+            $("#deck1").empty();
             lettersToPlayersDeck(letters, values, whichPlayer);
           });
         }
@@ -912,6 +944,7 @@ $(document).ready(function () {
     boardRecord = [];
     firstMove = false;
     firstPlayerTurn.is = true;
+    boardCreator()
     //delete players names
     $.get("http://localhost:3000/scrabble/reset",).done(ans => console.log(ans))
   })
