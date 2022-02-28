@@ -474,12 +474,15 @@ $(document).ready(function () {
       let score = JSON.parse(answer)
       return score}).done(score => {
       let value;
+      console.log("score ",score)
       
       if (firstPlayerTurn.is) {
         value = Number($("#player1-score").text()) + Number(score);   
         $("#player1-score").text("");
         $("#player1-score").text(value);
       } else {
+        let a = Number($("#player2-score").text())
+        console.log("a ",a);
         value = Number($("#player2-score").text()) + Number(score);
         $("#player2-score").text("");
         $("#player2-score").text(value);
@@ -660,7 +663,6 @@ $(document).ready(function () {
       })
       console.log(tilesPlayer2);
     }
-    console.log("entrar reset");
     resetVariables()
   };
 
@@ -683,7 +685,6 @@ $(document).ready(function () {
       }
       
     } else {
-      console.log("moving player2 letters");
       for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
         xy = `${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`;
         letter = `${submitedLetters[1].player2[i]}`;
@@ -741,7 +742,6 @@ $(document).ready(function () {
     console.log("removing ids");
     
     if (firstPlayerTurn.is) {
-      console.log(submitedLetters[0].playerId);
       submitedLetters[0].playerId.forEach(id => {
         $(`#${id}`).draggable("option", "disabled", true );
         $(`#${id}`).addClass("placed");
@@ -749,7 +749,6 @@ $(document).ready(function () {
       });
       console.log()
     } else {
-      console.log("removed from 2")
       submitedLetters[1].playerId.forEach((id) => {
         $(`#${id}`).draggable("option", "disabled", true);
         $(`#${id}`).addClass("placed");
@@ -948,6 +947,7 @@ $(document).ready(function () {
     boardRecord = [];
     firstMove = false;
     firstPlayerTurn.is = true;
+    $("#gameboard").html("");
     boardCreator()
     //delete players names
     $.get("http://localhost:3000/scrabble/reset",).done(ans => console.log(ans))
