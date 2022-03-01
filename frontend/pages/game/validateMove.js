@@ -1,5 +1,5 @@
 import { findDirection } from "./findDirection.js";
-export let boardRecord = [/* { xy: "88", letter: "M" } */];
+import {boardRecord} from "./constants.js";
 
 export function validateTheMove(boardPositions, secondMove, direction) {
     const allowedDirections = ["row", "column"];

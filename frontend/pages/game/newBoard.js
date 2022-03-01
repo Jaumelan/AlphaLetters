@@ -1,6 +1,6 @@
 import { submitedLetters } from "./constants.js";
 import { findDirection } from "./findDirection.js";
-import { newBoard } from "./constants.js";
+import { newBoard, boardRecord } from "./constants.js";
 
 export function pushLettersToNewBoard(player) {
     console.log("moving letters");
@@ -25,7 +25,7 @@ export function pushLettersToNewBoard(player) {
     return true;
   }
 
-export    function verifyWordsOnBoard(positions_placed, which_array) {
+export function verifyWordsOnBoard(positions_placed, which_array) {
     let draft = [];
     let position = [];
     let amount_of_tiles = positions_placed.length;
@@ -154,4 +154,41 @@ export    function verifyWordsOnBoard(positions_placed, which_array) {
     }
     console.log("resposta :",answer);
     return answer;
+  }
+
+  export function appendToBoard(player) {
+    console.log("appendando, meus parça")
+    console.log(submitedLetters)
+    if(player) {
+      console.log("jogador 1")
+      for (let i=0; i<submitedLetters[0].playerId.length;i++) {
+        
+          $(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).text("");
+          $(`#${submitedLetters[0].playerId[i]}`).attr("id",`piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+          $(`#piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).appendTo(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+          .css("left","0px")
+          .css("top", "0px");
+      }
+    } else {
+      for (let i=0; i<submitedLetters[1].playerId.length;i++) {
+        
+        $(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).text("");
+        $(`#${submitedLetters[1].playerId[i]}`).attr("id",`piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+        $(`#piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).appendTo(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+        .css("left","0px")
+        .css("top", "0px");
+    }
+    }
+  }
+  
+  export function getLettersFromBoard(gaps_array) {
+    let letters = [];
+    gaps_array.forEach((gap) => {
+      boardRecord.forEach((record) => {
+        if (gap == record.xy) {
+          letters.push(record.letter);
+        }
+      });
+    });
+    return letters;
   }

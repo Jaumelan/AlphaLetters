@@ -3,18 +3,34 @@
   import {boardCreator} from './boardCreator.js'
   import {resetVariables} from './resetVariables.js'
   import {pushLettersToNewBoard, verifyWordsOnBoard} from './newBoard.js'
-  import {boardRecord, validateTheMove, isNextToATile, getGaps, selectTheRow, selectTheColumn} from './validateMove.js'
+  import {validateTheMove, isNextToATile} from './validateMove.js'
   import {findDirection} from './findDirection.js'
-  import {submitedLetters, receivedData, firstPlayerTurn} from './constants.js'
-$(document).ready(function () {
+  import {
+    submitedLetters,
+    receivedData,
+    firstPlayerTurn,
+    nicknames,
+    tilesPlayer1,
+    tilesPlayer2,
+    classesNaoPermitidas,
+    boardRecord,
+    droppedID,
+  } from './constants.js'
 
+import {lettersToPlayersDeck,removeFromDeck, returnTilestoPlayersDeck  } from './deck.js'
+import {pushLetters, rearrangeRowbyColumn, rearrangeColumnbyRow} from "./player.js"
+import {requestScores, changePlayer} from "./getScore.js"
+
+$(document).ready(function () {
+   let allowedWord = false
+   let firstMove = false;
   // const tripleWord = [ [0, 0], [0, 7], [0, 14], [7, 0], [7, 14], [14, 0], [14, 7], [14, 14] ];
   // const doubleWord = [ [1, 1], [2, 2], [3, 3], [4, 4], [4, 10], [7, 7], [3, 11], [2, 12], [1, 13], [13, 1], [12, 2], [11, 3], [10, 4], [10, 10], [11, 11], [12, 12], [13, 13] ];
   // const tripleLetter = [ [5, 1], [1, 5], [5, 5], [9, 1], [9, 5], [13, 5], [1, 9], [5, 9], [5, 13], [9, 9], [9, 13], [13, 9] ];
   // const doubleLetter = [[3, 0],[11, 0],[0, 3],[0, 11],[6, 2],[2, 6],[7, 3],[3, 7],[8, 2],[2, 8],[6, 6],[8, 8],[6, 8],[8, 6],[14, 3],[3, 14],[6, 12],[12, 6],[11, 7],[7, 11],[12, 8],[8, 12],[14, 11],[11, 14] ];
   //not allowed type of words
-  const classesNaoPermitidas = ["prefixo", "sufixo"];
-  let allowedWord = false;
+  // const classesNaoPermitidas = ["prefixo", "sufixo"];
+  // let allowedWord = false;
   // let newBoard = [
   //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
   //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
@@ -32,7 +48,7 @@ $(document).ready(function () {
   //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
   //   ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
   // ];
-  const nicknames = { player1: "Papagaio", player2: "Anta" };
+  // const nicknames = { player1: "Papagaio", player2: "Anta" };
   // const submitedLetters = [
   //   { player1: [], playerId: [] },
   //   { player2: [], playerId: [] },
@@ -44,7 +60,7 @@ $(document).ready(function () {
   //   { letters: [], values: [], whichPlayer: "player2" },
   //   { lettersleft: 0 },
   // ];
-  let firstMove = false; //default false
+  // let firstMove = false; //default false
   // let boardRecord = [/* { xy: "88", letter: "M" } */];
 
   // function resetVariables() {
@@ -63,27 +79,27 @@ $(document).ready(function () {
   // };
 
   //record of letters of each player's deck
-  const tilesPlayer1 = [
-    { id: "deck0_piece0", letter: "", value: 0 },
-    { id: "deck0_piece1", letter: "", value: 0 },
-    { id: "deck0_piece2", letter: "", value: 0 },
-    { id: "deck0_piece3", letter: "", value: 0 },
-    { id: "deck0_piece4", letter: "", value: 0 },
-    { id: "deck0_piece5", letter: "", value: 0 },
-    { id: "deck0_piece6", letter: "", value: 0 },
-  ];
+  // const tilesPlayer1 = [
+  //   { id: "deck0_piece0", letter: "", value: 0 },
+  //   { id: "deck0_piece1", letter: "", value: 0 },
+  //   { id: "deck0_piece2", letter: "", value: 0 },
+  //   { id: "deck0_piece3", letter: "", value: 0 },
+  //   { id: "deck0_piece4", letter: "", value: 0 },
+  //   { id: "deck0_piece5", letter: "", value: 0 },
+  //   { id: "deck0_piece6", letter: "", value: 0 },
+  // ];
 
-  const tilesPlayer2 = [
-    { id: "deck1_piece0", letter: "", value: 0 },
-    { id: "deck1_piece1", letter: "", value: 0 },
-    { id: "deck1_piece2", letter: "", value: 0 },
-    { id: "deck1_piece3", letter: "", value: 0 },
-    { id: "deck1_piece4", letter: "", value: 0 },
-    { id: "deck1_piece5", letter: "", value: 0 },
-    { id: "deck1_piece6", letter: "", value: 0 },
-  ];
+  // const tilesPlayer2 = [
+  //   { id: "deck1_piece0", letter: "", value: 0 },
+  //   { id: "deck1_piece1", letter: "", value: 0 },
+  //   { id: "deck1_piece2", letter: "", value: 0 },
+  //   { id: "deck1_piece3", letter: "", value: 0 },
+  //   { id: "deck1_piece4", letter: "", value: 0 },
+  //   { id: "deck1_piece5", letter: "", value: 0 },
+  //   { id: "deck1_piece6", letter: "", value: 0 },
+  // ];
 
-  let droppedID = []
+  // let droppedID = []
 
   // function boardCreator() {
   //   for (let i = 0; i < 15; i++) {
@@ -463,69 +479,69 @@ $(document).ready(function () {
   // }
 
   //function to request scores
-  function requestScores() {
-    let positions = verifyWordsOnBoard(submitedLetters[2].boardId, 2);
-    positions = JSON.stringify(positions);
-    let letters = JSON.stringify(verifyWordsOnBoard(submitedLetters[2].boardId, 1));
-    console.log("pos ", positions, "letters ", letters);
-    console.log("antes do score ",submitedLetters);
-    $.get("http://localhost:3000/scrabble/score",{positions, letters})
-    .done(answer => {
-      let score = JSON.parse(answer)
-      return score}).done(score => {
-      let value;
-      console.log("score ",score)
+  // function requestScores() {
+  //   let positions = verifyWordsOnBoard(submitedLetters[2].boardId, 2);
+  //   positions = JSON.stringify(positions);
+  //   let letters = JSON.stringify(verifyWordsOnBoard(submitedLetters[2].boardId, 1));
+  //   console.log("pos ", positions, "letters ", letters);
+  //   console.log("antes do score ",submitedLetters);
+  //   $.get("http://localhost:3000/scrabble/score",{positions, letters})
+  //   .done(answer => {
+  //     let score = JSON.parse(answer)
+  //     return score}).done(score => {
+  //     let value;
+  //     console.log("score ",score)
       
-      if (firstPlayerTurn.is) {
-        value = Number($("#player1-score").text()) + Number(score);   
-        $("#player1-score").text("");
-        $("#player1-score").text(value);
-      } else {
-        let a = Number($("#player2-score").text())
-        console.log("a ",a);
-        value = Number($("#player2-score").text()) + Number(score);
-        $("#player2-score").text("");
-        $("#player2-score").text(value);
-      }
+  //     if (firstPlayerTurn.is) {
+  //       value = Number($("#player1-score").text()) + Number(score);   
+  //       $("#player1-score").text("");
+  //       $("#player1-score").text(value);
+  //     } else {
+  //       let a = Number($("#player2-score").text())
+  //       console.log("a ",a);
+  //       value = Number($("#player2-score").text()) + Number(score);
+  //       $("#player2-score").text("");
+  //       $("#player2-score").text(value);
+  //     }
       
-    }).done(()=> {
-      //clonar o id clone()
-      appendToBoard(firstPlayerTurn.is)
-      removeTiles(firstPlayerTurn.is);
+  //   }).done(()=> {
+  //     //clonar o id clone()
+  //     appendToBoard(firstPlayerTurn.is)
+  //     removeTiles(firstPlayerTurn.is);
      
-    }).done(()=>{
-      /* resetVariables(); */
-      changePlayer();
-    })   
+  //   }).done(()=>{
+  //     /* resetVariables(); */
+  //     changePlayer();
+  //   })   
      
-      return true
-  };
+  //     return true
+  // };
 
   //function to append to board-game
-  function appendToBoard(player) {
-    console.log("appendando, meus parça")
-    console.log(submitedLetters)
-    if(player) {
-      console.log("jogador 1")
-      for (let i=0; i<submitedLetters[0].playerId.length;i++) {
+  // function appendToBoard(player) {
+  //   console.log("appendando, meus parça")
+  //   console.log(submitedLetters)
+  //   if(player) {
+  //     console.log("jogador 1")
+  //     for (let i=0; i<submitedLetters[0].playerId.length;i++) {
         
-          $(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).text("");
-          $(`#${submitedLetters[0].playerId[i]}`).attr("id",`piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
-          $(`#piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).appendTo(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
-          .css("left","0px")
-          .css("top", "0px");
-      }
-    } else {
-      for (let i=0; i<submitedLetters[1].playerId.length;i++) {
+  //         $(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).text("");
+  //         $(`#${submitedLetters[0].playerId[i]}`).attr("id",`piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+  //         $(`#piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).appendTo(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+  //         .css("left","0px")
+  //         .css("top", "0px");
+  //     }
+  //   } else {
+  //     for (let i=0; i<submitedLetters[1].playerId.length;i++) {
         
-        $(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).text("");
-        $(`#${submitedLetters[1].playerId[i]}`).attr("id",`piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
-        $(`#piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).appendTo(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
-        .css("left","0px")
-        .css("top", "0px");
-    }
-    }
-  }
+  //       $(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).text("");
+  //       $(`#${submitedLetters[1].playerId[i]}`).attr("id",`piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+  //       $(`#piece${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`).appendTo(`#${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`)
+  //       .css("left","0px")
+  //       .css("top", "0px");
+  //   }
+  //   }
+  // }
 
   //function to display which players turn is
   function changeDisplayTurn() {
@@ -540,23 +556,23 @@ $(document).ready(function () {
   
 
   //2. Create a function to create each player's deck
-  function createDeck(player) {
-    if (player === "player1") {
-      tilesPlayer1.forEach((tile) => {
-        $("#deck0").append(
-          `<div id="${tile.id}" letter="${tile.letter}" class="pieceSmall">${tile.letter}<span class="piece-numberSmall">${tile.value}</span></div>`
-        );
-        $("#deck0").droppable();
-      });
-    } else {
-      tilesPlayer2.forEach((tile) => {
-        $("#deck1").append(
-          `<div id="${tile.id}" letter="${tile.letter}" class="pieceSmall">${tile.letter}<span class="piece-numberSmall">${tile.value}</span></div>`
-        );
-        $("#deck1").droppable();
-      });
-    }
-  }
+  // function createDeck(player) {
+  //   if (player === "player1") {
+  //     tilesPlayer1.forEach((tile) => {
+  //       $("#deck0").append(
+  //         `<div id="${tile.id}" letter="${tile.letter}" class="pieceSmall">${tile.letter}<span class="piece-numberSmall">${tile.value}</span></div>`
+  //       );
+  //       $("#deck0").droppable();
+  //     });
+  //   } else {
+  //     tilesPlayer2.forEach((tile) => {
+  //       $("#deck1").append(
+  //         `<div id="${tile.id}" letter="${tile.letter}" class="pieceSmall">${tile.letter}<span class="piece-numberSmall">${tile.value}</span></div>`
+  //       );
+  //       $("#deck1").droppable();
+  //     });
+  //   }
+  // }
 
   //function to get in which direction the player placed the letters
   //reference https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
@@ -593,105 +609,105 @@ $(document).ready(function () {
   // }
 
   //function to check which tile is available from player's deck record and place the letter
-  function lettersToPlayersDeck(letters, values, player) {
-    let i = 0;
+  // function lettersToPlayersDeck(letters, values, player) {
+  //   let i = 0;
 
-    if (player === "player1") {
-      tilesPlayer1.forEach((tile) => {
-        if (tile.letter === "") {
-          tile.letter = letters[0][i];
-          tile.value = values[0][i];
-          i++;
-        }
-      });
-    } else {
-      tilesPlayer2.forEach((tile) => {
-        if (tile.letter === "") {
-          tile.letter = letters[0][i];
-          tile.value = values[0][i];
-          i++;
-        }
-      });
-    }
-    createDeck(player);
-  };
+  //   if (player === "player1") {
+  //     tilesPlayer1.forEach((tile) => {
+  //       if (tile.letter === "") {
+  //         tile.letter = letters[0][i];
+  //         tile.value = values[0][i];
+  //         i++;
+  //       }
+  //     });
+  //   } else {
+  //     tilesPlayer2.forEach((tile) => {
+  //       if (tile.letter === "") {
+  //         tile.letter = letters[0][i];
+  //         tile.value = values[0][i];
+  //         i++;
+  //       }
+  //     });
+  //   }
+  //   createDeck(player);
+  // };
 
   //function return tiles to player
-  function returnTilestoPlayersDeck(player) {
-    console.log("destroying");
+  // function returnTilestoPlayersDeck(player) {
+  //   console.log("destroying");
 
-    if (player) {
-      console.log("primeiro jogador");
-      tilesPlayer1.forEach((tile) => {
-        $(`#${tile.id}`).remove();
-      });
-      let { letters, values, whichPlayer } = { ...receivedData[0] };
-      lettersToPlayersDeck(letters, values, whichPlayer);
-    } else {
-      console.log("segundo jogador");
-      tilesPlayer2.forEach((tile) => {
-        $(`#${tile.id}`).remove();
-      });
-      let { letters, values, whichPlayer } = { ...receivedData[1] };
-      lettersToPlayersDeck(letters, values, whichPlayer);
-    }
-  }
+  //   if (player) {
+  //     console.log("primeiro jogador");
+  //     tilesPlayer1.forEach((tile) => {
+  //       $(`#${tile.id}`).remove();
+  //     });
+  //     let { letters, values, whichPlayer } = { ...receivedData[0] };
+  //     lettersToPlayersDeck(letters, values, whichPlayer);
+  //   } else {
+  //     console.log("segundo jogador");
+  //     tilesPlayer2.forEach((tile) => {
+  //       $(`#${tile.id}`).remove();
+  //     });
+  //     let { letters, values, whichPlayer } = { ...receivedData[1] };
+  //     lettersToPlayersDeck(letters, values, whichPlayer);
+  //   }
+  // }
 
   //Function to remove played letters from player's hand
-  function removeTiles(player) {
-    console.log("removing ids")
-    if(player) {
-      console.log(submitedLetters)
-      submitedLetters[0].playerId.forEach(subTile=>{
-        tilesPlayer1.forEach( tile=> {
-          if(tile.id === subTile) {
-            tile.letter = "";
-            tile.value = 0;
-          }
-        })
-      })
-      console.log(tilesPlayer1);
-    } else {
-      console.log(submitedLetters)
-      submitedLetters[1].playerId.forEach(subTile=>{
-        tilesPlayer2.forEach( tile=> {
-          if(tile.id === subTile) {
-            tile.letter = "";
-            tile.value = 0;
-          }
-        })
-      })
-      console.log(tilesPlayer2);
-    }
-    resetVariables()
-  };
+  // function removeTiles(player) {
+  //   console.log("removing ids")
+  //   if(player) {
+  //     console.log(submitedLetters)
+  //     submitedLetters[0].playerId.forEach(subTile=>{
+  //       tilesPlayer1.forEach( tile=> {
+  //         if(tile.id === subTile) {
+  //           tile.letter = "";
+  //           tile.value = 0;
+  //         }
+  //       })
+  //     })
+  //     console.log(tilesPlayer1);
+  //   } else {
+  //     console.log(submitedLetters)
+  //     submitedLetters[1].playerId.forEach(subTile=>{
+  //       tilesPlayer2.forEach( tile=> {
+  //         if(tile.id === subTile) {
+  //           tile.letter = "";
+  //           tile.value = 0;
+  //         }
+  //       })
+  //     })
+  //     console.log(tilesPlayer2);
+  //   }
+  //   resetVariables()
+  // };
 
   //function to change player
-  function changePlayer() {
-    return (firstPlayerTurn.is = !firstPlayerTurn.is);
-  }
+  // function changePlayer() {
+  //   return (firstPlayerTurn.is = !firstPlayerTurn.is);
+  // }
 
   //function to push letters when the word is allowed
-  function pushLetters(player) {
-    console.log("moving letters");
-    let xy = "";
-    let letter = "";
+  // function pushLetters(player) {
+  //   console.log("moving letters");
+  //   let xy = "";
+  //   let letter = "";
     
-    if (player) {
-      for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
-        xy = `${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`;
-        letter = `${submitedLetters[0].player1[i]}`;
-        boardRecord.push({xy,letter});
-      }
+  //   if (player) {
+  //     for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
+  //       xy = `${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`;
+  //       letter = `${submitedLetters[0].player1[i]}`;
+  //       boardRecord.push({xy,letter});
+  //     }
       
-    } else {
-      for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
-        xy = `${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`;
-        letter = `${submitedLetters[1].player2[i]}`;
-        boardRecord.push({xy,letter});
-      }
-    }
-  }
+  //   } else {
+  //     for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
+  //       xy = `${submitedLetters[2].boardId[i].positionx}${submitedLetters[2].boardId[i].positiony}`;
+  //       letter = `${submitedLetters[1].player2[i]}`;
+  //       boardRecord.push({xy,letter});
+  //     }
+  //   }
+  // }
 
   //function to record letters place on the boardgame
   // function wordDraftCreator(id, letter, positionx, positiony, player) {
@@ -725,111 +741,111 @@ $(document).ready(function () {
   //   }
   // }
 
-  function getLettersFromBoard(gaps_array) {
-    let letters = [];
-    gaps_array.forEach((gap) => {
-      boardRecord.forEach((record) => {
-        if (gap == record.xy) {
-          letters.push(record.letter);
-        }
-      });
-    });
-    return letters;
-  }
+  // function getLettersFromBoard(gaps_array) {
+  //   let letters = [];
+  //   gaps_array.forEach((gap) => {
+  //     boardRecord.forEach((record) => {
+  //       if (gap == record.xy) {
+  //         letters.push(record.letter);
+  //       }
+  //     });
+  //   });
+  //   return letters;
+  // }
 
   //function to delete player's letters from it's deck and place it on the board
-  function removeFromDeck() {
-    console.log("removing ids");
+  // function removeFromDeck() {
+  //   console.log("removing ids");
     
-    if (firstPlayerTurn.is) {
-      submitedLetters[0].playerId.forEach(id => {
-        $(`#${id}`).draggable("option", "disabled", true );
-        $(`#${id}`).addClass("placed");
-        /* $(`#${id}`).removeAttr("id"); */
-      });
-      console.log()
-    } else {
-      submitedLetters[1].playerId.forEach((id) => {
-        $(`#${id}`).draggable("option", "disabled", true);
-        $(`#${id}`).addClass("placed");
-        /* $(`#${id}`).removeAttr("id"); */
-      });
-    }
-  }
+  //   if (firstPlayerTurn.is) {
+  //     submitedLetters[0].playerId.forEach(id => {
+  //       $(`#${id}`).draggable("option", "disabled", true );
+  //       $(`#${id}`).addClass("placed");
+  //       /* $(`#${id}`).removeAttr("id"); */
+  //     });
+  //     console.log()
+  //   } else {
+  //     submitedLetters[1].playerId.forEach((id) => {
+  //       $(`#${id}`).draggable("option", "disabled", true);
+  //       $(`#${id}`).addClass("placed");
+  //       /* $(`#${id}`).removeAttr("id"); */
+  //     });
+  //   }
+  // }
 
   //function to rearrange array by column
-  function rearrangeRowbyColumn(player) {
-    if (player) {
-      let y = selectTheRow(submitedLetters[2].boardId);
-      let copyY = [...y];
-      let orderedY = copyY.sort((a, b) => a - b);
-      let rearrangedIndexes = [];
-      orderedY.forEach((item) => rearrangedIndexes.push(y.indexOf(item)));
-      submitedLetters[2].boardId = rearrangedIndexes.map(
-        (i) => submitedLetters[2].boardId[i]
-      );
-      submitedLetters[0].player1 = rearrangedIndexes.map(
-        (i) => submitedLetters[0].player1[i]
-      );
-      submitedLetters[0].playerId = rearrangedIndexes.map(
-        (i) => submitedLetters[0].playerId[i]
-      );
-      return true;
-    } else {
-      let y = selectTheRow(submitedLetters[2].boardId);
-      let copyY = [...y];
-      let orderedY = copyY.sort((a, b) => a - b);
-      let rearrangedIndexes = [];
-      orderedY.forEach((item) => rearrangedIndexes.push(y.indexOf(item)));
-      submitedLetters[2].boardId = rearrangedIndexes.map(
-        (i) => submitedLetters[2].boardId[i]
-      );
-      submitedLetters[1].player2 = rearrangedIndexes.map(
-        (i) => submitedLetters[1].player2[i]
-      );
-      submitedLetters[1].playerId = rearrangedIndexes.map(
-        (i) => submitedLetters[1].playerId[i]
-      );
-      return true;
-    }
-  }
+  // function rearrangeRowbyColumn(player) {
+  //   if (player) {
+  //     let y = selectTheRow(submitedLetters[2].boardId);
+  //     let copyY = [...y];
+  //     let orderedY = copyY.sort((a, b) => a - b);
+  //     let rearrangedIndexes = [];
+  //     orderedY.forEach((item) => rearrangedIndexes.push(y.indexOf(item)));
+  //     submitedLetters[2].boardId = rearrangedIndexes.map(
+  //       (i) => submitedLetters[2].boardId[i]
+  //     );
+  //     submitedLetters[0].player1 = rearrangedIndexes.map(
+  //       (i) => submitedLetters[0].player1[i]
+  //     );
+  //     submitedLetters[0].playerId = rearrangedIndexes.map(
+  //       (i) => submitedLetters[0].playerId[i]
+  //     );
+  //     return true;
+  //   } else {
+  //     let y = selectTheRow(submitedLetters[2].boardId);
+  //     let copyY = [...y];
+  //     let orderedY = copyY.sort((a, b) => a - b);
+  //     let rearrangedIndexes = [];
+  //     orderedY.forEach((item) => rearrangedIndexes.push(y.indexOf(item)));
+  //     submitedLetters[2].boardId = rearrangedIndexes.map(
+  //       (i) => submitedLetters[2].boardId[i]
+  //     );
+  //     submitedLetters[1].player2 = rearrangedIndexes.map(
+  //       (i) => submitedLetters[1].player2[i]
+  //     );
+  //     submitedLetters[1].playerId = rearrangedIndexes.map(
+  //       (i) => submitedLetters[1].playerId[i]
+  //     );
+  //     return true;
+  //   }
+  // }
 
-  //function to rearrange array by row
-  function rearrangeColumnbyRow(player) {
-    if (player) {
-      let x = selectTheColumn(submitedLetters[2].boardId);
-      let copyX = [...x];
-      let orderedX = copyX.sort((a, b) => a - b);
-      let rearrangedIndexes = [];
-      orderedX.forEach((item) => rearrangedIndexes.push(x.indexOf(item)));
-      submitedLetters[2].boardId = rearrangedIndexes.map(
-        (i) => submitedLetters[2].boardId[i]
-      );
-      submitedLetters[0].player1 = rearrangedIndexes.map(
-        (i) => submitedLetters[0].player1[i]
-      );
-      submitedLetters[0].playerId = rearrangedIndexes.map(
-        (i) => submitedLetters[0].playerId[i]
-      );
-      return true;
-    } else {
-      let x = selectTheColumn(submitedLetters[2].boardId);
-      let copyX = [...x];
-      let orderedX = copyX.sort((a, b) => a - b);
-      let rearrangedIndexes = [];
-      orderedX.forEach((item) => rearrangedIndexes.push(x.indexOf(item)));
-      submitedLetters[2].boardId = rearrangedIndexes.map(
-        (i) => submitedLetters[2].boardId[i]
-      );
-      submitedLetters[1].player2 = rearrangedIndexes.map(
-        (i) => submitedLetters[1].player2[i]
-      );
-      submitedLetters[1].playerId = rearrangedIndexes.map(
-        (i) => submitedLetters[1].playerId[i]
-      );
-      return true;
-    }
-  }
+  // //function to rearrange array by row
+  // function rearrangeColumnbyRow(player) {
+  //   if (player) {
+  //     let x = selectTheColumn(submitedLetters[2].boardId);
+  //     let copyX = [...x];
+  //     let orderedX = copyX.sort((a, b) => a - b);
+  //     let rearrangedIndexes = [];
+  //     orderedX.forEach((item) => rearrangedIndexes.push(x.indexOf(item)));
+  //     submitedLetters[2].boardId = rearrangedIndexes.map(
+  //       (i) => submitedLetters[2].boardId[i]
+  //     );
+  //     submitedLetters[0].player1 = rearrangedIndexes.map(
+  //       (i) => submitedLetters[0].player1[i]
+  //     );
+  //     submitedLetters[0].playerId = rearrangedIndexes.map(
+  //       (i) => submitedLetters[0].playerId[i]
+  //     );
+  //     return true;
+  //   } else {
+  //     let x = selectTheColumn(submitedLetters[2].boardId);
+  //     let copyX = [...x];
+  //     let orderedX = copyX.sort((a, b) => a - b);
+  //     let rearrangedIndexes = [];
+  //     orderedX.forEach((item) => rearrangedIndexes.push(x.indexOf(item)));
+  //     submitedLetters[2].boardId = rearrangedIndexes.map(
+  //       (i) => submitedLetters[2].boardId[i]
+  //     );
+  //     submitedLetters[1].player2 = rearrangedIndexes.map(
+  //       (i) => submitedLetters[1].player2[i]
+  //     );
+  //     submitedLetters[1].playerId = rearrangedIndexes.map(
+  //       (i) => submitedLetters[1].playerId[i]
+  //     );
+  //     return true;
+  //   }
+  // }
 
   //function to check if is allowed word
    async function wordChecker(word) {

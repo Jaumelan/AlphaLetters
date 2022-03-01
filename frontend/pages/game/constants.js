@@ -32,4 +32,29 @@ export let newBoard = [
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-  ];
+];
+
+export const classesNaoPermitidas = ["prefixo", "sufixo"];
+export const nicknames = { player1: "Papagaio", player2: "Anta" };
+export const tilesPlayer1 = [
+  { id: "deck0_piece0", letter: "", value: 0 },
+  { id: "deck0_piece1", letter: "", value: 0 },
+  { id: "deck0_piece2", letter: "", value: 0 },
+  { id: "deck0_piece3", letter: "", value: 0 },
+  { id: "deck0_piece4", letter: "", value: 0 },
+  { id: "deck0_piece5", letter: "", value: 0 },
+  { id: "deck0_piece6", letter: "", value: 0 },
+];
+
+export const tilesPlayer2 = [
+  { id: "deck1_piece0", letter: "", value: 0 },
+  { id: "deck1_piece1", letter: "", value: 0 },
+  { id: "deck1_piece2", letter: "", value: 0 },
+  { id: "deck1_piece3", letter: "", value: 0 },
+  { id: "deck1_piece4", letter: "", value: 0 },
+  { id: "deck1_piece5", letter: "", value: 0 },
+  { id: "deck1_piece6", letter: "", value: 0 },
+];
+export let droppedID = [];
+export let boardRecord = [/* { xy: "88", letter: "M" } */];
+
