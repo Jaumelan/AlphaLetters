@@ -133,7 +133,7 @@ module.exports = class Scrabble {
     
     let letters_check = JSON.parse(letters_received);
     letters_check = letters_check[0];
-    let positions_check = JSON.parse(positions_received);
+    let positions_check = positions_received;
     
     let score = 0;
     let values = [];
