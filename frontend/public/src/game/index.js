@@ -1148,7 +1148,7 @@ $(document).ready(function () {
 
   function playAudio(audioName, extension) {
     const audio = document.createElement('audio');
-    audio.src = `sound/${audioName}.${extension}`
+    audio.src = `../sounds/${audioName}.${extension}`
     audio.play();
   }
   $('.ui-card').on('click', function () {
