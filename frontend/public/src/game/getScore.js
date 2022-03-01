@@ -43,3 +43,8 @@ export function requestScores() {
 export function changePlayer() {
     return (firstPlayerTurn.is = !firstPlayerTurn.is);
   }
+
+export function showRecord(remaings) {
+  $("#piecesRemaining").text("");
+  $("#piecesRemaining").text(remaings);
+}

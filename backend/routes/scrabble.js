@@ -29,6 +29,7 @@ router.get('/initialize', (req,res) => {
     res.send(JSON.stringify(answer));
 })
 .get('/reset', (req,res) => {
+    console.log("reset");
     scrabblePortugues.resetVariables();
     res.sendStatus(200);
 })

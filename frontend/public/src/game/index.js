@@ -17,6 +17,8 @@ import {
   droppedID,
 } from './constants.js'
 
+import { showRecord } from './getScore.js'
+
 import { lettersToPlayersDeck, removeFromDeck, returnTilestoPlayersDeck } from './deck.js'
 import { pushLetters, rearrangeRowbyColumn, rearrangeColumnbyRow } from "./player.js"
 import { requestScores, changePlayer } from "./getScore.js"
@@ -892,6 +894,7 @@ $(document).ready(function () {
   $("#requestButton").click(function requestFirstLetters() {
     const url = "http://localhost:3000/scrabble/drawletters/";
     let amount = 0;
+    let remaining;
     if (!firstMove) {
       //request the first 7 letters for player1
       $.get(/* url.drawletters */ url + "1/7", function (data) {
@@ -907,6 +910,9 @@ $(document).ready(function () {
         receivedData[1].values.push(data.values);
         receivedData[1].whichPlayer = "player2";
         receivedData[2].lettersleft = data.lettersLeft;
+        console.log(receivedData[2].lettersleft)
+        remaining = data.lettersLeft;
+        showRecord(remaining);
         let { letters, values, whichPlayer } = { ...receivedData[1] };
         lettersToPlayersDeck(letters, values, whichPlayer);
       });
@@ -924,6 +930,8 @@ $(document).ready(function () {
             receivedData[0].letters.push(data.letters);
             receivedData[0].values.push(data.values);
             receivedData[0].whichPlayer = "player1";
+            remaining = data.lettersLeft;
+            showRecord(remaining);
             let { letters, values, whichPlayer } = { ...receivedData[0] };
             $("#deck0").empty();
             lettersToPlayersDeck(letters, values, whichPlayer);
@@ -944,6 +952,8 @@ $(document).ready(function () {
             receivedData[1].values.push(data.values);
             receivedData[1].whichPlayer = "player2";
             receivedData[2].lettersleft = data.lettersLeft;
+            remaining = data.lettersLeft;
+            showRecord(remaining);
             let { letters, values, whichPlayer } = { ...receivedData[1] };
             $("#deck1").empty();
             lettersToPlayersDeck(letters, values, whichPlayer);
@@ -951,9 +961,8 @@ $(document).ready(function () {
         }
       }
     }
-    $("#piecesRemaining").text("");
-    $("#piecesRemaining").text(receivedData[2].lettersleft);
-
+    
+   
   });
 
   $('#resetGame').on("click", function () {
@@ -964,13 +973,17 @@ $(document).ready(function () {
       $(`#${tile.id}`).remove();
     });
     resetVariables();
-    boardRecord = [];
+    boardRecord.length = 0;
     firstMove = false;
     firstPlayerTurn.is = true;
     $("#gameboard").html("");
-    boardCreator()
+    boardCreator();
     //delete players names
-    $.get("http://localhost:3000/scrabble/reset",).done(ans => console.log(ans))
+    showRecord(117);
+    $.get("http://localhost:3000/scrabble/reset",function(){
+      console.log("reset");
+    }).done(ans => console.log(ans));
+    /* $(".modal-avatar").css("display","flex"); */
   })
 
   //function to handle turn, and let player drag tiles to the board
