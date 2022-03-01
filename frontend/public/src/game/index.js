@@ -1170,9 +1170,11 @@ $(document).ready(function () {
     const players =
       [{ name: $('#player-one .player-name').val(), avatar_id: $('#player-one .avatar-id').val() },
       { name: $('#player-two .player-name').val(), avatar_id: $('#player-two .avatar-id').val() }]
-    $.post('https://alpha-letters-backend.herokuapp.com/scrabble/players', players)
-      .done({})
-      .fail();
-    window.location = "https://alpha-letters-frontend.herokuapp.com/game/"
+    console.log(players)
+    $("#player1-name").html(`${players[0].name}`)
+    $("#player1-avatar").attr("src",`../images/${players[0].avatar_id}.webp`)
+    $("#player2-name").html(`${players[1].name}`)
+    $("#player2-avatar").attr("src",`../images/${players[1].avatar_id}.webp`)
+    $(".modal-avatar").css("display","none");
   });
 });
