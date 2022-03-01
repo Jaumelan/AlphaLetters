@@ -20,10 +20,12 @@ router.get('/initialize', (req,res) => {
 
 })
 .get('/score', (req,res) => {
-    let positions = req.query.positions;
+    let positions = JSON.parse(req.query.positions);
     let letters = req.query.letters;
     console.log("positions", positions, "letters ", letters);
-    let answer = scrabblePortugues.sendScore(letters,positions);
+
+    console.log("positions 0:", positions[0]);
+    let answer = scrabblePortugues.sendScore(letters,positions[0]);
     res.send(JSON.stringify(answer));
 })
 .get('/reset', (req,res) => {
