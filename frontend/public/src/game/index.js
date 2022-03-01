@@ -1161,7 +1161,7 @@ $(document).ready(function () {
     playAudio($('#player-one .avatar-id').val(), 'mp3')
     $('#player-one').css('display', 'none');
     $('#player-two').css('display', 'inline');
-    $('#headingPlayer').html('Avatar segundo jogador');
+    $('#headingPlayer').html('AVATAR DO SEGUNDO JOGADOR');
   })
 
   $('#btn-start').on('click', function () {

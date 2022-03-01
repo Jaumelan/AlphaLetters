@@ -95,6 +95,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 #avatar-holder {
   display: flex;
   flex-direction: column;
@@ -355,14 +356,28 @@ img {
 }
 
 /* css avatar modal */
-
+.modal-avatar {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+}
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
 .heading {
 	text-align: center;
-	color: #2e5266;
 	margin-bottom: 3rem;
 }
 .heading h1 {
 	margin-bottom: 50px;
+  color: white;
 }
 h6 {
 	margin-top: 50px;
@@ -391,8 +406,8 @@ h6 {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 300px;
-	width: 175px;
+	height: 40vh;
+	width: 10vw;
 	border-radius: 2.5rem;
 	position: relative;
 	z-index: 1;
@@ -461,17 +476,26 @@ h6 {
 	z-index: 2;
 	transform: scale(0.8) translateY(-1rem)
 		translateX(0);
-	opacity: 0.6;
+	opacity: 0.7;
 	pointer-events: auto;
 	transition: 1s;
 }
+
 #player-two {
 	display: none;
 }
+.player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .images {
 	height: 150px;
 }
-
+#btn-choose {
+  height: 45%;
+}
 #avatar4,
 #avatar3 {
 	width: 90%;
