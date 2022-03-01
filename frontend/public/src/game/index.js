@@ -951,8 +951,8 @@ $(document).ready(function () {
         }
       }
     }
-    $("#piecesRemaining").txt("");
-    $("#piecesRemaining").txt(receivedData[2].lettersleft);
+    $("#piecesRemaining").text("");
+    $("#piecesRemaining").text(receivedData[2].lettersleft);
 
   });
 
