@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link id="style" rel="stylesheet" href="css/home.css" />
+  <title>Alpha Letters</title>
+</head>
+
+<body>
+  <main id="homePage">
+    <div id="title">
+      <div id="firstTitle">
+        <div class="piece rotate1">
+          A <span class="piece-number">1</span>
+        </div>
+        <div class="piece">
+          L <span class="piece-number">2</span>
+        </div>
+        <div class="piece rotate2">
+          P <span class="piece-number">1</span>
+        </div>
+        <div class="piece rotate1">
+          H <span class="piece-number">3</span>
+        </div>
+        <div class="piece">
+          A <span class="piece-number">1</span>
+        </div>
+      </div>
+      <div id="secondTitle">
+        <div class="piece">
+          L <span class="piece-number">2</span>
+        </div>
+        <div class="piece rotate1">
+          E <span class="piece-number">1</span>
+        </div>
+        <div class="piece rotate2">
+          T <span class="piece-number">3</span>
+        </div>
+        <div class="piece">
+          T <span class="piece-number">3</span>
+        </div>
+        <div class="piece">
+          E <span class="piece-number">1</span>
+        </div>
+        <div class="piece rotate1">
+          R <span class="piece-number">2</span>
+        </div>
+        <div class="piece rotate2">
+          S <span class="piece-number">2</span>
+        </div>
+      </div>
+      <div id="homeButton">
+        <button>
+          JOGAR
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <main id="gamePage">
+    <div id="gamePageMain">
+      <div id="divMain">
+        <section id="mainSection">
+          <div id="titleAndInstructions">
+            <div id="title">
+              <div id="firstTitle">
+                <div class="piece rotate1">A <span class="piece-number">1</span></div>
+                <div class="piece">L <span class="piece-number">2</span></div>
+                <div class="piece rotate2">P <span class="piece-number">1</span></div>
+                <div class="piece rotate1">H <span class="piece-number">3</span></div>
+                <div class="piece">A <span class="piece-number">1</span></div>
+              </div>
+              <div id="secondTitle">
+                <div class="piece">L <span class="piece-number">2</span></div>
+                <div class="piece rotate1">E <span class="piece-number">1</span></div>
+                <div class="piece rotate2">T <span class="piece-number">3</span></div>
+                <div class="piece">T <span class="piece-number">3</span></div>
+                <div class="piece">E <span class="piece-number">1</span></div>
+                <div class="piece rotate1">R <span class="piece-number">2</span></div>
+                <div class="piece rotate2">S <span class="piece-number">2</span></div>
+              </div>
+            </div>
+            <div id="instructions">
+              <p>TL - Triplo da letra</p>
+              <p>DL - Dobro da letra</p>
+              <p>TP - Triplo da palavra</p>
+              <p>DP - Dobro da palavra</p>
+            </div>
+            <div id="piecesBag">
+              <p id="piecesRemaining">120</p>
+            </div>
+          </div>
+          <div id="gameboard-holder">
+            <div id="gameboard"></div>
+          </div>
+        </section>
+      </div>
+      <section>
+        <div id="right">
+          <div class="blackboard-holder" id="firstBlackboard">
+            <div id="player1-data">
+              <div id="player1-name">Player 1</div>
+              <img id="player1-avatar" src="" />
+              <div class="score" id="player1-score">0</div>
+            </div>
+            <div id="player2-data">
+              <div id="player2-name">Player 2</div>
+              <img id="player2-avatar" src="" />
+              <div class="score" id="player2-score">0</div>
+            </div>
+          </div>
+          <div id="buttons">
+            <button type="button" id="requestButton">Requisitar</button>
+            <button type="button" id="playButton">Jogar</button>
+            <button type="button" id="endTurn">Finalizar</button>
+            <button type="button" id="resetGame">Reiniciar</button>
+          </div>
+          <div class="blackboard-holder">
+            <div id="meaning">Significado da palavra:
+              <p id="wordMeaning"></p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+    <div id="racks">
+      <div>
+        <div id="deck0"></div>
+        <p>Player 1</p>
+      </div>
+      <div>
+        <div id="deck1"></div>
+        <p>Player 2</p>
+      </div>
+
+    </div>
+
+    <div id="modalAvatar">
+      <div class="heading">
+        <h1 id="headingPlayer">Avatar primeiro jogador</h1>
+      </div>
+
+      <div class="container">
+        <div class="ui-card">
+          <img class="images" src="images/avatar-one.webp" alt="" id="avatar1" class="avatar">
+        </div>
+        <div class="ui-card">
+          <img class="images" src="images/avatar-two.webp" alt="" id="avatar2" class="avatar">
+        </div>
+        <div class="ui-card">
+          <img class="images" src="images/avatar-three.webp" alt="" id="avatar3" class="avatar">
+        </div>
+        <div class="ui-card">
+          <img class="images" src="images/avatar-four.webp" alt="" id="avatar4" class="avatar">
+        </div>
+
+      </div>
+      <h6>( Clique nos avatares laterais para selecionar )</h6>
+      <div>
+        <div class="player" id="player-one">
+          <label for="player">Nome:</label>
+          <input type="text" class="player-name">
+          <input type="hidden" class="avatar-id">
+          <button class="input" id="btn-choose">escolher</button>
+        </div>
+        <div class="player" id="player-two">
+          <label for="player">Nome:</label>
+          <input type="text" class="player-name">
+          <input type="hidden" class="avatar-id">
+          <button type="button" id="btn-start">JOGAR</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script type="module" src="./src/game/index.js"></script>
+</body>
+
+</html>

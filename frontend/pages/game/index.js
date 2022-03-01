@@ -21,6 +21,10 @@ import {lettersToPlayersDeck,removeFromDeck, returnTilestoPlayersDeck  } from '.
 import {pushLetters, rearrangeRowbyColumn, rearrangeColumnbyRow} from "./player.js"
 import {requestScores, changePlayer} from "./getScore.js"
 
+$("#homeButton").on("click", () => {
+  $("#style").attr("href", "../../public/css/game.css")
+});
+
 $(document).ready(function () {
    let allowedWord = false
    let firstMove = false;

@@ -1,176 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap");
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-    position: relative;
+	position: relative;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
 
 body {
-    background-color: rgb(131, 179, 224);
-}
-header {
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 	align-items: center;
-	gap: 10px;
+	font-family: "Walter Turncoat", cursive;
+	background-image: url("/images/Chalkboard.png");
 }
 
-#modal {
-    position: fixed;
-    z-index: 1;
-    background-color: #195877;
-    width: 600px;
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-#modal-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-#avatar-holder {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
+#title {
+	margin-top: 25vh;
+	justify-content: center;
+	align-items: center;
 }
 
-.group-avatar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px
+#homeButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.avatar-figures {
-    width: 100px;
-    align-items: center;
+button:hover {
+	border: 5px solid snow;
+	font-weight: 600;
+	font-size: x-larger;
+	transform: scale(1.1);
 }
 
-.avatar-figures>img {
-    object-fit: contain;
-    width: 100%;
+#firstTitle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#secondTitle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-
-#firstTitle, #secondTitle{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7px
-}
-
-.piece {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Walter Turncoat', cursive;
-    font-size: 40px;
-    color: rgb(110, 57, 57);
-	width: 70px;
-	height: 70px;
-	background-image: url('img/indice.jpg');
-    border-radius: 4px;
-    font-weight: 700;
-    margin: 10px 3px;
-    box-shadow: 3px 3px 4px #e4e2e2, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
-}
-
-.piece-number {
-    font-size: 13px;
-	position: relative;
-	right: -1px;
-	top: 13px;
-}
-
 .rotate1 {
-    transform: rotate(3deg);
+	transform: rotate(3deg);
 }
 
 .rotate2 {
-    transform: rotate(-3deg);
+	transform: rotate(-3deg);
 }
 
-#boards {
-    margin-top: 20px;
-    display: flex;
-    justify-content:center;
-    align-items: start;
-    gap: 10px;
+.piece-number {
+	font-size: medium;
+	position: relative;
+	right: -15px;
+	bottom: -20px;
 }
 
-#blackboard-holder {
-    background-image: url('img/Chalkboard.png');
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    width: 400px;
-    height: 300px;
+.piece {
+	display: flex;
+	align-items: center;
+	font-size: xxx-large;
+	color: snow;
+	width: 100px;
+	height: 100px;
+	border: 3px solid snow;
+	font-weight: 400;
+	margin: 15px 10px;
+	padding-left: 10px;
+	box-shadow: inset -2px -2px 2px snow,
+		inset 1px 1px 1px snow;
+}
+button {
+	padding: 1rem 2rem;
+	margin-top: 4rem;
+	width: 350px;
+	text-decoration: none;
+	font-family: "Walter Turncoat", cursive;
+	background: transparent;
+	color: snow;
+	border: 3px solid snow;
+	font-size: larger;
+	cursor: pointer;
+	text-align: center;
+	box-shadow: inset -1px -1px 3px
+		rgba(0, 0, 0, 0.33);
 }
 
-#gameboard-holder {
-    width: fit-content;
-    background-color: maroon;
-    border: outset darkred 6px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-#gameboard-holder #gameboard {
-    background-color: white;
-    padding: 1px;
-    display: block !important;
-}
-
-#gameboard-holder #gameboard .row {
-    height: 36px;
-}
-
-#gameboard-holder #gameboard .row .cell {
-    width: 31px;
-    height: 31px;
-    background-color: beige;
-    border: solid white 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font: bold 46.6666666667% "Open Sans", sans-serif;
-    color: rgba(0, 0, 0, .6);
-}
-
-.tripleWord {
-    background-color: #ff5823 !important;
-}
-
-.row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-}
-
-.doubleWord {
-    background-color: #F8A582 !important;
-}
-
-.tripleLetter {
-    background-color: #3088B4 !important;
-}
-
-.doubleLetter {
-    background-color: #BEE3EE !important;  
+#gamePage {
+    display: none;
 }

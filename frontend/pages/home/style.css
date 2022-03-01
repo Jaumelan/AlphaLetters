@@ -1,23 +1,84 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     position: relative;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
-
-body {
-    background-color: rgb(131, 179, 224);
-}
-header {
-	display: flex;
+  }
+  
+  @import url("https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap");
+  
+  body {
+    font-family: "Walter Turncoat", cursive;
+    height: 75vh;
+    width: 100vw;
+    min-width: 1400px;
+    background-color: bisque;
+  
+  }
+  
+  #gamePageMain {
+    display: flex;
     justify-content: center;
-	align-items: center;
-	gap: 10px;
-}
-
-#modal {
+    align-items: flex-start;
+    background-image: url("img/darkwood.jpg");
+    background-size: cover;
+    width: 75%;
+    height: 100%;
+    max-width: 1600px;
+    margin-top: 2%;
+    margin-left: 12.5%;
+    min-width: 1440px;
+    max-height: 710px;
+    min-height: 700px;
+    filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
+  }
+  
+  #divMain {
+    display: flex;
+    background: url("img/wood.jpg");
+    width: 66%;
+    height: 95%;
+    margin-right: 3%;
+    margin-top: 25px;
+  }
+  
+  #mainSection {
+    background-color: #f0e1cccc;
+    box-shadow: inset -5px -5px 4px rgba(0, 0, 0, 0.25), inset 5px 5px 4px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 2%;
+    gap: 5px;
+    
+  }
+  #titleAndInstructions{
+    margin-right: 5%;
+    margin-left: 2%;
+  }
+  #title {
+    display: flex;
+  }
+  
+  #instructions {
+    font-size: x-large;
+    font-weight: 500;
+    color: rgb(110, 57, 57);
+    margin-top: 5%;
+    margin-bottom: 5%;
+    
+  }
+  
+  #firstTitle{
+      margin-top: 20%;
+      margin-left: 30%;
+  }
+  #secondTitle{
+      margin-left: 7%;
+  }
+  
+  #modal {
     position: fixed;
     z-index: 1;
     background-color: #195877;
@@ -27,150 +88,268 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-#modal-content {
+  }
+  #modal-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-#avatar-holder {
+  }
+  #avatar-holder {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 15px;
-}
-
-.group-avatar {
+  }
+  
+  .group-avatar {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px
-}
-
-.avatar-figures {
+    gap: 10px;
+  }
+  
+  .avatar-figures {
     width: 100px;
     align-items: center;
-}
-
-.avatar-figures>img {
+  }
+  
+  .avatar-figures > img {
     object-fit: contain;
     width: 100%;
-}
-
-main {
+  }
+  
+  .piece {
     display: flex;
-    justify-content: center;
     align-items: center;
-}
-
-#firstTitle, #secondTitle{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7px
-}
-
-.piece {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Walter Turncoat', cursive;
-    font-size: 40px;
+    font-size: 26px;
     color: rgb(110, 57, 57);
-	width: 70px;
-	height: 70px;
-	background-image: url('img/indice.jpg');
+    width: 45px;
+    height: 45px;
+    background-image: url("img/indice.jpg");
     border-radius: 4px;
-    font-weight: 700;
+    font-weight: 600;
     margin: 10px 3px;
-    box-shadow: 3px 3px 4px #e4e2e2, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
-}
-
-.piece-number {
-    font-size: 13px;
-	position: relative;
-	right: -1px;
-	top: 13px;
-}
-
-.rotate1 {
-    transform: rotate(3deg);
-}
-
-.rotate2 {
-    transform: rotate(-3deg);
-}
-
-#boards {
-    margin-top: 20px;
+    padding-left: 4px;
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.25),
+      inset 1px 1px 1px rgba(0, 0, 0, 0.25);
+  }
+  
+  .piece-number {
+    font-size: 14px;
+    position: relative;
+    right: -4px;
+    bottom: -8px;
+  }
+  
+  .pieceSmall {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: start;
-    gap: 10px;
-}
-
-#blackboard-holder {
-    background-image: url('img/Chalkboard.png');
+    color: rgb(110, 57, 57);
+    width: 38px;
+    height: 38px;
+    background-image: url("img/indice.jpg");
+    border-radius: 4px;
+    font-weight: 400;
+    margin: 2px 2px;
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.25),
+      inset 1px 1px 1px rgba(0, 0, 0, 0.25);
+  }
+  
+  .piece-numberSmall {
+    font-size: 13px;
+    position: relative;
+    right: -1px;
+    top: 13px;
+  }
+  
+  .rotate1 {
+    transform: rotate(3deg);
+  }
+  
+  .rotate2 {
+    transform: rotate(-3deg);
+  }
+  
+  .blackboard-holder {
+    background-image: url("img/Chalkboard.png");
     box-sizing: border-box;
     display: flex;
-    justify-content: center;
-    width: 400px;
+    justify-content: space-evenly;
+    text-align: center;
+    width: 350px;
     height: 300px;
-}
-
-#gameboard-holder {
-    width: fit-content;
-    background-color: maroon;
-    border: outset darkred 6px;
+    color: #e4e2e2;
+    font-size: x-large;
+    box-shadow: inset 5px 5px 4px rgba(0, 0, 0, 0.25), inset -5px -5px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  #firstBlackboard {
+    margin-top: 25px;
+  }
+  
+  .score{
+    margin-top: 10px;
+    font-size: 40px;
+  }
+  
+  #meaning {
+    padding: 10px;
+  }
+  
+  #wordMeaning {
+    font-size: 22px;
+    padding: 10px;
+  }
+  
+  #buttons{
     display: flex;
-    flex-wrap: wrap;
+    width: 350px;
+    justify-content: space-between;
+    margin-top: 25px;
+    
+  }
+  
+  button {
+    font-family: "Walter Turncoat", cursive;
+    font-size: 22px;
+    color: rgb(110, 57, 57);
+    width: 100px;
+    height: 50px;
+    background-image: url("img/indice.jpg");
+    border-radius: 4px;
+    font-weight: bolder;
+    box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.25),
+      inset 1px 1px 1px rgba(0, 0, 0, 0.25);
+    bottom: 10px;
+  }
+  
+  img {
+    padding-top: 10px;
+    width: auto;
+    height: 150px;
+  }
+  
+  #piecesBag {
+    display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#gameboard-holder #gameboard {
+    background-image: url('img/bag.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 155px;
+    height: 100px;
+    margin: 0% 0% 0% 15%;
+  }
+  
+  #piecesBag > p {
+    font-family: "Walter Turncoat", cursive;
+    font-size: 26px;
+    color: azure;
+    left: 40px;
+    bottom: 15px;
+  }
+  
+  
+  #gameboard-holder {
+    padding: 0.5%;
+    width: fit-content;
+    background-color: black;
+    border: outset rgb(255, 255, 255) 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #gameboard-holder #gameboard {
     background-color: white;
     padding: 1px;
     display: block !important;
-}
-
-#gameboard-holder #gameboard .row {
-    height: 36px;
-}
-
-#gameboard-holder #gameboard .row .cell {
-    width: 31px;
-    height: 31px;
-    background-color: beige;
-    border: solid white 2px;
+    background-image: url("img/wood.jpg");
+  }
+  
+  #gameboard-holder #gameboard .row {
+    height: 40px;
+  }
+  
+  #gameboard-holder #gameboard .row .cell {
+    width: 40px;
+    height: 40px;
+    border: solid black 0.5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font: bold 46.6666666667% "Open Sans", sans-serif;
-    color: rgba(0, 0, 0, .6);
-}
-
-.tripleWord {
-    background-color: #ff5823 !important;
-}
-
-.row {
+    font: bolder 66.6666666667% "Open Sans", sans-serif;
+    color: rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  .tripleWord {
+    background-color: #ff5623cc !important;
+  }
+  
+  .row {
     display: flex;
     align-items: center;
     justify-content: center;
     align-content: center;
-}
-
-.doubleWord {
-    background-color: #F8A582 !important;
-}
-
-.tripleLetter {
-    background-color: #3088B4 !important;
-}
-
-.doubleLetter {
-    background-color: #BEE3EE !important;  
-}
+    background-color: #f0e1cccc;
+  }
+  
+  .doubleWord {
+    background-color: #f8a582cc !important;
+  }
+  
+  .tripleLetter {
+    background-color: #3088b4cc !important;
+  }
+  
+  .doubleLetter {
+    background-color: #bee3eecc !important;
+  }
+  
+  #racks {
+    display: flex;
+    background-image: url('img/darkwood.jpg');
+    width: 75%;
+    margin-left: 12.5%;
+    min-width: 1440px;
+    max-width: 1600px;
+    filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
+  }
+  
+  #racks > div > p {
+    background-image: url("img/Chalkboard.png");
+    width: 270px;
+    height: 60px;
+    font-size: x-large;
+    text-align: center;
+    padding-top: 10px;
+    color: #e4e2e2;
+    box-shadow: inset 5px 5px 4px rgba(0, 0, 0, 0.25), inset -5px -5px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  #racks > div{
+      display: flex;
+      width: 50%;
+      justify-content: center;
+  }
+  
+  #deck0,
+  #deck1 {
+    display: flex;
+    background-image: url("img/Chalkboard.png");
+    width: 350px;
+    height: 60px;
+    gap: 2px;
+    box-shadow: inset 5px 5px 4px rgba(0, 0, 0, 0.25), inset -5px -5px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #homePage {
+    display: none;
+  }

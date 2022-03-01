@@ -4,8 +4,11 @@ const port = 3003;
 
 //middlewares
 
-app.use('/', express.static('pages/home'))
-app.use("/game", express.static("pages/game"));
+/* app.use('/', express.static('pages/home')) */
+/* app.use("/game", express.static("pages/game")); */
+app.use(express.static("public"))
+app.use(express.static("pages/game"))
+
 
 app.listen(port, err => {
     if(err) {
