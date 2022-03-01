@@ -25,7 +25,7 @@ export function pushLettersToNewBoard(player) {
     return true;
   }
 
-export  function verifyWordsOnBoard(positions_placed, which_array) {
+export    function verifyWordsOnBoard(positions_placed, which_array) {
     let draft = [];
     let position = [];
     let amount_of_tiles = positions_placed.length;
@@ -116,9 +116,11 @@ export  function verifyWordsOnBoard(positions_placed, which_array) {
         position = [];
       } else {
         drafts.push(draft);
+        positions.push(position)
 
       }
       draft = [];
+      position = [];
       let i = 1;
       while (newBoard[first_x - i][first_y] !== "") {
         draft.unshift(newBoard[first_x - i][first_y]);
@@ -140,6 +142,7 @@ export  function verifyWordsOnBoard(positions_placed, which_array) {
     
     if (draft.length < 2) {
       draft = [];
+      position = [];
     } else {
       drafts.push(draft);
       positions.push(position);
@@ -147,8 +150,8 @@ export  function verifyWordsOnBoard(positions_placed, which_array) {
     if(which_array === 1) {
       answer = drafts;
     } else {
-      answer = position/* positions */;
+      answer = positions;
     }
-    console.log(answer);
+    console.log("resposta :",answer);
     return answer;
   }
