@@ -15,9 +15,10 @@ import {
   classesNaoPermitidas,
   boardRecord,
   droppedID,
+  passTurnCounter
 } from './constants.js'
 
-import { showRecord } from './getScore.js'
+import { showRecord, endGameByPass } from './getScore.js'
 
 import { lettersToPlayersDeck, removeFromDeck, returnTilestoPlayersDeck } from './deck.js'
 import { pushLetters, rearrangeRowbyColumn, rearrangeColumnbyRow } from "./player.js"
@@ -869,24 +870,32 @@ $(document).ready(function () {
       } else {
         returnTilestoPlayersDeck(firstPlayerTurn.is);
         changePlayer();
+
       }
 
-
-      //colocar o significado (só teste)
-      /* if (allowedWord) {
-          $("#meanings").html("");
+      //colocar o significado
+      if (allowedWord) {
+          $("#meaning").html("");
           for (let i = 0; i <= data[0].meanings.length; i++) {
             let p = $("<p></p>");
             p.text(data[0].meanings[i]);
-            $("#meanings").append(p);
+            $("#meaning").append(p);
           }
-        } */
+        }
       console.log(allowedWord);
       return allowedWord;
     });
   };
 
   boardCreator();
+
+  $("passTurn").on("click", function() {
+    //trocar jogador
+    //conta vezes passadas consecutivas 
+    //se for 4 ITS OVER BITCHES
+    //se apertar no botao jogar 
+    //apaga o contador
+  })
 
   //Depois passar todas estas funções para um arquivo separado
   //1. Função para começar o jogo: Depois de ter criado o avatar e ter apertado algum botão.
@@ -1096,21 +1105,30 @@ $(document).ready(function () {
           draft.forEach((array) => {
             word = array.join("");
             console.log(word);
-            wordChecker(word)
+            wordChecker(word);
           });
+          
         }
       } else {
-        console.log("any tile placed")
+        console.log("The player hasn't placed a tile")
+
       }
     }
 
     if (!firstMove) {
       firstMove = true;
+    };
+    if (allowedWord) {
+      passTurnCounter = 0;
+    } else {
+      passTurnCounter++
+      
+      if (passTurnCounter === 4) {
+        endGameByPass();
+      }
     }
 
-
     allowedWord = false;
-
 
   });
 

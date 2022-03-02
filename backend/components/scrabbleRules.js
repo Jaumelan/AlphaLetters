@@ -128,7 +128,7 @@ module.exports = class Scrabble {
       score: 0,
       lettersReceived: [],
     };
-    console.log (this.lettersCount.reduce((x,y)=>x+y))
+    
   }
 
   //função para enviar a pontuação
