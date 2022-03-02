@@ -1204,8 +1204,10 @@ $(document).ready(function () {
     console.log(players)
     $("#player1-name").html(`${players[0].name}`)
     $("#player1-avatar").attr("src",`../images/${players[0].avatar_id}.webp`)
+    $("#deck0-player").html(`deck do ${players[0].name}`)
     $("#player2-name").html(`${players[1].name}`)
     $("#player2-avatar").attr("src",`../images/${players[1].avatar_id}.webp`)
+    $("#deck1-player").html(`deck do ${players[1].name}`)
     $(".modal-avatar").css("display","none");
   });
 });
