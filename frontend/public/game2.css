@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap");
+
+body {
+    font-family: "Walter Turncoat", cursive;
+    height: 75vh;
+    width: 100vw;
+    min-width: 1400px;
+    background-color: #90D8E0;
+}
+
+#gamePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/background.png");
+}
+
+#upperGamePage {
+    display: flex;
+    
+}
+
