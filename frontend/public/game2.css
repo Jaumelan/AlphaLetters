@@ -13,18 +13,116 @@ body {
     width: 100vw;
     min-width: 1400px;
     background-color: #90D8E0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
+/* holds all the site */
 #gamePage {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("../images/background.png");
+    background-image: url("./images/background.png");
+    background-size: cover;
+    width: 80%;
+    height: 100%;
+   /*  max-width: 1600px; */
+    margin-top: 4%;
+    min-width: 1240px;
+   /*  max-height: 710px; */
+    min-height: 700px;
+    filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
 }
 
 #upperGamePage {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.sectionPlayer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerHolder {
+    background-color: #E3E3EB;
+    width: 200px; /* adaptar este valor */
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    border-radius: 57px;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
     
 }
 
+#gameboard-holder {
+    padding: 0.5%;
+    width: fit-content;
+    background-color: black;
+    border: outset rgb(255, 255, 255) 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+#gameboard-holder #gameboard {
+  background-color: white;
+  padding: 1px;
+  display: block !important;
+  
+}
+
+#gameboard-holder #gameboard .row {
+  height: 40px;
+}
+
+#gameboard-holder #gameboard .row .cell {
+  width: 40px;
+  height: 40px;
+  border: solid black 0.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: bolder 66.6666666667% "Open Sans", sans-serif;
+  color: rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.tripleWord {
+  background-color: #ff5623cc !important;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  background-color: #E3E3EB;
+}
+
+.doubleWord {
+  background-color: #f8a582cc !important;
+}
+
+.tripleLetter {
+  background-color: #3088b4cc !important;
+}
+
+.doubleLetter {
+  background-color: #bee3eecc !important;
+}
