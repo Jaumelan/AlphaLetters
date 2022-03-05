@@ -1,295 +1,195 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  position: relative;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap");
 
 body {
-  font-family: "Walter Turncoat", cursive;
-  height: 75vh;
-  width: 100vw;
-  min-width: 1400px;
-  background-color: bisque;
-
+    font-family: "Walter Turncoat", cursive;
+    height: 85vh;
+    width: 100vw;
+    min-width: 1400px;
+    background-color: #90D8E0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* holds all the site */
+#gamePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./images/newBackground.png");
+    background-size:contain;
+    width: 95%;
+    height: 100%;
+   /*  max-width: 1600px; */
+    margin-top: 10%;
+    min-width: 1240px;
+   /*  max-height: 710px; */
+    min-height: 700px;
+    filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
 }
 
-#gamePageMain {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background-image: url("../images/darkwood.jpg");
-  background-size: cover;
-  width: 75%;
-  height: 100%;
-  max-width: 1600px;
-  margin-top: 2%;
-  margin-left: 12.5%;
-  min-width: 1440px;
-  max-height: 710px;
-  min-height: 700px;
-  filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
-}
-
-#divMain {
-  display: flex;
-  background: url("/images/wood.jpg");
-  width: 66%;
-  height: 95%;
-  margin-right: 3%;
-  margin-top: 25px;
-}
-
-#mainSection {
-  background-color: #f0e1cccc;
-  box-shadow: inset -5px -5px 4px rgba(0, 0, 0, 0.25), inset 5px 5px 4px rgba(0, 0, 0, 0.25);
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 2%;
-  gap: 5px;
-  
-}
-#titleAndInstructions{
-  margin-right: 5%;
-  margin-left: 2%;
-}
-#title {
-  display: flex;
-}
-
-#instructions {
-  font-size: x-large;
-  font-weight: 500;
-  color: rgb(110, 57, 57);
-  margin-top: 5%;
-  margin-bottom: 5%;
-  
-}
-
-#firstTitle{
-    margin-top: 20%;
-    margin-left: 30%;
-}
-#secondTitle{
-    margin-left: 7%;
-}
-
-#modal {
-  position: fixed;
-  z-index: 1;
-  background-color: #195877;
-  width: 600px;
-  height: 600px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-#modal-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#avatar-holder {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-}
-
-.group-avatar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.avatar-figures {
-  width: 100px;
-  align-items: center;
-}
-
-.avatar-figures > img {
-  object-fit: contain;
-  width: 100%;
-}
-
-.piece {
-  display: flex;
-  align-items: center;
-  font-size: 26px;
-  color: rgb(110, 57, 57);
-  width: 45px;
-  height: 45px;
-  background-image: url("/images/indice.jpg");
-  border-radius: 4px;
-  font-weight: 600;
-  margin: 10px 3px;
-  padding-left: 4px;
-  box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.25),
-    inset 1px 1px 1px rgba(0, 0, 0, 0.25);
-}
-
-.piece-number {
-  font-size: 14px;
-  position: relative;
-  right: -4px;
-  bottom: -8px;
-}
-
-.pieceSmall {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  color: rgb(110, 57, 57);
-  width: 38px;
-  height: 38px;
-  background-image: url("/images/indice.jpg");
-  border-radius: 4px;
-  font-weight: 400;
-  margin: 2px 2px;
-  box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.25),
-    inset 1px 1px 1px rgba(0, 0, 0, 0.25);
-}
-
-.piece-numberSmall {
-  font-size: 13px;
-  position: relative;
-  right: -1px;
-  top: 13px;
-}
-
-.rotate1 {
-  transform: rotate(3deg);
-}
-
-.rotate2 {
-  transform: rotate(-3deg);
-}
-
-.blackboard-holder {
-  background-image: url("/images/Chalkboard.png");
+#gameName {
+  background-image: url("./images/group15.png");
+  width: 253px;
+  height: 65px;
   box-sizing: border-box;
+  background-size: cover;
+  /* align-self: flex-start; */
+  margin: 2px 0px;
+}
+
+#upperGamePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-top: 1px;
+    /* flex-wrap: wrap; */
+}
+
+.sectionPlayer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+
+.playerData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playerHolder {
+  background-color: #E3E3EB;
+  position: relative;
+  width: fit-content; 
+  height: 200px;
   display: flex;
-  justify-content: space-evenly;
-  text-align: center;
-  width: 350px;
-  height: 300px;
-  color: #e4e2e2;
-  font-size: x-large;
-  box-shadow: inset 5px 5px 4px rgba(0, 0, 0, 0.25), inset -5px -5px 4px rgba(0, 0, 0, 0.25);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  border-radius: 45px;
+  max-width: 200px;
+  min-width: 130px;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);   
 }
 
-#firstBlackboard {
-  margin-top: 25px;
-}
-
-.score{
-  margin-top: 10px;
-  font-size: 40px;
-}
-
-#meaning {
-  padding: 10px;
-  overflow-y: auto;
-}
-
-#wordMeaning {
-  font-size: 22px;
-  padding: 10px;
-}
-
-#buttons{
-  display: flex;
-  width: 350px;
-  justify-content: space-between;
-  margin-top: 25px;
-  
-}
-
-button {
-  font-family: "Walter Turncoat", cursive;
-  font-size: 22px;
-  color: rgb(110, 57, 57);
-  width: 100px;
-  height: 50px;
-  background-image: url("/images/indice.jpg");
-  border-radius: 4px;
-  font-weight: bolder;
-  box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.25),
-    inset 1px 1px 1px rgba(0, 0, 0, 0.25);
-  bottom: 10px;
+figure {
+  width: 95px;
+  height: 80px;
+  border-radius: 30px;
+  border: #E3E3EB 2px solid;
+  top: -35px;
+  object-fit: contain;
 }
 
 img {
-  padding-top: 10px;
-  width: auto;
-  height: 150px;
+  top: -8px;
+  width: 100%;
+  height: 100%;
 }
 
-#piecesBag {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url('/images/bag.webp');
+.playerNames {
+  top: -15px
+}
+
+.score {
+  top: -10px;
+}
+
+.meanings {
+  background-image: url("./images/Group16.png");
   background-size: cover;
-  background-repeat: no-repeat;
-  width: 155px;
-  height: 100px;
-  margin: 0% 0% 0% 15%;
+  width: 265px;
+  height: 176px;
 }
 
-#piecesBag > p {
-  font-family: "Walter Turncoat", cursive;
-  font-size: 26px;
-  color: azure;
-  left: 40px;
-  bottom: 15px;
+.deckHolder {
+  margin-top: 100px;
 }
 
+.decks {
+  background-image: url("./images/image89.png");
+  width: 265px;
+  height: 70px;
+  background-size:contain;
+}
+.gameButton {
+  padding: 10px 20px;
+  float: left;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #FFF;
+  text-decoration: none;
+  background-color: #2ecc71;
+  border: none;
+  border-bottom: 5px solid #27ae60;
+  text-shadow: 0px -2px #27ae60;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  top: -10px;
+}
+
+.gameButton:hover, button:active {
+  margin: 2px 0px;
+  -webkit-transform: translate(0px,5px);
+  -ms-transform: translate(0px,5px);
+  transform: translate(0px,5px);
+  border-bottom: 1px solid #2ecc71;
+ }
 
 #gameboard-holder {
-  padding: 0.5%;
-  width: fit-content;
-  background-color: black;
-  border: outset rgb(255, 255, 255) 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    padding: 0.5%;
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0);
+    border: outset rgba(255, 255, 255, 0) 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 55px; */
+  }
 
 #gameboard-holder #gameboard {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   padding: 1px;
   display: block !important;
-  background-image: url("/images/wood.jpg");
 }
 
 #gameboard-holder #gameboard .row {
   height: 40px;
+  margin: 2px 0px;
 }
 
 #gameboard-holder #gameboard .row .cell {
   width: 40px;
   height: 40px;
-  border: solid black 0.5px;
+  border: solid rgb(0, 0, 0) 1px;
   display: flex;
   justify-content: center;
   align-items: center;
   font: bolder 66.6666666667% "Open Sans", sans-serif;
   color: rgba(0, 0, 0, 0.6);
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #cbe1da;
+  margin: 0px 1px;
+  outline-color: transparent;
 }
 
 .tripleWord {
-  background-color: #ff5623cc !important;
+  background-color: #1F604C !important;
 }
 
 .row {
@@ -297,64 +197,27 @@ img {
   align-items: center;
   justify-content: center;
   align-content: center;
-  background-color: #f0e1cccc;
+  /* background-color: #cbe1da; */
 }
 
 .doubleWord {
-  background-color: #f8a582cc !important;
+  background-color: #45B392 !important;
 }
 
 .tripleLetter {
-  background-color: #3088b4cc !important;
+  background-color: #A3D1E8 !important;
 }
 
 .doubleLetter {
-  background-color: #bee3eecc !important;
+  background-color: #3C7490 !important;
 }
 
-#racks {
-  display: flex;
-  background-image: url('/images/darkwood.jpg');
-  width: 75%;
-  margin-left: 12.5%;
-  min-width: 1440px;
-  max-width: 1600px;
-  filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
+/* #fence {
+  background-image: url("./images/Fence.png");
+  width: 100%;
+  height: 80px;
 }
-
-#racks > div > p {
-  background-image: url("/images/Chalkboard.png");
-  width: 270px;
-  height: 60px;
-  font-size: x-large;
-  text-align: center;
-  padding-top: 10px;
-  color: #e4e2e2;
-  box-shadow: inset 5px 5px 4px rgba(0, 0, 0, 0.25), inset -5px -5px 4px rgba(0, 0, 0, 0.25);
-}
-
-#racks > div{
-    display: flex;
-    width: 50%;
-    justify-content: center;
-}
-
-#deck0,
-#deck1 {
-  display: flex;
-  background-image: url("/images/Chalkboard.png");
-  width: 350px;
-  height: 60px;
-  gap: 2px;
-  box-shadow: inset 5px 5px 4px rgba(0, 0, 0, 0.25), inset -5px -5px 4px rgba(0, 0, 0, 0.25);
-  margin-bottom: 10px;
-  justify-content: center;
-  align-items: center;
-}
-
-#homePage {
-  display: none;
-}
+ */
 
 /* css avatar modal */
 .modal-avatar {
