@@ -18,13 +18,19 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+#homePage {
+  display: none;
+}
 /* holds all the site */
+
 #gamePage {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("./images/newBackground.png");
+   /*  background-image: url("./images/newBackground.png"); */
+    background-image: url("../images/newBackground.png");
     background-size:contain;
     width: 95%;
     height: 100%;
@@ -37,7 +43,7 @@ body {
 }
 
 #gameName {
-  background-image: url("./images/group15.png");
+  background-image: url("../images/group15.png");
   width: 253px;
   height: 65px;
   box-sizing: border-box;
@@ -110,7 +116,7 @@ img {
 }
 
 .meanings {
-  background-image: url("./images/Group16.png");
+  background-image: url("../images/Group16.png");
   background-size: cover;
   width: 265px;
   height: 176px;
@@ -121,7 +127,7 @@ img {
 }
 
 .decks {
-  background-image: url("./images/image89.png");
+  background-image: url("../images/image89.png");
   width: 265px;
   height: 70px;
   background-size:contain;
