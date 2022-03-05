@@ -11,51 +11,54 @@
 
 <body>
     <div id="gamePage">
+        
         <div id="upperGamePage">
+            
             <div id="sectionPlayer1" class="sectionPlayer">
                 <div id="player1-data" class="playerData">
                     <div class="playerHolder">
                         <figure id="avatarHolder1">
-                            <img src="" alt="">
+                            <img src="images/avatar/buffalo.png" alt="">
                         </figure>
                         <p id="player1-name" class="playerNames">Player 1</p>
                         <p class="score" id="player1-score">0</p>
                         <button type="button" class="gameButton">Play</button>
                     </div>
-                    <div id="meaningPlayer1"></div>
+                    <div id="meaningPlayer1" class="meanings"></div>
                 </div>
-                <div>
-                    <div id="deck0"></div>
+                <div class="deckHolder">
+                    <div id="deck0" class="decks"></div>
                     
                 </div>
             </div>
 
             <div id="gameboard-holder">
+                <div id="gameName"></div>
                 <div id="gameboard"></div>
+                
             </div>
 
             <div id="sectionPlayer2" class="sectionPlayer">
                 <div id="player2-data" class="playerData">
                     <div class="playerHolder">
                         <figure id="avatarHolder2">
-                            <img src="" alt="">
+                            <img src="images/avatar/cow.png" alt="">
                         </figure>
                         <p id="player2-name" class="playerNames">Player 2</p>
                         <p class="score" id="player2-score">0</p>
                         <button type="button" class="gameButton">Play</button>
                     </div>
-                    <div id="meaningPlayer2"></div>
-                    <div>
-                        <div id="deck1"></div>
+                    <div id="meaningPlayer2" class="meanings"></div>
+                    <div class="deckHolder">
+                        <div id="deck1" class="decks"></div>
                         
                     </div>
 
                 </div>
             </div>
+            
         </div>
-        <div id="fence">
-
-        </div>
+        <!-- <div id="fence"></div> -->
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="index.js"></script>
