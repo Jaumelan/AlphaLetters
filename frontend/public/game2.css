@@ -9,7 +9,7 @@
 
 body {
     font-family: "Walter Turncoat", cursive;
-    height: 75vh;
+    height: 85vh;
     width: 100vw;
     min-width: 1400px;
     background-color: #90D8E0;
@@ -24,16 +24,26 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("./images/background.png");
-    background-size: cover;
-    width: 80%;
+    background-image: url("./images/newBackground.png");
+    background-size:contain;
+    width: 95%;
     height: 100%;
    /*  max-width: 1600px; */
-    margin-top: 4%;
+    margin-top: 10%;
     min-width: 1240px;
    /*  max-height: 710px; */
     min-height: 700px;
     filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
+}
+
+#gameName {
+  background-image: url("./images/group15.png");
+  width: 253px;
+  height: 65px;
+  box-sizing: border-box;
+  background-size: cover;
+  /* align-self: flex-start; */
+  margin: 2px 0px;
 }
 
 #upperGamePage {
@@ -41,6 +51,8 @@ body {
     justify-content: center;
     align-items: center;
     gap: 4px;
+    margin-top: 1px;
+    /* flex-wrap: wrap; */
 }
 
 .sectionPlayer {
@@ -53,15 +65,16 @@ body {
 
 .playerData {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 
 .playerHolder {
   background-color: #E3E3EB;
+  position: relative;
   width: fit-content; 
-  height: 160px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,12 +87,18 @@ body {
 }
 
 figure {
-  width: 60px;
-  height: 60px;
+  width: 95px;
+  height: 80px;
   border-radius: 30px;
   border: #E3E3EB 2px solid;
-  top: -20px
-  
+  top: -35px;
+  object-fit: contain;
+}
+
+img {
+  top: -8px;
+  width: 100%;
+  height: 100%;
 }
 
 .playerNames {
@@ -90,6 +109,23 @@ figure {
   top: -10px;
 }
 
+.meanings {
+  background-image: url("./images/Group16.png");
+  background-size: cover;
+  width: 265px;
+  height: 176px;
+}
+
+.deckHolder {
+  margin-top: 100px;
+}
+
+.decks {
+  background-image: url("./images/image89.png");
+  width: 265px;
+  height: 70px;
+  background-size:contain;
+}
 .gameButton {
   padding: 10px 20px;
   float: left;
@@ -117,38 +153,43 @@ figure {
 #gameboard-holder {
     padding: 0.5%;
     width: fit-content;
-    background-color: black;
-    border: outset rgb(255, 255, 255) 5px;
+    background-color: rgba(0, 0, 0, 0);
+    border: outset rgba(255, 255, 255, 0) 5px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* margin-bottom: 55px; */
   }
 
 #gameboard-holder #gameboard {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   padding: 1px;
   display: block !important;
-  
 }
 
 #gameboard-holder #gameboard .row {
   height: 40px;
+  margin: 2px 0px;
 }
 
 #gameboard-holder #gameboard .row .cell {
   width: 40px;
   height: 40px;
-  border: solid black 0.5px;
+  border: solid rgb(0, 0, 0) 1px;
   display: flex;
   justify-content: center;
   align-items: center;
   font: bolder 66.6666666667% "Open Sans", sans-serif;
   color: rgba(0, 0, 0, 0.6);
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #cbe1da;
+  margin: 0px 1px;
+  outline-color: transparent;
 }
 
 .tripleWord {
-  background-color: #ff5623cc !important;
+  background-color: #1F604C !important;
 }
 
 .row {
@@ -156,17 +197,17 @@ figure {
   align-items: center;
   justify-content: center;
   align-content: center;
-  background-color: #E3E3EB;
+  /* background-color: #cbe1da; */
 }
 
 .doubleWord {
-  background-color: #f8a582cc !important;
+  background-color: #45B392 !important;
 }
 
 .tripleLetter {
-  background-color: #3088b4cc !important;
+  background-color: #A3D1E8 !important;
 }
 
 .doubleLetter {
-  background-color: #bee3eecc !important;
+  background-color: #3C7490 !important;
 }
