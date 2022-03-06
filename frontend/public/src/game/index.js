@@ -385,7 +385,7 @@ $(document).ready(function () {
     const players =
       [{ name: $('#player-one .player-name').val(), avatar_id: $('#player-one .avatar-id').val() },
       { name: $('#player-two .player-name').val(), avatar_id: $('#player-two .avatar-id').val() }]
-    console.log(players)
+
     $("#player1-name").html(`${players[0].name}`)
     $("#player1-avatar").attr("src",`../images/${players[0].avatar_id}.webp`)
     $("#deck0-player").html(`deck do ${players[0].name}`)
@@ -393,5 +393,26 @@ $(document).ready(function () {
     $("#player2-avatar").attr("src",`../images/${players[1].avatar_id}.webp`)
     $("#deck1-player").html(`deck do ${players[1].name}`)
     $(".modal-avatar").css("display","none");
+    $("#modal-tutorial").css("display","flex");
+    $("#modal-tutorial-step-one, #modal-tutorial-step-one *").css("display","flex");
+
   });
+
+  $('#btn-tutorial-step-one').on('click', function () {
+    $("#modal-tutorial-step-one, #modal-tutorial-step-one *").css("display","none");
+    $("#modal-tutorial-step-two, #modal-tutorial-step-two *").css("display","flex");
+  })
+  $('#btn-tutorial-step-two').on('click', function () {
+    $("#modal-tutorial-step-two, #modal-tutorial-step-two *").css("display","none");
+    $("#modal-tutorial-step-three, #modal-tutorial-step-three *").css("display","flex");
+  })
+  $('#btn-tutorial-step-three').on('click', function () {
+    $("#modal-tutorial-step-three, #modal-tutorial-step-three *").css("display","none");
+    $("#modal-tutorial-step-four, #modal-tutorial-step-four *").css("display","flex");
+  })
+  $('#btn-tutorial-step-four').on('click', function () {
+    $("#modal-tutorial-step-four, #modal-tutorial-step-four *").css("display","none");
+    $("#modal-tutorial").css("display","none");
+
+  })
 });

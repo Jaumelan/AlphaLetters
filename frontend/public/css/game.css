@@ -273,7 +273,6 @@ top: 13px;
   justify-content: center;
   height: 60%;
   width: 60%;
-  background-color: bisque;
   border-radius: 20px;
 }
 .modal-avatar-content> h6 {
@@ -325,7 +324,6 @@ h6 {
 	opacity: 0;
 	cursor: pointer;
 	pointer-events: none;
-	background-image: url("../images/darkwood.jpg");
 	transition: 1s;
 	font-family: "Walter Turncoat", cursive;
 	font-size: 28px;
@@ -372,7 +370,168 @@ h6 {
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
 }
-
+.container .ui-card:nth-child(1):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(2):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(3):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(4):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(1):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(2):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(3):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(4):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(1):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(2):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(3):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(4):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(5):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(6):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(7):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(8):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(9):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(10):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(11):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(12):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(13):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(14):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(15):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(16):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(17):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(18):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+.container .ui-card:nth-child(19):before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
 .container .ui-card.active {
 	z-index: 3;
 	transform: scale(1.2) translateY(-10%)
@@ -401,12 +560,29 @@ h6 {
 }
 
 .images {
-	height: 150px;
+  all: unset;
 }
 #btn-choose {
   height: 45%;
 }
-#avatar4,
-#avatar3 {
-	width: 90%;
+#modal-tutorial, #modal-tutorial *{ 
+  display: none;
+}
+
+#modal-tutorial {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  width: 100vw;
+}
+
+.tutorial-content {
+  width: 40vw;
+  height: 60vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255,255,255,1);
 }

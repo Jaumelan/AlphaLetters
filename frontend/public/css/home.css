@@ -91,3 +91,7 @@ button {
 #gamePage {
     display: none;
 }
+
+#modal-tutorial *{ 
+	display: none;
+  }
