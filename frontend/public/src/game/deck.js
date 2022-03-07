@@ -39,9 +39,31 @@ export function lettersToPlayersDeck(letters, values, player) {
       });
     }
     createDeck(player);
+    console.log("vez ", firstPlayerTurn.is)
+    turnDraggable(firstPlayerTurn.is);
   };
 
 
+  export function turnDraggable(player) {
+    tilesPlayer1.forEach((tile) =>
+      $(`#${tile.id}`).draggable({ disabled: true }, { revert: "invalid" })
+    );
+    tilesPlayer2.forEach((tile) =>
+      $(`#${tile.id}`).draggable({ disabled: true }, { revert: "invalid" })
+    );
+    if (player) {
+      console.log("draggable player 1");
+      tilesPlayer1.forEach((tile) =>
+      {
+        $(`#${tile.id}`).draggable("option", "disabled", false)}
+      );
+    } else {
+      console.log("draggable player 2");
+      tilesPlayer2.forEach((tile) =>
+        $(`#${tile.id}`).draggable("option", "disabled", false)
+      );
+    }
+  }
 //function return tiles to player
 export function returnTilestoPlayersDeck(player) {
     console.log("destroying");

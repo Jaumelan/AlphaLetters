@@ -22,6 +22,7 @@ import {
   lettersToPlayersDeck,
   removeFromDeck,
   returnTilestoPlayersDeck,
+  turnDraggable
 } from "./deck.js";
 import {
   pushLetters,
@@ -109,7 +110,7 @@ $(document).ready(function () {
     let amount = 0;
     let remaining = 120;
     let display1 = $("#playButton1").text();
-    console.log(display1);
+    
     if (display1 === "Jogar") {
       //first check if his turn
       if (firstPlayerTurn.is) {
@@ -136,6 +137,7 @@ $(document).ready(function () {
         }
       }
       //put draggable on player1's pieces
+      /* console.log("vez ", firstPlayerTurn.is)*/
       turnDraggable(firstPlayerTurn.is);
       changeDisplay();
     } else if (display1 === "Finalizar") {
@@ -215,6 +217,7 @@ $(document).ready(function () {
         }
       }
       //put draggable on player2's pieces
+      /* console.log("vez ", firstPlayerTurn.is) */
       turnDraggable(firstPlayerTurn.is);
       changeDisplay();
     } else if (display2 === "Finalizar") {
@@ -323,7 +326,7 @@ $(document).ready(function () {
     }
   }); */
 
-  function turnDraggable(player) {
+  /* function turnDraggable(player) {
     tilesPlayer1.forEach((tile) =>
       $(`#${tile.id}`).draggable({ disabled: true }, { revert: "invalid" })
     );
@@ -333,7 +336,8 @@ $(document).ready(function () {
     if (player) {
       console.log("draggable player 1");
       tilesPlayer1.forEach((tile) =>
-        $(`#${tile.id}`).draggable("option", "disabled", false)
+      {
+        $(`#${tile.id}`).draggable("option", "disabled", false)}
       );
     } else {
       console.log("draggable player 2");
@@ -341,9 +345,9 @@ $(document).ready(function () {
         $(`#${tile.id}`).draggable("option", "disabled", false)
       );
     }
-  }
+  } */
 
-  //event listeners
+  /* //event listeners
   $("#endTurn").on("click", function () {
     let draft;
     let submittedDirection;
@@ -488,7 +492,7 @@ $(document).ready(function () {
     }
 
     allowedWord = false;
-  });
+  }); */
 
   function endPlayersTurn() {
     let draft;
