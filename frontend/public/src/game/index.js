@@ -107,6 +107,7 @@ $(document).ready(function () {
   $("#playButton1").on("click", function () {
     const url = "http://localhost:3000/scrabble/drawletters/";
     let amount = 0;
+    let remaining = 120;
     let display1 = $("#playButton1").text();
     console.log(display1);
     if (display1 === "Jogar") {
@@ -151,10 +152,14 @@ $(document).ready(function () {
     const displayValues = ["Jogar", "Finalizar", "Espere"];
     let display1 = $("#playButton1").text();
     let display2 = $("#playButton2").text();
+
     if (firstPlayerTurn.is) {
       if (display1 === displayValues[0]) {
         $("#playButton1").text("");
         $("#playButton1").text(displayValues[1]);
+        $("#playButton1").css({"background-color" : "#ccc92e",
+                               "border-bottom": "#ccc92e",
+                               "text-shadow": "#ccc92e"});
       } else if (display1 === displayValues[1]) {
         $("#playButton1").text("");
         $("#playButton1").text(displayValues[2]);
@@ -165,6 +170,9 @@ $(document).ready(function () {
       if (display2 === displayValues[0]) {
         $("#playButton2").text("");
         $("#playButton2").text(displayValues[1]);
+        $("#playButton2").css({"background-color" : "#ccc92e",
+                               "border-bottom": "#ccc92e",
+                               "text-shadow": "#ccc92e"});
       } else if (display2 === displayValues[1]) {
         $("#playButton2").text("");
         $("#playButton2").text(displayValues[2]);
@@ -178,6 +186,7 @@ $(document).ready(function () {
     const url = "http://localhost:3000/scrabble/drawletters/";
     let display2 = $("#playButton2").text();
     let amount = 0;
+    let remaining = 120;
     console.log(display2);
     if (display2 === "Jogar") {
       //first check if his turn
@@ -369,6 +378,7 @@ $(document).ready(function () {
             console.log(pos);
             draft.forEach((array) => {
               word = array.join("");
+              word = word.toLowerCase();
               console.log(word);
               wordChecker(word);
             });
@@ -390,6 +400,7 @@ $(document).ready(function () {
             console.log(pos);
             draft.forEach((array) => {
               word = array.join("");
+              word = word.toLowerCase();
               console.log(word);
               wordChecker(word);
             });
@@ -417,6 +428,7 @@ $(document).ready(function () {
             draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
             draft.forEach((array) => {
               word = array.join("");
+              word = word.toLowerCase();
               console.log(word);
               wordChecker(word);
             });
@@ -436,6 +448,7 @@ $(document).ready(function () {
             draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
             draft.forEach((array) => {
               word = array.join("");
+              word = word.toLowerCase();
               console.log(word);
               wordChecker(word);
             });
@@ -450,6 +463,7 @@ $(document).ready(function () {
           console.log(pos);
           draft.forEach((array) => {
             word = array.join("");
+            word = word.toLowerCase();
             console.log(word);
             wordChecker(word);
           });
@@ -510,6 +524,7 @@ $(document).ready(function () {
             console.log(pos);
             draft.forEach((array) => {
               word = array.join("");
+              word = word.toLowerCase();
               console.log(word);
               wordChecker(word);
             });
@@ -531,6 +546,7 @@ $(document).ready(function () {
             console.log(pos);
             draft.forEach((array) => {
               word = array.join("");
+              word = word.toLowerCase();
               console.log(word);
               wordChecker(word);
             });
@@ -558,6 +574,7 @@ $(document).ready(function () {
             draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
             draft.forEach((array) => {
               word = array.join("");
+              word = word.toLowerCase();
               console.log(word);
               wordChecker(word);
             });
@@ -577,6 +594,7 @@ $(document).ready(function () {
             draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
             draft.forEach((array) => {
               word = array.join("");
+              word = word.toLowerCase();
               console.log(word);
               wordChecker(word);
             });
@@ -591,6 +609,7 @@ $(document).ready(function () {
           console.log(pos);
           draft.forEach((array) => {
             word = array.join("");
+            word = word.toLowerCase();
             console.log(word);
             wordChecker(word);
           });
