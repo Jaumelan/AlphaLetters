@@ -44,7 +44,7 @@ export function lettersToPlayersDeck(letters, values, player) {
   };
 
 
-  export function turnDraggable(player) {
+export function turnDraggable(player) {
     tilesPlayer1.forEach((tile) =>
       $(`#${tile.id}`).draggable({ disabled: true }, { revert: "invalid" })
     );
