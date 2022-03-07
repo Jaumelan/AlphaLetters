@@ -727,10 +727,10 @@ $(document).ready(function () {
     ];
 
     $("#player1-name").html(`${players[0].name}`);
-    $("#player1-avatar").attr("src", `../images/${players[0].avatar_id}.webp`);
+    $("#avatarHolder1 img").attr("src", `images/avatar/${players[0].avatar_id}.png`);
     $("#deck0-player").html(`deck do ${players[0].name}`);
     $("#player2-name").html(`${players[1].name}`);
-    $("#player2-avatar").attr("src", `../images/${players[1].avatar_id}.webp`);
+    $("#avatarHolder2 img").attr("src", `images/avatar/${players[1].avatar_id}.png`);
     $("#deck1-player").html(`deck do ${players[1].name}`);
     $(".modal-avatar").css("display", "none");
     $("#modal-tutorial").css("display", "flex");
