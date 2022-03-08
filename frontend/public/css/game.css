@@ -152,6 +152,7 @@ img {
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
   top: -10px;
+  cursor:pointer;
 }
 
 .gameButton:hover, button:active {
@@ -160,6 +161,7 @@ img {
   -ms-transform: translate(0px,5px);
   transform: translate(0px,5px);
   border-bottom: 1px solid #2ecc71;
+  
  }
 
 #gameboard-holder {
@@ -239,7 +241,7 @@ img {
   box-shadow: 3px 3px 4px #e4e2e2, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
   top: -7px;
   z-index: 999;
-  
+  cursor: grab;
 }
 
 .piece-numberSmall {
@@ -249,7 +251,9 @@ img {
   top: 13px;
 }
 
-
+.pieceSmall:active {
+  cursor: grabbing;
+}
 
 /* #fence {
   background-image: url("./images/Fence.png");
