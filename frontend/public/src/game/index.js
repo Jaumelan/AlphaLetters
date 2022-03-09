@@ -82,14 +82,14 @@ $(document).ready(function () {
           $("#meaningPlayer1").html("");
           for (let i = 0; i <= data[0].meanings.length; i++) {
             let p = $("<p></p>");
-            p.text(data[0].meanings[i]);
+            p.text(data[0].meanings[i].toUpperCase());
             $("#meaningPlayer1").append(p);
           }
         } else {
           $("#meaningPlayer2").html("");
           for (let i = 0; i <= data[0].meanings.length; i++) {
             let p = $("<p></p>");
-            p.text(data[0].meanings[i]);
+            p.text(data[0].meanings[i].toUpperCase());
             $("#meaningPlayer2").append(p);
           }
         }
