@@ -18,7 +18,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-
+/* first page */
 #homePage {
   display: none;
 }
@@ -43,13 +43,43 @@ body {
 }
 
 #gameName {
-  background-image: url("../images/Group15.png");
+  background-image: url("../images/logoGame.png");
   width: 253px;
   height: 65px;
   box-sizing: border-box;
   background-size: cover;
   /* align-self: flex-start; */
   margin: 2px 0px;
+}
+
+@-webkit-keyframes expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.expand {
+	-webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 }
 
 #upperGamePage {
@@ -95,8 +125,8 @@ body {
 figure {
   width: 95px;
   height: 80px;
-  border-radius: 30px;
-  border: #E3E3EB 2px solid;
+  /* border-radius: 30px;
+  border: #E3E3EB 2px solid; */
   top: -35px;
   object-fit: contain;
 }
@@ -108,7 +138,8 @@ img {
 }
 
 .playerNames {
-  top: -15px
+  top: -15px;
+  font-size: 25px;
 }
 
 .score {
@@ -118,10 +149,12 @@ img {
 .meanings {
   background-image: url("../images/Group16.png");
   background-size: cover;
-  width: 265px;
-  height: 176px;
+  box-sizing: border-box;
+  width: 300px;
+  height: 195px;
   overflow-y:auto;
   color: white;
+  padding: 35px 7px 15px 7px;
 }
 
 .deckHolder {
@@ -152,6 +185,7 @@ img {
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
   top: -10px;
+  cursor:pointer;
 }
 
 .gameButton:hover, button:active {
@@ -160,6 +194,7 @@ img {
   -ms-transform: translate(0px,5px);
   transform: translate(0px,5px);
   border-bottom: 1px solid #2ecc71;
+  
  }
 
 #gameboard-holder {
@@ -239,7 +274,7 @@ img {
   box-shadow: 3px 3px 4px #e4e2e2, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
   top: -7px;
   z-index: 999;
-  
+  cursor: grab;
 }
 
 .piece-numberSmall {
@@ -249,7 +284,9 @@ img {
   top: 13px;
 }
 
-
+.pieceSmall:active {
+  cursor: grabbing;
+}
 
 /* #fence {
   background-image: url("./images/Fence.png");
