@@ -57,7 +57,10 @@ $(document).ready(function () {
     /* let isAllowed = $("#word").val(); */
     let wordCheck = $.ajax({
       url: `https://significado.herokuapp.com/${word}`,
-      statusCode: { 400: () => returnTilestoPlayersDeck(firstPlayerTurn.is) },
+      statusCode: { 400: () => {
+        returnTilestoPlayersDeck(firstPlayerTurn.is);
+        changePlayer();
+      } },
     });
     wordCheck.done((data) => {
       console.log(data);
@@ -72,7 +75,7 @@ $(document).ready(function () {
         requestScores();
       } else {
         returnTilestoPlayersDeck(firstPlayerTurn.is);
-        changePlayer();
+        changePlayer()
   
       }
 
@@ -159,27 +162,27 @@ $(document).ready(function () {
       if (display1 === displayValues[0]) {
         $("#playButton1").text("");
         $("#playButton1").text(displayValues[1]);
-        $("#playButton1").css({"background-color" : "#ccc92e",
-                               "border-bottom": "#ccc92e",
-                               "text-shadow": "#ccc92e"});
+        $("#playButton1").removeClass("gameButton").addClass("gameButtonEnd");
       } else if (display1 === displayValues[1]) {
         $("#playButton1").text("");
         $("#playButton1").text(displayValues[2]);
+        $("#playButton1").removeClass("gameButtonEnd").addClass("gameButtonWait");
         $("#playButton2").text("");
         $("#playButton2").text(displayValues[0]);
+        $("#playButton2").removeClass().addClass("gameButton");
       }
     } else {
       if (display2 === displayValues[0]) {
         $("#playButton2").text("");
         $("#playButton2").text(displayValues[1]);
-        $("#playButton2").css({"background-color" : "#ccc92e",
-                               "border-bottom": "#ccc92e",
-                               "text-shadow": "#ccc92e"});
+        $("#playButton2").removeClass("gameButton").addClass("gameButtonEnd");
       } else if (display2 === displayValues[1]) {
         $("#playButton2").text("");
         $("#playButton2").text(displayValues[2]);
+        $("#playButton2").removeClass("gameButtonEnd").addClass("gameButtonWait");
         $("#playButton1").text("");
         $("#playButton1").text(displayValues[0]);
+        $("#playButton1").removeClass().addClass("gameButton");
       }
     }
   }
