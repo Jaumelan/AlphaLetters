@@ -196,7 +196,57 @@ img {
   transform: translate(0px,5px);
   border-bottom: 1px solid #2ecc71;
   
- }
+}
+
+.gameButtonEnd {
+  padding: 10px 20px;
+  float: left;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #FFF;
+  text-decoration: none;
+  background-color: #c9cc2e;
+  border: none;
+  border-bottom: 5px solid #a6a830;
+  text-shadow: 0px -2px #c9cc2e;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  top: -10px;
+  cursor:pointer;
+}
+
+.gameButtonEnd:hover , .gameButtonEnd:active {
+  margin: 2px 0px;
+  -webkit-transform: translate(0px,5px);
+  -ms-transform: translate(0px,5px);
+  transform: translate(0px,5px);
+  border-bottom: 1px solid #a6a830;
+}
+
+.gameButtonWait {
+  padding: 10px 20px;
+  float: left;
+  border-radius: 5px;
+  font-size: 20px;
+  color: #FFF;
+  text-decoration: none;
+  background-color: #cc9a2e;
+  border: none;
+  border-bottom: 5px solid #9e792a;
+  text-shadow: 0px -2px #cc9a2e;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  top: -10px;
+  cursor:pointer;
+}
+
+.gameButtonWait:hover .gameButtonWait:active {
+  margin: 2px 0px;
+  -webkit-transform: translate(0px,5px);
+  -ms-transform: translate(0px,5px);
+  transform: translate(0px,5px);
+  border-bottom: 1px solid #9e792a;
+}
 
 #gameboard-holder {
     padding: 0.5%;
@@ -285,7 +335,7 @@ img {
   top: 13px;
 }
 
-.pieceSmall:active {
+.pieceSmall:active{
   cursor: grabbing;
 }
 
