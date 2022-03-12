@@ -114,7 +114,7 @@ $(document).ready(function () {
     let remaining = 120;
     let display1 = $("#playButton1").text();
     
-    if (display1 === "Jogar") {
+    if (display1 === "JOGAR") {
       //first check if his turn
       if (firstPlayerTurn.is) {
         //check if there are 7 letters on deck
@@ -143,18 +143,18 @@ $(document).ready(function () {
       /* console.log("vez ", firstPlayerTurn.is)*/
       turnDraggable(firstPlayerTurn.is);
       changeDisplay();
-    } else if (display1 === "Finalizar") {
+    } else if (display1 === "FINALIZAR") {
       //do all the validations
       endPlayersTurn();
       changeDisplay();
-    } else if (display1 === "Espere") {
+    } else if (display1 === "ESPERAR") {
       alert("Vez do outro jogador");
     }
 
   });
 
   function changeDisplay() {
-    const displayValues = ["Jogar", "Finalizar", "Espere"];
+    const displayValues = ["JOGAR", "FINALIZAR", "ESPERAR"];
     let display1 = $("#playButton1").text();
     let display2 = $("#playButton2").text();
 
@@ -193,7 +193,7 @@ $(document).ready(function () {
     let amount = 0;
     let remaining = 120;
     console.log(display2);
-    if (display2 === "Jogar") {
+    if (display2 === "JOGAR") {
       //first check if his turn
       if (!firstPlayerTurn.is) {
         //check if there are 7 letters on deck
@@ -223,11 +223,11 @@ $(document).ready(function () {
       /* console.log("vez ", firstPlayerTurn.is) */
       turnDraggable(firstPlayerTurn.is);
       changeDisplay();
-    } else if (display2 === "Finalizar") {
+    } else if (display2 === "FINALIZAR") {
       //do all the validations
       endPlayersTurn()
       changeDisplay()
-    } else if (display2 === "Espere") {
+    } else if (display2 === "ESPERAR") {
       alert("Vez do outro jogador");
     }
 
@@ -671,11 +671,11 @@ $(document).ready(function () {
     if ($(this).hasClass("next")) {
       $(".container")
         .stop(false, true)
-        .animate({ left: "-=" + slide });
+        /*.animate({ left: "-=" + slide });*/
     } else if ($(this).hasClass("prev")) {
       $(".container")
         .stop(false, true)
-        .animate({ left: "+=" + slide });
+        /*.animate({ left: "+=" + slide });*/
     }
 
     $(this).removeClass("prev next");

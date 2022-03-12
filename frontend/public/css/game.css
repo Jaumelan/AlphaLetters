@@ -1,22 +1,31 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    position: relative;
+	margin: 0;
+	padding: 0;
+	/*    box-sizing: border-box;
+    position: relative;*/
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap");
 
+html {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
+}
+
 body {
-    font-family: "Walter Turncoat", cursive;
-    height: 85vh;
-    width: 100vw;
-    min-width: 1400px;
-    background-color: #90D8E0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	font-family: "Walter Turncoat", cursive;
+	height: 85%;
+	width: 100%;
+	min-width: 1400px;
+	max-width: 1980px;
+	background-color: #90D8E0;
+	display: flex;
+	/*flex-direction: column;*/
+	align-items: center;
+	justify-content: center;
 }
 /* first page */
 #homePage {
@@ -35,7 +44,7 @@ body {
     width: 95%;
     height: 100%;
    /*  max-width: 1600px; */
-    margin-top: 10%;
+    /*margin-top: 10%;*/
     min-width: 1240px;
    /*  max-height: 710px; */
     min-height: 700px;
@@ -173,6 +182,7 @@ img {
   position: relative;
 }
 .gameButton {
+	font-family: 'Walter Turncoat', cursive;
   padding: 10px 20px;
   float: left;
   border-radius: 5px;
@@ -271,20 +281,20 @@ img {
   margin: 2px 0px;
 }
 
-#gameboard-holder #gameboard .row .cell {
-  width: 40px;
-  height: 40px;
-  border: solid rgb(0, 0, 0) 1px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font: bolder 66.6666666667% "Open Sans", sans-serif;
-  color: rgba(0, 0, 0, 0.6);
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-color: #cbe1da;
-  margin: 0px 1px;
-  outline-color: transparent;
-}
+	#gameboard-holder #gameboard .row .cell {
+		width: 40px;
+		height: 40px;
+		border: solid rgb(0, 0, 0) 1px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font: bolder 66.6666666667% 'Walter Turncoat', cursive;
+		color: rgba(0, 0, 0, 0.6);
+		box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+		background-color: #cbe1da;
+		margin: 0px 1px;
+		outline-color: transparent;
+	}
 
 .tripleWord {
   background-color: #1F604C !important;
@@ -324,7 +334,7 @@ img {
   margin: 2px 2px;
   box-shadow: 3px 3px 4px #e4e2e2, 3px 0 2px rgba(253, 253, 253, 0.4) inset, 0 3px 0 rgba(213, 178, 146, 0.5) inset, -3px -4px 0 rgba(255, 255, 255, 0.6) inset;
   top: -7px;
-  z-index: 999;
+  z-index: 4;
   cursor: grab;
 }
 
@@ -348,36 +358,40 @@ img {
 
 /* css avatar modal */
 .modal-avatar {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 0;
+	font-family: "Walter Turncoat", cursive;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	max-width: 1980px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #60a6a4fc;
+	position: absolute;
+	box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+	z-index: 5;
+	top: 0;
 }
 .modal-avatar-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 60%;
-  width: 60%;
-  border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+	border-radius: 20px;
 }
-.modal-avatar-content> h6 {
-  color: white;
-  font-size: larger;
+.heading > h6 {
+	color: white;
+	font-size: medium;
+	margin-top: 0px;
 }
 .heading {
 	text-align: center;
-	margin-bottom: 3rem;
+	margin-bottom: 0px;
 }
 .heading h1 {
-	margin-bottom: 50px;
-  color: white;
+	color: white;
 }
 h6 {
 	margin-top: 50px;
@@ -397,13 +411,14 @@ h6 {
 }
 .container {
 	display: flex;
-  width: 100vw;
+	width: 100%;
+	min-width: 1400px;
 	align-items: center;
 	justify-content: center;
 	position: relative;
 }
 .container .ui-card {
-	display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -423,225 +438,194 @@ h6 {
 	color: #fff;
 }
 .container .ui-card:after {
+	display: flex;
 	content: "";
 	position: absolute;
-	height: 2px;
+	height: 3px;
 	width: 100%;
 	border-radius: 100%;
-	background-color: rgba(0, 0, 0, 0.3);
-	bottom: -5rem;
+	background-color: rgba(0, 0, 0, 0.25);
+	bottom: 5rem;
 	filter: blur(4px);
 }
-.container .ui-card:nth-child(0):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(1):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(2):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(3):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(4):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(1):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(2):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(3):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(4):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(1):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(2):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(3):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(4):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(1):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(2):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(3):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(4):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(5):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(6):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(7):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(8):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(9):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(10):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(11):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(12):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(13):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(14):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(15):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(16):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(17):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(18):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card:nth-child(19):before {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-}
-.container .ui-card.active {
-	z-index: 3;
-	transform: scale(1.2) translateY(-10%)
-		translateX(0);
-	opacity: 1;
-	pointer-events: auto;
-	transition: 1s;
-}
-.container .ui-card.prev,
-.container .ui-card.next {
-	z-index: 2;
-	transform: scale(0.8) translateY(-1rem)
-		translateX(0);
-	opacity: 0.7;
-	pointer-events: auto;
-	transition: 1s;
-}
 
+.container .ui-card:nth-child(0):before {
+	display: flex;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+	.container .ui-card:nth-child(1):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+	.container .ui-card:nth-child(2):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+	.container .ui-card:nth-child(3):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+	.container .ui-card:nth-child(4):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(5):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(6):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(7):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(8):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(9):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(10):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(11):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(12):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(13):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(14):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(15):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(16):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(17):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(18):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	.container .ui-card:nth-child(19):before {
+		display: flex;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+	.container .ui-card.active {
+		display: flex;
+		z-index: 3;
+		transform: scale(1.5) translateY(-10%) translateX(0);
+		opacity: 1;
+		pointer-events: auto;
+		margin: 0 30px;
+		transition: 1s;
+	}
+	.container .ui-card.prev,
+	.container .ui-card.next {
+		display: flex;
+		z-index: 2;
+		transform: scale(1) translateY(-1rem) translateX(0);
+		opacity: 0.7;
+		pointer-events: auto;
+		transition: 1s;
+	}
+
+.input-player {
+	z-index: 6;
+}
 #player-two {
 	display: none;
 }
@@ -677,4 +661,64 @@ h6 {
   align-items: center;
   justify-content: center;
   background-color: rgba(255,255,255,1);
+}
+.form__group {
+	position: relative;
+	padding: 15px 0 0;
+	margin-top: 10px;
+	width: 300px;
+}
+
+.form__field {
+	font-family: "Walter Turncoat", cursive;
+	width: 100%;
+	border: 0;
+	border-bottom: 2px solid #c9e3ea;
+	outline: 0;
+	font-size: 1.3rem;
+	color: #fff;
+	padding: 7px 0;
+	background: transparent;
+	transition: border-color 0.2s;
+}
+
+	.form__field::placeholder {
+		color: transparent;
+	}
+
+	.form__field:placeholder-shown ~ .form__label {
+		font-size: 1.15rem;
+		cursor: text;
+		top: 20px;
+	}
+
+.form__label {
+	position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 1rem;
+	color: #c9e3ea;
+}
+
+.form__field:focus {
+	padding-bottom: 6px;
+	font-weight: 700;
+	border-width: 3px;
+	border-image: linear-gradient(to right, #c9e3ea, #9dbec7);
+	border-image-slice: 1;
+}
+
+	.form__field:focus ~ .form__label {
+		position: absolute;
+		top: 0;
+		display: block;
+		transition: 0.2s;
+		font-size: 1.1rem;
+		color: #c9e3ea;
+		font-weight: 700;
+	}
+/* reset input */
+.form__field:required, .form__field:invalid {
+	box-shadow: none;
 }
