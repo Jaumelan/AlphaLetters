@@ -706,12 +706,12 @@ $(document).ready(function () {
     playAudio("transition", "wav");
   });
 
-  $("#btn-choose").on("click", function () {
-    $("#player-one .avatar-id").val(`${$(".active .avatar").attr("id")}`);
-    $(".active").append(`<p>${$("#player-one .player-name").val()}</p>`);
-    playAudio($("#player-one .avatar-id").val(), "mp3");
-    $("#player-one").css("display", "none");
-    $("#player-two").css("display", "inline");
+    $("#btn-choose").on("click", function () {
+        $("#player-one .avatar-id").val(`${$(".active .avatar").attr("id")}`);
+        $(".active").append(`<p>${$("#player-one .player-name").val()}</p>`);
+        playAudio($("#player-one .avatar-id").val(), "mp3");
+        $("#player-one").css("display", "none");
+        $("#player-two").css({"display": "flex", "flex-direction": "column"});
     $("#headingPlayer").html("AVATAR DO SEGUNDO JOGADOR");
   });
 
