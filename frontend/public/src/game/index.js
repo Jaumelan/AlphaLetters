@@ -234,6 +234,28 @@ $(document).ready(function () {
     
   });
 
+  $("#closeModal").on("click", function(){
+    $("#winnerModal").css("visibility","hidden");
+    tilesPlayer1.forEach((tile) => {
+      $(`#${tile.id}`).remove();
+    });
+    tilesPlayer2.forEach((tile) => {
+      $(`#${tile.id}`).remove();
+    });
+    resetVariables();
+    boardRecord.length = 0;
+    firstMove = false;
+    firstPlayerTurn.is = true;
+    $("#gameboard").html("");
+    boardCreator();
+    //delete players names
+    showRecord(117);
+    $.get("http://localhost:3000/scrabble/reset", function () {
+      console.log("reset");
+    }).done((ans) => console.log(ans));
+    /* $(".modal-avatar").css("display","flex"); */
+  })
+
   $("#resetGame").on("click", function () {
     tilesPlayer1.forEach((tile) => {
       $(`#${tile.id}`).remove();
