@@ -363,6 +363,24 @@ img {
     cursor: grabbing;
 }
 
+/*winner modal*/
+#winnerModal {
+    visibility: hidden;
+    background-color: #2e5266da;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mrLogo {
+    width: 45%;
+}
+
+#mrLogo {
+    width: 100%;
+    height: auto;
+}
+
 /* #fence {
   background-image: url("./images/Fence.png");
   width: 100%;
