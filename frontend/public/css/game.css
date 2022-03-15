@@ -804,12 +804,41 @@ h6 {
 #modal-winner {
     display: none;
     position: absolute;
-    width:100vw;
-    height:100vh;
-    justify-content:center;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    background: cadetblue;
     align-items: center;
+    justify-items: end;
+    flex-direction: column;
+    align-content: space-between;
+    flex-wrap: nowrap;
 }
 
 #closeModal {
-    width: 100px;
+    width: 70px;
+    height: 70px;
+}
+
+#mrLogo {
+    width: 250px;
+    height: auto;
+}
+
+#holder-mrlogo {
+    display: flex;
+    font-size: 40px;
+    width: 100%;
+    justify-content: space-around;
+}
+
+#holder-winner {
+    display: flex;
+    font-size: 40px;
+    width: 700px;
+    height: 500px;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: flex-end;
+    background: rebeccapurple;
 }
