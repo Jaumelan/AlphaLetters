@@ -19,8 +19,9 @@ body {
     font-family: "Walter Turncoat", cursive;
     height: 85%;
     width: 100%;
-    min-width: 1400px;
+    min-width: 1499px;
     max-width: 1980px;
+    min-height: 842px;
     background-color: #90D8E0;
     display: flex;
     /*flex-direction: column;*/
@@ -45,20 +46,21 @@ body {
     height: 100%;
     /*  max-width: 1600px; */
     /*margin-top: 10%;*/
-    min-width: 1240px;
+    min-width: 1499px;
     /*  max-height: 710px; */
-    min-height: 700px;
+    min-height: 842px;
     filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
 }
 
 #gameName {
     background-image: url("../images/logoGame.png");
-    width: 253px;
-    height: 65px;
+    width: 350px;
+    height: 105px;
     box-sizing: border-box;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     /* align-self: flex-start; */
-    margin: 2px 0px;
+    margin: 30px 0px;
 }
 
 @-webkit-keyframes expand {
@@ -136,8 +138,8 @@ body {
 }
 
 #avatarHolder1, #avatarHolder2 {
-    height:100px;
-    width:100px;
+    height: 100px;
+    width: 100px;
 }
 
 figure {
@@ -361,24 +363,6 @@ img {
 
 .pieceSmall:active {
     cursor: grabbing;
-}
-
-/*winner modal*/
-#winnerModal {
-    visibility: hidden;
-    background-color: #2e5266da;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#mrLogo {
-    width: 45%;
-}
-
-#mrLogo {
-    width: 100%;
-    height: auto;
 }
 
 /* #fence {
@@ -702,13 +686,13 @@ h6 {
 
 .player {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .button-modal-input {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -723,8 +707,6 @@ h6 {
 
 #modal-tutorial, #modal-tutorial * {
     display: none;
-    align-items: center;
-    justify-content: center;
 }
 
 #modal-tutorial {
@@ -736,19 +718,19 @@ h6 {
     width: 100vw;
 }
 
+#tutorial-mr-cow {
+    height: 300px;
+}
+
 .tutorial-content {
     width: 40vw;
     height: 60vh;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255,255,255,.9);
-    border-radius: 5px;
+    background-color: rgba(255,255,255,1);
 }
-#btn-tutorial-step-one {
-    margin-top: -5vh;
-}
+
 #name1, #name2 {
     text-align: center;
     color: snow;
@@ -819,8 +801,15 @@ h6 {
     box-shadow: none;
 }
 
+#modal-winner {
+    display: none;
+    position: absolute;
+    width:100vw;
+    height:100vh;
+    justify-content:center;
+    align-items: center;
+}
 
-#tutorial-mr-cow {
-    width: 40%;
-    height: 40%;
+#closeModal {
+    width: 100px;
 }

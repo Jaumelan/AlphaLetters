@@ -95,3 +95,7 @@ button {
 #modal-tutorial *{ 
 	display: none;
   }
+
+#modal-winner {
+	display: none;
+}

@@ -21,7 +21,7 @@ export function endGameByPass() {
     $("#winnerScore").text(`VOCÊ FEZ ${score2} PONTOS`);
   }
 
-  $("#winnerModal").css("visibility","visible");
+  $("#modal-winner").css("display","flex");
   return true;
 }
 
