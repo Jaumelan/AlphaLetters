@@ -3,28 +3,25 @@ import { submitedLetters, firstPlayerTurn } from "./constants.js";
 import { removeTiles } from "./deck.js";
 
 export function endGameByPass() {
-  $("#meaning").html("");
+  $("#winnerName").html("");
+  $("#winnerScore").html("");
   let score1 = Number($("#player1-score").val());
   let score2 = Number($("#player2-score").val());
-  let winner;
+  let player1 = $("#player1-name").text();
+  let player2 = $("#player2-name").text();
 
   if (score1>score2) {
-    winner = $("#player1-name").text();
+    $("#winnerName").text(`PARABENS, ${player1}!`);
+    $("#winnerScore").text(`VOCÊ FEZ ${score1} PONTOS`);
   } else if (score1 === score2) {
-    winner = "Empate! se resolve no soco";
+    $("#winnerName").text(`PARABENS! ${player1} E ${player2} EMPATARAM`);
+
   } else {
-    winner = $("#player2-name").text();
+    $("#winnerName").text(`PARABENS, ${player2}!`);
+    $("#winnerScore").text(`VOCÊ FEZ ${score2} PONTOS`);
   }
 
-  if (winner === "Empate!") {
-    let p = $("<p></p>");
-    p.text(`Parabéns! ${winner}`);
-    $("#meaning").append(p);
-  } else {
-    let p = $("<p></p>");
-    p.text(`O vencedor é ${winner}`);
-    $("#meaning").append(p)
-  }
+  $("#winnerModal").css("visibility","visible");
   return true;
 }
 
