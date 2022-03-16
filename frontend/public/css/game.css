@@ -718,19 +718,47 @@ h6 {
     width: 100vw;
 }
 
-#tutorial-mr-cow {
-    height: 300px;
-}
-
 .tutorial-content {
     width: 40vw;
     height: 60vh;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: rgba(255,255,255,1);
 }
+#modal-tutorial-step-one {
+    display: flex;
+    flex-direction: column;
+}
+#tutorial-card{
+    width: 262px;
+    height: 375px;
+    justify-content: space-between;
+}
+#tutorial-card * {
+    font-size: 30px;
+}
+#tutorial-card figure {
+   width: 150px; 
+   height: 150px;
+}
+#tutorial-card-name {
+    font-size: 50px;
+}
+#tutorial-step-content-one {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 
+}
+
+#tutorial-mr-cow {
+    height: 450px;
+    width: auto;
+    margin-bottom: 50px;
+}
+#btn-tutorial-step-one{
+    margin: 20px 0 10px 0;
+}
 #name1, #name2 {
     text-align: center;
     color: snow;
