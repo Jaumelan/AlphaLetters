@@ -28,7 +28,9 @@
             <p class="score" id="player1-score">0</p>
             <button type="button" class="gameButton" id="playButton1">JOGAR</button>
           </div>
-          <div id="meaningPlayer1" class="meanings"></div>
+          <div class="meanings">
+              <div class="meanings-box" id="meaningPlayer1"></div>
+          </div>
         </div>
         <div class="deckHolder">
           <div id="deck0" class="decks"></div>
@@ -50,9 +52,12 @@
             </figure>
             <p id="player2-name" class="playerNames expand">Player 2</p>
             <p class="score" id="player2-score">0</p>
-            <button type="button" class="gameButton" id="playButton2">JOGAR</button>
+            <button type="button" class="gameButtonWait" id="playButton2">ESPERAR</button>
           </div>
-          <div id="meaningPlayer2" class="meanings"></div>
+          <div class="meanings">
+              <div class="meanings-box" id="meaningPlayer2">
+          </div>
+          </div>
           <div class="deckHolder">
             <div id="deck1" class="decks"></div>
 
@@ -153,6 +158,7 @@
         </div>
       </div>
     </div>
+      <button id="resetGame">reset</button>
   </div>
   <div id="modal-tutorial">
     <!-- ttt -->

@@ -83,14 +83,14 @@ $(document).ready(function () {
       if (allowedWord) {
         if (firstPlayerTurn.is) {
           $("#meaningPlayer1").html("");
-          for (let i = 0; i <= data[0].meanings.length; i++) {
+          for (let i = 0; i < data[0].meanings.length; i++) {
             let p = $("<p></p>");
             p.text(data[0].meanings[i].toUpperCase());
             $("#meaningPlayer1").append(p);
           }
         } else {
           $("#meaningPlayer2").html("");
-          for (let i = 0; i <= data[0].meanings.length; i++) {
+          for (let i = 0; i < data[0].meanings.length; i++) {
             let p = $("<p></p>");
             p.text(data[0].meanings[i].toUpperCase());
             $("#meaningPlayer2").append(p);
@@ -267,7 +267,13 @@ $(document).ready(function () {
     boardRecord.length = 0;
     firstMove = false;
     firstPlayerTurn.is = true;
-    $("#gameboard").html("");
+      $("#gameboard").html("");
+      $(".meanings-box").html("");
+      $(".score").html("0");
+      $("#playButton1").removeClass().addClass("gameButton");
+      $("#playButton1").html("JOGAR");
+      $("#playButton2").removeClass().addClass("gameButtonWait");
+      $("#playButton2").html("ESPERAR");
     boardCreator();
     //delete players names
     showRecord(117);
@@ -489,7 +495,7 @@ $(document).ready(function () {
     $("#btn-choose").on("click", function () {
         $("#player-one .avatar-id").val(`${$(".active .avatar").attr("id")}`);
         $(".active").append(`<p>${$("#player-one .player-name").val()}</p>`);
-        playAudio($("#player-one .avatar-id").val(), "mp3");
+        /*playAudio($("#player-one .avatar-id").val(), "mp3");*/
         $("#player-one").css("display", "none");
         $("#player-two").css({"display": "flex", "flex-direction": "column"});
     $("#headingPlayer").html("AVATAR DO SEGUNDO JOGADOR");
@@ -497,7 +503,7 @@ $(document).ready(function () {
 
   $("#btn-start").on("click", function () {
     $("#player-two .avatar-id").val(`${$(".active .avatar").attr("id")}`);
-    playAudio($("#player-two .avatar-id").val(), "mp3");
+    /*playAudio($("#player-two .avatar-id").val(), "mp3");*/
     const players = [
       {
         name: $("#player-one .player-name").val(),
