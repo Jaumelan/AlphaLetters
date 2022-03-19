@@ -64,6 +64,7 @@ export function requestScores() {
   };
 
 export function changePlayer() {
+    console.log("changed player");
     return (firstPlayerTurn.is = !firstPlayerTurn.is);
   }
 

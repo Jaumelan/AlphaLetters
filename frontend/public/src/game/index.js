@@ -127,6 +127,7 @@ $(document).ready(function () {
     let amount = 0;
     let remaining = 120;
     let display1 = $("#playButton1").text();
+    console.log("display do botão ", display1);
     
     if (display1 === "JOGAR") {
       //first check if his turn
@@ -159,6 +160,7 @@ $(document).ready(function () {
       changeDisplay();
     } else if (display1 === "FINALIZAR") {
       //do all the validations
+      console.log("player 1 ended")
       endPlayersTurn();
       changeDisplay();
     } else if (display1 === "ESPERAR") {
@@ -171,13 +173,16 @@ $(document).ready(function () {
     const displayValues = ["JOGAR", "FINALIZAR", "ESPERAR"];
     let display1 = $("#playButton1").text();
     let display2 = $("#playButton2").text();
+    console.log("change display")
 
     if (firstPlayerTurn.is) {
       if (display1 === displayValues[0]) {
+        console.log("changing display from ", displayValues[0]);
         $("#playButton1").text("");
         $("#playButton1").text(displayValues[1]);
         $("#playButton1").removeClass("gameButton").addClass("gameButtonEnd");
       } else if (display1 === displayValues[1]) {
+        console.log("changing display from ", displayValues[1]);
         $("#playButton1").text("");
         $("#playButton1").text(displayValues[2]);
         $("#playButton1").removeClass("gameButtonEnd").addClass("gameButtonWait");
@@ -187,10 +192,12 @@ $(document).ready(function () {
       }
     } else {
       if (display2 === displayValues[0]) {
+        console.log("changing display from ", displayValues[0]);
         $("#playButton2").text("");
         $("#playButton2").text(displayValues[1]);
         $("#playButton2").removeClass("gameButton").addClass("gameButtonEnd");
       } else if (display2 === displayValues[1]) {
+        console.log("changing display from ", displayValues[1]);
         $("#playButton2").text("");
         $("#playButton2").text(displayValues[2]);
         $("#playButton2").removeClass("gameButtonEnd").addClass("gameButtonWait");
@@ -209,6 +216,7 @@ $(document).ready(function () {
     console.log(display2);
     if (display2 === "JOGAR") {
       //first check if his turn
+      console.log("which player ", firstPlayerTurn.is);
       if (!firstPlayerTurn.is) {
         //check if there are 7 letters on deck
         console.log("Second player");
@@ -350,6 +358,7 @@ $(document).ready(function () {
         }
       } else {
         console.log("player1 didn't play any tile");
+        changePlayer()
       }
       //player 2 validations
     } else {
@@ -412,6 +421,7 @@ $(document).ready(function () {
         }
       } else {
         console.log("Player2 hasn't placed a tile");
+        changePlayer()
       }
     }
 
@@ -426,6 +436,7 @@ $(document).ready(function () {
       passTurnCounter++;
 
       if (passTurnCounter === 4) {
+
         endGameByPass();
       }
     }
