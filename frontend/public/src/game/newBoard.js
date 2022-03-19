@@ -1,6 +1,6 @@
 import { submitedLetters } from "./constants.js";
 import { findDirection } from "./findDirection.js";
-import { newBoard, boardRecord } from "./constants.js";
+import { newBoard, boardRecord,firstMove } from "./constants.js";
 
 export function pushLettersToNewBoard(player) {
     console.log("moving letters");
@@ -110,7 +110,7 @@ export function verifyWordsOnBoard(positions_placed, which_array) {
         position.push({posx:`${first_x}`,posy:`${last_y + j}`});
         j++;
       }
-
+     
       if (draft.length < 2) {
         draft = [];
         position = [];
@@ -139,8 +139,14 @@ export function verifyWordsOnBoard(positions_placed, which_array) {
       }
       
     }
-    
-    if (draft.length < 2) {
+    console.log("draft tamanho", draft.length)
+    console.log("first move value ", firstMove.is)
+
+    if (!firstMove.is) {
+      console.log("first move")
+      drafts.push(draft);
+      positions.push(position);
+    } else if (draft.length < 2) {
       draft = [];
       position = [];
     } else {

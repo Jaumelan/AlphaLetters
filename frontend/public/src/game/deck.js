@@ -41,6 +41,7 @@ export function lettersToPlayersDeck(letters, values, player) {
     createDeck(player);
     console.log("vez ", firstPlayerTurn.is)
     turnDraggable(firstPlayerTurn.is);
+    //modificar para colocar drag só no primeiro jogador
   };
 
 

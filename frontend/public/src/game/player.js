@@ -23,6 +23,7 @@ export function pushLetters(player) {
         boardRecord.push({xy,letter});
       }
     }
+    console.log("boardRecord ", boardRecord);
 }
 
 export function drawFirstTiles() {

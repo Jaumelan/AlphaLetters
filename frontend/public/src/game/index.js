@@ -14,6 +14,7 @@ import {
   classesNaoPermitidas,
   boardRecord,
   droppedID,
+  firstMove
 } from "./constants.js";
 
 import { showRecord, endGameByPass } from "./getScore.js";
@@ -39,7 +40,7 @@ $("#homeButton").on("click", () => {
 
 $(document).ready(function () {
   let allowedWord = false;
-  let firstMove = false;
+  /* let firstMove = false; */
 
   //function to display which players turn is
   function changeDisplayTurn() {
@@ -52,27 +53,40 @@ $(document).ready(function () {
     }
   }
 
+/*   function wordCheck(word) {
+    return new Promise((resolve,reject)=>{
+      resolve( $.ajax({url: `https://significado.herokuapp.com/${word}`})
+      reject(() => {
+        returnTilestoPlayersDeck(firstPlayerTurn.is);
+        changePlayer();
+      } )
+          } 
+   */
+  
   //function to check if is allowed word
   async function wordChecker(word) {
     /* let isAllowed = $("#word").val(); */
     let wordCheck = $.ajax({
       url: `https://significado.herokuapp.com/${word}`,
       statusCode: { 400: () => {
+        console.log("code 400");
         returnTilestoPlayersDeck(firstPlayerTurn.is);
         changePlayer();
       } },
     });
     wordCheck.done((data) => {
-      console.log(data);
-      if (
-        !classesNaoPermitidas.includes(data[0].class) &&
-        data[0].meanings.length > 0
-      ) {
+      console.log("wordCheck data ", data);
+      if ( !classesNaoPermitidas.includes(data[0].class) && data[0].meanings.length > 0) {
         allowedWord = true;
         console.log("check word");
+        
         pushLetters(firstPlayerTurn.is);
-        removeFromDeck();
         requestScores();
+        removeFromDeck();
+        if (!firstMove.is) {
+          firstMove.is = true;
+          console.log("now second move")
+        }
       } else {
         returnTilestoPlayersDeck(firstPlayerTurn.is);
         changePlayer()
@@ -104,7 +118,7 @@ $(document).ready(function () {
   }
 
   boardCreator();
-  drawFirstTiles();
+  /* drawFirstTiles(); */
 
   //event listeners
 
@@ -244,7 +258,7 @@ $(document).ready(function () {
     });
     resetVariables();
     boardRecord.length = 0;
-    firstMove = false;
+    firstMove.is = false;
     firstPlayerTurn.is = true;
     $("#gameboard").html("");
     boardCreator();
@@ -265,7 +279,7 @@ $(document).ready(function () {
     });
     resetVariables();
     boardRecord.length = 0;
-    firstMove = false;
+    firstMove.is = false;
     firstPlayerTurn.is = true;
       $("#gameboard").html("");
       $(".meanings-box").html("");
@@ -297,20 +311,9 @@ $(document).ready(function () {
           rearrangeRowbyColumn(firstPlayerTurn.is);
           console.log(submitedLetters);
           //validation of player's move
-          console.log(
-            validateTheMove(
-              submitedLetters[2].boardId,
-              firstMove,
-              submittedDirection
-            )
-          );
-          if (
-            validateTheMove(
-              submitedLetters[2].boardId,
-              firstMove,
-              submittedDirection
-            )
-          ) {
+          console.log( validateTheMove( submitedLetters[2].boardId,firstMove.is,submittedDirection));
+          if ( validateTheMove(submitedLetters[2].boardId,firstMove.is,submittedDirection)) {
+            /* if() */
             pushLettersToNewBoard(firstPlayerTurn.is);
             draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
             let pos = verifyWordsOnBoard(submitedLetters[2].boardId, 2);
@@ -318,7 +321,7 @@ $(document).ready(function () {
             draft.forEach((array) => {
               word = array.join("");
               word = word.toLowerCase();
-              console.log(word);
+              console.log("fist player row ", word);
               wordChecker(word);
             });
           }
@@ -329,7 +332,7 @@ $(document).ready(function () {
           if (
             validateTheMove(
               submitedLetters[2].boardId,
-              firstMove,
+              firstMove.is,
               submittedDirection
             )
           ) {
@@ -351,7 +354,7 @@ $(document).ready(function () {
       //player 2 validations
     } else {
       submittedDirection = findDirection(submitedLetters[2].boardId);
-      if (submitedLetters[1].player2.length > 1) {
+      if (submitedLetters[1].player2.length > 0) {
         if (submittedDirection === "row") {
           //sort letters by the column number
           rearrangeRowbyColumn(firstPlayerTurn.is);
@@ -359,7 +362,7 @@ $(document).ready(function () {
           if (
             validateTheMove(
               submitedLetters[2].boardId,
-              firstMove,
+              firstMove.is,
               submittedDirection
             )
           ) {
@@ -379,7 +382,7 @@ $(document).ready(function () {
           if (
             validateTheMove(
               submitedLetters[2].boardId,
-              firstMove,
+              firstMove.is,
               submittedDirection
             )
           ) {
@@ -412,9 +415,10 @@ $(document).ready(function () {
       }
     }
 
-    if (!firstMove) {
-      firstMove = true;
-    }
+    /* if (!firstMove.is) {
+      firstMove.is = true;
+      console.log()
+    } */
     if (allowedWord) {
       passTurnCounter = 0;
     } else {
