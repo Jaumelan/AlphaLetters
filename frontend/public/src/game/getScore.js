@@ -57,6 +57,7 @@ export function requestScores() {
      
     }).done(()=>{
       /* resetVariables(); */
+      //change 1
       changePlayer();
     })   
      
