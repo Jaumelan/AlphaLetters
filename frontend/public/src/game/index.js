@@ -14,7 +14,8 @@ import {
   classesNaoPermitidas,
   boardRecord,
   droppedID,
-  firstMove
+  firstMove,
+  noTiles
 } from "./constants.js";
 
 import { showRecord, endGameByPass } from "./getScore.js";
@@ -40,7 +41,6 @@ $("#homeButton").on("click", () => {
 
 $(document).ready(function () {
   let allowedWord = false;
-  /* let firstMove = false; */
 
   //function to display which players turn is
   function changeDisplayTurn() {
@@ -53,16 +53,6 @@ $(document).ready(function () {
     }
   }
 
-/*   function wordCheck(word) {
-    return new Promise((resolve,reject)=>{
-      resolve( $.ajax({url: `https://significado.herokuapp.com/${word}`})
-      reject(() => {
-        returnTilestoPlayersDeck(firstPlayerTurn.is);
-        changePlayer();
-      } )
-          } 
-   */
-  
   //function to check if is allowed word
   async function wordChecker(word) {
     /* let isAllowed = $("#word").val(); */
@@ -112,7 +102,6 @@ $(document).ready(function () {
         }
       }
 
-      console.log(allowedWord);
       return allowedWord;
     });
   }
@@ -160,9 +149,13 @@ $(document).ready(function () {
       changeDisplay();
     } else if (display1 === "FINALIZAR") {
       //do all the validations
-      console.log("player 1 ended")
+      console.log("vez de ", firstPlayerTurn.is)
       endPlayersTurn();
       changeDisplay();
+      if (noTiles.is) {
+        changePlayer();
+        noTiles.is = false;
+      }
     } else if (display1 === "ESPERAR") {
       alert("Vez do outro jogador");
     }
@@ -173,7 +166,7 @@ $(document).ready(function () {
     const displayValues = ["JOGAR", "FINALIZAR", "ESPERAR"];
     let display1 = $("#playButton1").text();
     let display2 = $("#playButton2").text();
-    console.log("change display")
+    console.log("change display do jogador ", firstPlayerTurn.is)
 
     if (firstPlayerTurn.is) {
       if (display1 === displayValues[0]) {
@@ -249,6 +242,10 @@ $(document).ready(function () {
       //do all the validations
       endPlayersTurn()
       changeDisplay()
+      if (noTiles.is) {
+        changePlayer();
+        noTiles.is = false;
+      }
     } else if (display2 === "ESPERAR") {
       alert("Vez do outro jogador");
     }
@@ -358,7 +355,7 @@ $(document).ready(function () {
         }
       } else {
         console.log("player1 didn't play any tile");
-        changePlayer()
+        noTiles.is = true;
       }
       //player 2 validations
     } else {
@@ -421,7 +418,7 @@ $(document).ready(function () {
         }
       } else {
         console.log("Player2 hasn't placed a tile");
-        changePlayer()
+        noTiles.is = true;
       }
     }
 
