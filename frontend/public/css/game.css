@@ -6,6 +6,7 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700&family=Roboto:wght@400;700&family=Ubuntu+Mono:wght@700&display=swap');
 
 html {
     display: flex;
@@ -19,8 +20,7 @@ body {
     font-family: "Walter Turncoat", cursive;
     height: 85%;
     width: 100%;
-    min-width: 1499px;
-    max-width: 1980px;
+    min-height: 576px;
     min-height: 842px;
     background-color: #90D8E0;
     display: flex;
@@ -44,22 +44,35 @@ body {
     background-size: contain;
     width: 95%;
     height: 100%;
-    /*  max-width: 1600px; */
+    max-width: 1499px;
     /*margin-top: 10%;*/
-    min-width: 1499px;
+    max-height: 842px;
     /*  max-height: 710px; */
-    min-height: 842px;
     filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
 }
 
+#resetGame {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
 #gameName {
-    background-image: url("../images/logoGame.png");
-    width: 350px;
-    height: 105px;
-    box-sizing: border-box;
-    background-size: contain;
-    background-repeat: no-repeat;
-    /* align-self: flex-start; */
+    /*background-image: url("../images/logoGame.png");*/
+    width: 557px;
+    height: 100px;
+    font-family: 'Ubuntu Mono', monospace;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 70px;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 0.08em;
+    color: #EBB146;
+    text-shadow: 5px 5px 11px #5C2D00;
     margin: 30px 0px;
 }
 
@@ -293,7 +306,7 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* margin-bottom: 55px; */
+    top: -7%;
 }
 
     #gameboard-holder #gameboard {
@@ -303,7 +316,7 @@ img {
     }
 
         #gameboard-holder #gameboard .row {
-            height: 40px;
+            /*height: 40px;*/
             margin: 2px 0px;
         }
 
@@ -317,10 +330,17 @@ img {
                 font: bolder 66.6666666667% 'Walter Turncoat', cursive;
                 color: rgba(0, 0, 0, 0.6);
                 box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-                background-color: #cbe1da;
+                background-color: #cbe1dab4;
                 margin: 0px 1px;
                 outline-color: transparent;
             }
+#gameboard {
+    background-image: url("/images/mrCowBack.png");
+    background-repeat: no-repeat;
+    background-size: 45% 45%;
+    background-position: center;
+}
+
 
 .tripleWord {
     background-color: #1F604C !important;
@@ -335,15 +355,15 @@ img {
 }
 
 .doubleWord {
-    background-color: #45B392 !important;
+    background-color: #45b392d9 !important;
 }
 
 .tripleLetter {
-    background-color: #A3D1E8 !important;
+    background-color: #a3d1e8d4 !important;
 }
 
 .doubleLetter {
-    background-color: #3C7490 !important;
+    background-color: #3c7490d9 !important;
 }
 
 .pieceSmall {
@@ -390,6 +410,7 @@ img {
     height: 100%;
     display: flex;
     max-width: 1980px;
+    max-height: 845px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -887,4 +908,75 @@ h6 {
     flex-direction: column;
     align-items: flex-end;
     background: rebeccapurple;
+}
+
+@media (max-width: 1280px) {
+
+   
+}
+
+
+@media (max-width: 1024px) {
+
+    #gamePage {
+        background-size: contain;
+        height: 576px;
+        width: 1024px;
+        border: none;
+        filter: none;
+        border-radius: 0;
+    }
+
+    #gameName {
+        font-size: 55px;
+        margin: 0;
+        width: 432px;
+        height: 70px;
+    }
+
+    #gameboard-holder {
+        top: -5%;
+    }
+
+        #gameboard-holder #gameboard .row {
+            /*height: 40px;*/
+            margin: 1.5px 0px;
+        }
+
+            #gameboard-holder #gameboard .row .cell {
+                width: 27px;
+                height: 27px;
+            }
+
+    .sectionPlayer {
+        width: 285px;
+    }
+
+    .playerHolder {
+        height: 235px;
+        justify-content: flex-end;
+    }
+
+    .meanings {
+        width: 241px;
+        height: 160px;
+    }
+
+    .meanings-box {
+        overflow-y: auto;
+        height: 105px;
+        width: 195px;
+        font-size: 12px;
+    }
+
+    .deckHolder {
+        margin-top: 0px;
+    }
+    .decks {
+        background-image: url("../images/image89.png");
+        width: 267px;
+        height: 79px;
+        background-repeat: no-repeat;
+    }
+
 }
