@@ -3,17 +3,23 @@ import { resetVariables } from "./resetVariables.js";
 function createDeck(player) {
     if (player === "player1") {
       tilesPlayer1.forEach((tile) => {
-        $("#deck0").append(
-          `<div id="${tile.id}" letter="${tile.letter}" class="pieceSmall">${tile.letter}<span class="piece-numberSmall">${tile.value}</span></div>`
-        );
-        $("#deck0").droppable();
+        if (tile.letter !== undefined) {
+          $("#deck0").append(
+            `<div id="${tile.id}" letter="${tile.letter}" class="pieceSmall">${tile.letter}<span class="piece-numberSmall">${tile.value}</span></div>`
+          );
+          $("#deck0").droppable();
+        }
+        
       });
     } else {
       tilesPlayer2.forEach((tile) => {
-        $("#deck1").append(
-          `<div id="${tile.id}" letter="${tile.letter}" class="pieceSmall">${tile.letter}<span class="piece-numberSmall">${tile.value}</span></div>`
-        );
-        $("#deck1").droppable();
+        if (tile.letter !== undefined) {
+          $("#deck1").append(
+            `<div id="${tile.id}" letter="${tile.letter}" class="pieceSmall">${tile.letter}<span class="piece-numberSmall">${tile.value}</span></div>`
+          );
+          $("#deck1").droppable();
+        }
+        
       });
     }
 }
