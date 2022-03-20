@@ -3,12 +3,11 @@
     "",
     "\\frontend",
     "\\frontend\\public",
-    "\\frontend\\public\\images",
+    "\\frontend\\public\\css",
     "\\frontend\\public\\src",
     "\\frontend\\public\\src\\game",
-    "\\frontend\\public\\src\\home",
-    "\\frontend\\public\\src\\home\\img"
+    "\\frontend\\public\\src\\home"
   ],
-  "SelectedNode": "\\frontend\\public\\index.html",
+  "SelectedNode": "\\frontend\\public\\src\\game\\newBoard.js",
   "PreviewInSolutionExplorer": false
 }

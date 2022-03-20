@@ -174,6 +174,7 @@ $(document).ready(function () {
         $("#playButton1").text("");
         $("#playButton1").text(displayValues[1]);
         $("#playButton1").removeClass("gameButton").addClass("gameButtonEnd");
+        $("#meaningPlayer2").html("");
       } else if (display1 === displayValues[1]) {
         console.log("changing display from ", displayValues[1]);
         $("#playButton1").text("");
@@ -189,6 +190,7 @@ $(document).ready(function () {
         $("#playButton2").text("");
         $("#playButton2").text(displayValues[1]);
         $("#playButton2").removeClass("gameButton").addClass("gameButtonEnd");
+        $("#meaningPlayer1").html("");
       } else if (display2 === displayValues[1]) {
         console.log("changing display from ", displayValues[1]);
         $("#playButton2").text("");
