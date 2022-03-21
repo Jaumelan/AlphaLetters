@@ -1,6 +1,6 @@
 IF NOT EXISTS CREATE SCHEMA alphazendinha;
 
-IF NOT EXISTS CREATE TABLE alphazendinha.users(
+IF NOT EXISTS CREATE TABLE alphazendinha.players(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v1(),
     name VARCHAR(20),
     avatar_id VARCHAR(25)

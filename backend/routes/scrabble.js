@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const scrabbleRules = require("../components/scrabbleRules");
 const scrabblePortugues = new scrabbleRules;
-
 //middlewares
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
