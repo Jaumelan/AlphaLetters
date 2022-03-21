@@ -44,6 +44,7 @@ export function verifyWordsOnBoard(positions_placed, which_array) {
       if (findDirection(positions_placed) === "row") {
         ///values in x still equal
         //try to find letters before my first y
+        console.log("verify row")
         let j = 1;
         while (newBoard[first_x][first_y - j] !== "" ) {
           draft.unshift(newBoard[first_x][first_y - j]);
@@ -70,6 +71,7 @@ export function verifyWordsOnBoard(positions_placed, which_array) {
           j++;
         }
       } else {
+        console.log("verify column")
         let i = 1;
         while (newBoard[first_x - i][first_y] !== "") {
           draft.unshift(newBoard[first_x - i][first_y]);
@@ -96,6 +98,7 @@ export function verifyWordsOnBoard(positions_placed, which_array) {
       }
       //for only one tile placed on board
     } else {
+      console.log("verify one tile")
       let j = 1;
       while (newBoard[first_x][first_y - j] !== "") {
         draft.unshift(newBoard[first_x][first_y - j]);

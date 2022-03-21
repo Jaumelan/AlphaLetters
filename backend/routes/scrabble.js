@@ -14,6 +14,18 @@ router.get('/initialize', (req,res) => {
 .get('/drawletters/:whichplayer/:amountOfLetters', (req, res) => {
     let data = req.params;
     console.log(data);
+    const whichplayerOptions = ["1", "2"];
+    const amountLettersOptions = ["0","1", "2", "3", "4", "5", "6", "7"];
+
+    if ( !whichplayerOptions.includes(data.whichplayer) ) {
+        res.status(400).json({ message: "invalid player" }); // Bad Request
+        return;
+    };
+
+    if ( !amountLettersOptions.includes(data.amountOfLetters) ) {
+        res.status(400).json({ message: "invalid amount of letters" }); // Bad Request
+        return;
+    }
 
     res.send(scrabblePortugues.drawLetters(data.whichplayer, data.amountOfLetters));
 
