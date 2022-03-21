@@ -5,7 +5,7 @@ import { lettersToPlayersDeck } from "./deck.js";
 import { showRecord } from "./getScore.js";
 
 export function pushLetters(player) {
-    console.log("moving letters");
+    console.log("push letters");
     let xy = "";
     let letter = "";
     
