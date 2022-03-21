@@ -30,7 +30,7 @@ export function requestScores() {
     positions = JSON.stringify(positions);
     let letters = JSON.stringify(verifyWordsOnBoard(submitedLetters[2].boardId, 1));
     console.log("pos ", positions, "letters ", letters);
-    console.log("antes do score ",submitedLetters);
+    console.log("antes do score ", submitedLetters);
     $.get("http://localhost:3000/scrabble/score",{positions, letters})
     .done(answer => {
       let score = JSON.parse(answer)

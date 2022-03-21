@@ -12,18 +12,5 @@
     receivedData[1].letters = [];
     receivedData[1].values = [];
     receivedData[2];
-  
-    for(let i = 0 ; i<newBoard.length; i++) {
-      for (let j = 0 ; j< newBoard[i].length; j++) {
-        newBoard[i][j] = "";
-      }
-    }
-
-    for (let i = 0 ; i<tilesPlayer1.length ; i ++ ){
-      tilesPlayer1[i].letter = "";
-      tilesPlayer1[i].value = 0;
-      tilesPlayer2[i].letter = "";
-      tilesPlayer2[i].value = 0;
-    }
       
   };

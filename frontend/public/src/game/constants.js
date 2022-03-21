@@ -17,7 +17,7 @@ export const doubleLetter = [[3, 0],[11, 0],[0, 3],[0, 11],[6, 2],[2, 6],[7, 3],
 export const firstPlayerTurn = { is: true };
 export const firstMove = {is:false};
 export const noTiles = {is:false};
-export let newBoard = [
+export const newBoard = [
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
