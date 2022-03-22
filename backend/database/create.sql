@@ -11,7 +11,7 @@ IF NOT EXISTS CREATE TABLE alphazendinha.players(
 IF NOT EXISTS CREATE TABLE alphazendinha.scores(
     score INTEGER NOT NULL,
     player_id UUID,
-    game_date CURRENT_DATE,
-    FOREIGN KEY (player_id) REFERENCES alphazendinha.users(id),
-    create_date TIMESTAMP DEFAULT NOW()
+    game_date CURRENT_DATE(),
+    create_date TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (player_id) REFERENCES alphazendinha.users(id)
 )

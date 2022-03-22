@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const scrabbleRules = require("../components/scrabbleRules");
+const scoresService = require("../service/scoreService")
 const scrabblePortugues = new scrabbleRules;
 //middlewares
 router.use(express.json());
@@ -45,4 +46,8 @@ router.get('/initialize', (req,res) => {
     res.sendStatus(200);
 })
 
+.get('/scores', async (req, res) => {
+    const scores = await scoresService.getScores();
+    res.json(scores)
+})
 module.exports = router;
