@@ -7,12 +7,14 @@ export function pushLettersToNewBoard(player) {
     let x;
     let y;
     let letter;
-
+    console.log(submitedLetters[2].boardId.length);
     if (player) {
       for (let i = 0; i < submitedLetters[2].boardId.length; i++) {
         x = Number(submitedLetters[2].boardId[i].positionx);
         y = Number(submitedLetters[2].boardId[i].positiony);
         newBoard[x][y] = `${submitedLetters[0].player1[i]}`;
+        console.log(x, y);
+        console.log("newBoard - pushLetters:", newBoard[x][y]);
       }
     } else {
       console.log("moving player2 letters");
@@ -22,6 +24,9 @@ export function pushLettersToNewBoard(player) {
         newBoard[x][y] = `${submitedLetters[1].player2[i]}`;
       }
     }
+    console.log("newBoard - pushLetters[7][7]:", newBoard[7][7]);
+    console.log("newBoard - pushLetters(main):", newBoard);
+    
     return true;
   }
 

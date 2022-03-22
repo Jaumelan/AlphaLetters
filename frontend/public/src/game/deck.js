@@ -122,7 +122,7 @@ export function removeTiles(player) {
 };
 
 export function removeFromDeck() {
-    console.log("removing ids");
+    console.log("removing draggable class");
     
     if (firstPlayerTurn.is) {
       submitedLetters[0].playerId.forEach(id => {

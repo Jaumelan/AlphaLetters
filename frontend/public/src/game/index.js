@@ -263,7 +263,19 @@ $(document).ready(function () {
     tilesPlayer2.forEach((tile) => {
       $(`#${tile.id}`).remove();
     });
-    resetVariables();
+      resetVariables();
+      for (let i = 0; i < newBoard.length; i++) {
+          for (let j = 0; j < newBoard[i].length; j++) {
+              newBoard[i][j] = "";
+          }
+      }
+
+      for (let i = 0; i < tilesPlayer1.length; i++) {
+          tilesPlayer1[i].letter = "";
+          tilesPlayer1[i].value = 0;
+          tilesPlayer2[i].letter = "";
+          tilesPlayer2[i].value = 0;
+      }
     boardRecord.length = 0;
     firstMove.is = false;
     firstPlayerTurn.is = true;
@@ -284,7 +296,19 @@ $(document).ready(function () {
     tilesPlayer2.forEach((tile) => {
       $(`#${tile.id}`).remove();
     });
-    resetVariables();
+      resetVariables();
+      for (let i = 0; i < newBoard.length; i++) {
+          for (let j = 0; j < newBoard[i].length; j++) {
+              newBoard[i][j] = "";
+          }
+      }
+
+      for (let i = 0; i < tilesPlayer1.length; i++) {
+          tilesPlayer1[i].letter = "";
+          tilesPlayer1[i].value = 0;
+          tilesPlayer2[i].letter = "";
+          tilesPlayer2[i].value = 0;
+      }
     boardRecord.length = 0;
     firstMove.is = false;
     firstPlayerTurn.is = true;
