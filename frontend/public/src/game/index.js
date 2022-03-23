@@ -15,7 +15,8 @@ import {
   boardRecord,
   droppedID,
   firstMove,
-  noTiles
+  noTiles,
+  newBoard
 } from "./constants.js";
 
 import { showRecord, endGameByPass } from "./getScore.js";
@@ -258,7 +259,7 @@ $(document).ready(function () {
     });
 
     $("#closeModal").on("click", function () {
-        $("#winnerModal").css("visibility", "hidden");
+        $("#modal-winner").css("display", "none");
         tilesPlayer1.forEach((tile) => {
             $(`#${tile.id}`).remove();
         });
@@ -270,14 +271,14 @@ $(document).ready(function () {
             for (let j = 0; j < newBoard[i].length; j++) {
                 newBoard[i][j] = "";
             }
-        }
+        };
 
         for (let i = 0; i < tilesPlayer1.length; i++) {
             tilesPlayer1[i].letter = "";
             tilesPlayer1[i].value = 0;
             tilesPlayer2[i].letter = "";
             tilesPlayer2[i].value = 0;
-        }
+        };
         boardRecord.length = 0;
         firstMove.is = false;
         firstPlayerTurn.is = true;
@@ -288,7 +289,7 @@ $(document).ready(function () {
         $.get("http://localhost:3000/scrabble/reset", function () {
             console.log("reset");
         }).done((ans) => console.log(ans));
-        /* $(".modal-avatar").css("display","flex"); */
+        
     })
 
     $("#resetGame").on("click", function () {
@@ -362,13 +363,7 @@ $(document).ready(function () {
                     //sort letters by the row number
                     rearrangeColumnbyRow(firstPlayerTurn.is);
                     console.log(submitedLetters);
-                    if (
-                        validateTheMove(
-                            submitedLetters[2].boardId,
-                            firstMove.is,
-                            submittedDirection
-                        )
-                    ) {
+                    if (validateTheMove(submitedLetters[2].boardId,firstMove.is,submittedDirection)) {
                         pushLettersToNewBoard(firstPlayerTurn.is);
                         draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
                         let pos = verifyWordsOnBoard(submitedLetters[2].boardId, 2);
@@ -460,7 +455,7 @@ $(document).ready(function () {
             console.log("tentei mudar pass");
             passTurnCounter++;
 
-            if (passTurnCounter === 4) {
+            if (passTurnCounter === 3) {
 
                 endGameByPass();
             }
