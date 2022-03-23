@@ -4,5 +4,5 @@ exports.getPlayers = function () {
     return playerData.getplayers();
 }
 exports.savePlayer = function (player) {
-    return playerData.saveplayer(player);
+    return playerData.savePlayer(player);
 }

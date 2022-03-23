@@ -1,6 +1,6 @@
 const database = require('../infra/database.js');
 
-exports.getPlayers= function () {
+exports.getPlayers  = function () {
     database.connect()
     database.query(
         "SELECT TOP 10 * FROM game.players \
