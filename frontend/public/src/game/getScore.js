@@ -16,13 +16,13 @@ export function endGameByPass() {
   {"player2Name": player2, "player2Score":JSON.stringify(score2), "player2Avatar": player2Avatar}];
 
   if (score1>score2) {
-    $("#winnerName").text(`PARABENS, ${player1}!`);
+    $("#winnerName").text(`PARABENS, ${player1.toUpperCase()}!`);
     $("#winnerScore").text(`VOCÊ FEZ ${score1} PONTOS`);
   } else if (score1 === score2) {
-    $("#winnerName").text(`PARABENS! ${player1} E ${player2} EMPATARAM`);
+    $("#winnerName").text(`PARABENS! ${player1.toUpperCase()} E ${player2.toUpperCase()} EMPATARAM`);
 
   } else {
-    $("#winnerName").text(`PARABENS, ${player2}!`);
+    $("#winnerName").text(`PARABENS, ${player2.toUpperCase()}!`);
     $("#winnerScore").text(`VOCÊ FEZ ${score2} PONTOS`);
   }
 

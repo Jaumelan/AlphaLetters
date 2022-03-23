@@ -1,6 +1,6 @@
 //declare the positions where the player gets bonuses
 import { boardCreator } from "./boardCreator.js";
-import { resetVariables } from "./resetVariables.js";
+import { resetVariables, resetButtons } from "./resetVariables.js";
 import { pushLettersToNewBoard, verifyWordsOnBoard } from "./newBoard.js";
 import { validateTheMove, isNextToATile } from "./validateMove.js";
 import { findDirection } from "./findDirection.js";
@@ -285,6 +285,7 @@ $(document).ready(function () {
         firstPlayerTurn.is = true;
         $("#gameboard").html("");
         boardCreator();
+        resetButtons();
         //delete players names
         showRecord(117);
         $.get("http://localhost:3000/scrabble/reset", function () {

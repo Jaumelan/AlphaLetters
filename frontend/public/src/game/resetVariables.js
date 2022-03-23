@@ -18,6 +18,8 @@
   export function resetButtons() {
     $("#playButton1").text("JOGAR");
     $("#playButton1").removeClass().addClass("gameButton");
+    $("#player1-score").text("0");
     $("#playButton2").text("ESPERAR");
     $("#playButton2").removeClass().addClass("gameButtonEnd");
+      $("#player2-score").text("0");
   };
