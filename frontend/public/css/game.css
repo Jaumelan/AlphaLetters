@@ -883,13 +883,23 @@ h6 {
 }
 
 #closeModal {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 60px;
+    cursor: pointer;
 }
 
 #mrLogo {
     width: 250px;
     height: auto;
+    margin-left: 35px;
+}
+
+#winnerName {
+    color: #d6dded;
+}
+
+#winnerData {
+    margin-left: 20px;
 }
 
 #holder-mrlogo {
@@ -907,7 +917,7 @@ h6 {
     justify-content: space-around;
     flex-direction: column;
     align-items: flex-end;
-    background: rebeccapurple;
+    background: #334e99;
 }
 
 @media (max-width: 1280px) {

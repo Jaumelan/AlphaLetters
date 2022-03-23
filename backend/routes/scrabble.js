@@ -50,4 +50,9 @@ router.get('/initialize', (req,res) => {
     const scores = await scoresService.getScores();
     res.json(scores)
 })
+
+.post('/scores', (req, res) => {
+    let values = req.body;
+    console.log(values);
+})
 module.exports = router;

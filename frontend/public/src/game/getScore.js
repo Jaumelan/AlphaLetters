@@ -5,8 +5,8 @@ import { removeTiles } from "./deck.js";
 export function endGameByPass() {
   $("#winnerName").html("");
   $("#winnerScore").html("");
-  let score1 = Number($("#player1-score").val());
-  let score2 = Number($("#player2-score").val());
+  let score1 = Number($("#player1-score").text());
+  let score2 = Number($("#player2-score").text());
   let player1 = $("#player1-name").text();
   let player2 = $("#player2-name").text();
 
@@ -22,6 +22,10 @@ export function endGameByPass() {
   }
 
   $("#modal-winner").css("display","flex");
+
+
+  $.post("http://localhost:3000/scrabble/scores", {"player1Name":player1, "player1Score": JSON.stringify(score1), "player2Name":player2, "player2Score": JSON.stringify(score2)} )
+  
   return true;
 }
 
