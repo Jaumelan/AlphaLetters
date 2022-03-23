@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const scrabbleRules = require("../components/scrabbleRules");
-const scoresService = require("../service/scoreService")
+const playerService = require("../service/playerService")
 const scrabblePortugues = new scrabbleRules;
 //middlewares
 router.use(express.json());
@@ -47,7 +47,13 @@ router.get('/initialize', (req,res) => {
 })
 
 .get('/scores', async (req, res) => {
-    const scores = await scoresService.getScores();
-    res.json(scores)
+    const players = await playerService.getScores();
+    res.json(players)
+})
+
+.post('/scores', async (req, res) => {
+    let player = req.body;
+    const newPlayer = await playerService.savePlayers();
+    console.log(values);
 })
 module.exports = router;

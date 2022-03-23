@@ -1,17 +1,9 @@
-IF NOT EXISTS CREATE SCHEMA alphazendinha;
+CREATE SCHEMA IF NOT EXISTS game;
 
-IF NOT EXISTS CREATE TABLE alphazendinha.players(
+CREATE TABLE IF NOT EXISTS game.players(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v1(),
     name VARCHAR(20),
-    avatar_id VARCHAR(25)
-    create_date TIMESTAMP DEFAULT NOW()
-)
-
-
-IF NOT EXISTS CREATE TABLE alphazendinha.scores(
-    score INTEGER NOT NULL,
-    player_id UUID,
-    game_date CURRENT_DATE(),
-    create_date TIMESTAMP DEFAULT NOW(),
-    FOREIGN KEY (player_id) REFERENCES alphazendinha.users(id)
-)
+    avatar_id VARCHAR(25),
+    game_date DATE DEFAULT CURRENT_DATE,
+    score INTEGER NOT NULL
+);
