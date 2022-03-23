@@ -279,6 +279,7 @@ $(document).ready(function () {
             tilesPlayer2[i].letter = "";
             tilesPlayer2[i].value = 0;
         };
+        passTurnCounter = 0;
         boardRecord.length = 0;
         firstMove.is = false;
         firstPlayerTurn.is = true;

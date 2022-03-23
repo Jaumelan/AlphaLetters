@@ -41,7 +41,7 @@ body {
     align-items: center;
     /*  background-image: url("./images/newBackground.png"); */
     background-image: url("../images/newBackground.png");
-    background-size: contain;
+    background-size: cover;
     width: 95%;
     height: 100%;
     max-width: 1499px;
@@ -332,12 +332,11 @@ img {
                 font: bolder 66.6666666667% 'Walter Turncoat', cursive;
                 color: rgba(0, 0, 0, 0.6);
                 box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-                background-color: #cbe1dab4;
+                background-color: #cbe1daff;
                 margin: 0px 1px;
                 outline-color: transparent;
             }
 #gameboard {
-    background-image: url("/images/mrCowBack.png");
     background-repeat: no-repeat;
     background-size: 45% 45%;
     background-position: center;
@@ -345,7 +344,7 @@ img {
 
 
 .tripleWord {
-    background-color: #1F604C !important;
+    background-color: #1F604c !important;
 }
 
 .row {
@@ -357,15 +356,15 @@ img {
 }
 
 .doubleWord {
-    background-color: #45b392d9 !important;
+    background-color: #45b392ff !important;
 }
 
 .tripleLetter {
-    background-color: #a3d1e8d4 !important;
+    background-color: #a3d1e8ff !important;
 }
 
 .doubleLetter {
-    background-color: #3c7490d9 !important;
+    background-color: #3c7490ff !important;
 }
 
 .pieceSmall {
@@ -759,6 +758,8 @@ h6 {
     max-height: 594px;
     background-color: #90D8E0;
     border-radius: 10px;
+    min-width: 650px;
+    min-height: 475px;
 }
 
 .tutorial-content {
@@ -830,10 +831,10 @@ h6 {
 }
 
 #tutorial-mr-cow {
-    height: 450px;
+    height: 400px;
     width: auto;
-    margin-bottom: 50px;
 }
+
 #btn-tutorial-step-one{
     margin: 20px 0 10px 0;
 }
@@ -926,6 +927,7 @@ h6 {
     flex-direction: column;
     align-content: space-between;
     flex-wrap: nowrap;
+    z-index: 5;
 }
 
 #closeModal {
@@ -966,13 +968,7 @@ h6 {
     background: #334e99;
 }
 
-@media (max-width: 1280px) {
-
-   
-}
-
-
-@media (max-width: 1024px) {
+@media (max-width: 1300px) {
 
     #gamePage {
         background-size: contain;
@@ -990,6 +986,21 @@ h6 {
         height: 70px;
     }
 
+    .placed {
+        width: 23px;
+        height: 23px;
+    }
+    .pieceSmall {
+        width: 23px;
+        height: 23px;
+        box-shadow: none;
+        font-size: 12px;
+    }
+    .piece-numberSmall {
+        font-size: 9px;
+        right: -2px;
+        top: 10px;
+    }
     #gameboard-holder {
         top: -5%;
     }
@@ -1028,11 +1039,11 @@ h6 {
     .deckHolder {
         margin-top: 0px;
     }
+
     .decks {
         background-image: url("../images/image89.png");
         width: 267px;
         height: 79px;
         background-repeat: no-repeat;
     }
-
 }
