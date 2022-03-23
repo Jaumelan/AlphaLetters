@@ -3,8 +3,6 @@
     "",
     "\\frontend",
     "\\frontend\\public",
-    "\\frontend\\public\\css",
-    "\\frontend\\public\\images",
     "\\frontend\\public\\src",
     "\\frontend\\public\\src\\game"
   ],
