@@ -17,10 +17,12 @@ body {
 	align-items: center;
 	font-family: "Walter Turncoat", cursive;
 	background-color: #90D8E0;
-}
+	min-height: 576px;
+	min-width: 1024px;
+	}
 
 #homePage {
-	height: 100%;
+	height: calc(1.8*100vw);
 	width: 100%;
 	max-width: 1500px;
 	min-width: 1024px;
@@ -59,13 +61,12 @@ body {
 	flex-direction: column;
 }
 #game-name {
-	width: 350px;
 	text-decoration: none;
 	background: transparent;
 	cursor: pointer;
-	position: relative;
-	top: 60%;
-	left: 86%;
+	position: absolute;
+	top: 54%;
+	left: 41%;
 	font-family: 'Ubuntu Mono', monospace;
 	font-weight: 700;
 	font-size: 30px;
@@ -205,25 +206,53 @@ button {
 	display: none;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1475px) {
 
-	#homePage {
-		max-height: 710px;
-		border: none;
-		filter: none;
-		border-radius: 0;
-	}
 	#game-name {
-		top: 60%;
-		left: 72%;
-		font-size: 25px;
+		font-size: 28px;
 	}
-	#homeButton > button {
-		font-size: 45px;
-		top: -57%;
+
+}
+
+@media (max-width: 1400px) {
+
+	#game-name {
+		font-size: 25px;
 	}
 }
 
+	@media (max-width: 1280px) {
+
+		#homePage {
+			max-height: 710px;
+			border: none;
+			filter: none;
+			border-radius: 0;
+		}
+
+		#game-name {
+			;
+			font-size: 24px;
+		}
+
+		#homeButton > button {
+			font-size: 45px;
+			top: -57%;
+		}
+	}
+
+@media (max-width: 1200px) {
+
+	#game-name {
+		font-size: 22px;
+	}
+}
+@media (max-width: 1100px) {
+
+	#game-name {
+		font-size: 21px;
+	}
+}
 
 	@media (max-width: 1024px) {
 		#homePage {
@@ -233,15 +262,14 @@ button {
 			filter: none;
 			border-radius: 0;
 		}
+
 		#game-name {
-			top: 60%;
-			left: 48%;
 			font-size: 20px;
 		}
+
 		#homeButton > button {
 			font-size: 35px;
 			top: -55.5%;
 			letter-spacing: 0.01em;
 		}
-		
 	}

@@ -14,3 +14,10 @@
     receivedData[2];
       
   };
+  
+  export function resetButtons() {
+    $("#playButton1").text("JOGAR");
+    $("#playButton1").removeClass().addClass("gameButton");
+    $("#playButton2").text("ESPERAR");
+    $("#playButton2").removeClass().addClass("gameButtonEnd");
+  };
