@@ -577,10 +577,10 @@ $(document).ready(function () {
     ];
 
     $("#player1-name").html(`${players[0].name}`);
-    $("#avatarHolder1 img").attr("src", `images/avatar/${players[0].avatar_id}.png`);
+    $("#avatarHolder1 img").attr({src: `images/avatar/${players[0].avatar_id}.png`, name: `${players[0].avatar_id}`});
     $("#deck0-player").html(`deck do ${players[0].name}`);
     $("#player2-name").html(`${players[1].name}`);
-    $("#avatarHolder2 img").attr("src", `images/avatar/${players[1].avatar_id}.png`);
+    $("#avatarHolder2 img").attr({src: `images/avatar/${players[1].avatar_id}.png`, name: `${players[1].avatar_id}`});
     $("#deck1-player").html(`deck do ${players[1].name}`);
     $(".modal-avatar").css("display", "none");
     $("#modal-tutorial").css("display", "flex");

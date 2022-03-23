@@ -9,6 +9,11 @@ export function endGameByPass() {
   let score2 = Number($("#player2-score").text());
   let player1 = $("#player1-name").text();
   let player2 = $("#player2-name").text();
+  let player1Avatar = $("#avatarHolder1 img").attr("name");
+  let player2Avatar = $("#avatarHolder2 img").attr("name");
+  console.log("avatares ", player1Avatar , player2Avatar);
+  let rankingData = [{"player1Name": player1, "player1Score":JSON.stringify(score1), "player1Avatar": player1Avatar}, 
+  {"player2Name": player2, "player2Score":JSON.stringify(score2), "player2Avatar": player2Avatar}];
 
   if (score1>score2) {
     $("#winnerName").text(`PARABENS, ${player1}!`);
@@ -23,8 +28,10 @@ export function endGameByPass() {
 
   $("#modal-winner").css("display","flex");
 
-
-  $.post("http://localhost:3000/scrabble/scores", {"player1Name":player1, "player1Score": JSON.stringify(score1), "player2Name":player2, "player2Score": JSON.stringify(score2)} )
+  rankingData.forEach(player => {
+    $.post("http://localhost:3000/scrabble/scores", player );
+  })
+  /* $.post("http://localhost:3000/scrabble/scores", {"player1Name":player1, "player1Score": JSON.stringify(score1), "player2Name":player2, "player2Score": JSON.stringify(score2)} ) */
   
   return true;
 }
