@@ -1,6 +1,6 @@
 const pgp = require('pg-promise')();
 require('dotenv').config()
-console.log(process.env.USER)
+console.log(process.env.USERNAME)
 const db =  pgp({
     host:process.env.HOST || 'localhost',
     user: process.env.USER ||'postgres',
