@@ -13,7 +13,7 @@ exports.savePlayer = function (player) {
     database.connect()
     database.query(
         "INSERT INTO game.players(name, score, avatar_id) \
-        VALUES($1,$2,$3)", [player])
+        VALUES($1,$2,$3)", player)
     .then(result => result)
     .catch(e => console.error(e.stack))
     .then(() => database.end())
