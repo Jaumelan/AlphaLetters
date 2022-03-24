@@ -29,9 +29,13 @@ export function endGameByPass() {
   }
 
   $("#modal-winner").css("display","flex");
+  
+  for (let i = 0; i < rankingData.length; i++) {
+    $.post(`http://${apiURL}:3000/scrabble/scores`, rankingData[i] )
+  }
 
   rankingData.forEach(player => {
-    $.post(`http://${apiURL}:3000/scrabble/scores`, player );
+    ;
   })
   /* $.post("http://localhost:3000/scrabble/scores", {"player1Name":player1, "player1Score": JSON.stringify(score1), "player2Name":player2, "player2Score": JSON.stringify(score2)} ) */
   
