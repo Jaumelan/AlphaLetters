@@ -15,6 +15,7 @@ exports.savePlayer = function (player) {
     .connect()
     .then(() =>console.log('connected'))
     .catch(err => console.error('connection error', err.stack))
+    .then(() => database.end())
     // database.query(
     //     "INSERT INTO game.players(name, score, avatar_id) \
     //     VALUES($1,$2,$3)", [name, score, avatar_id])
