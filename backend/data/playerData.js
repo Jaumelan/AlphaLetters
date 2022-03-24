@@ -1,18 +1,15 @@
-const database = require('../infra/database');
+const client = require('../infra/database');
 
 exports.getPlayers  = function () {
-    database.connect()
-    database.query(
+    client.query(
         "SELECT TOP 10 * FROM game.players \
         ORDER BY score DESC")
     .then(result => result)
     .catch(e => console.error(e.stack))
-    .then(() => database.end())
+    .then(() => client.end())
 }
 exports.savePlayer = async function (player) {
     try {
-        const client = await database.connect();
-        await client.query("INSERT INTO game.players (name, score, avatar_id) VALUES ($1,$2, $3);", player);
         await client.query("INSERT INTO game.players (name, score, avatar_id) VALUES ($1,$2, $3);", player);
         res.status(201).send('OK ' );
         client.release();
