@@ -52,9 +52,10 @@ router.get('/initialize', (req,res) => {
 })
 
 .post('/scores', async (req, res) => {
-    let playerData = Object.values(req.body);
-    playerData[1] = Number(playerData[1]);
+    const newPlayer = Object.values(req.body);
+    newPlayer[1] = Number(newPlayer[1]);
     console.log(playerData)
-    const newPlayer = await playerService.savePlayer(playerData);
+    const newPlayerData = await playerService.savePlayer(playerData);
+    console.log(newPlayerData)
 })
 module.exports = router;
