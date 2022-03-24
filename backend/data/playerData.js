@@ -1,4 +1,4 @@
-const database = require('../infra/database.js');
+const database = require('../infra/database');
 
 exports.getPlayers  = function () {
     database.connect()
@@ -11,15 +11,18 @@ exports.getPlayers  = function () {
 }
 exports.savePlayer = function (player) {
     let [name, score, avatar_id] = [...player]
-    database.connect().then(
-        database.query(
-            "INSERT INTO game.players(name, score, avatar_id) \
-            VALUES($1,$2,$3)", [name, score, avatar_id])
-            .then(result => result)
-            .catch(e => console.error(e.stack))
-            .then(() => database.end())
-
-    )
+    database
+    .connect()
+    .then(() =>console.log('connected'))
+    .catch(err => console.error('connection error', err.stack))
+    // database.query(
+    //     "INSERT INTO game.players(name, score, avatar_id) \
+    //     VALUES($1,$2,$3)", [name, score, avatar_id])
+    //     .then(result => result)
+    //     .catch(e => console.error(e.stack))
+    //     .then(() => database.end())
+    //     )
+    // }
 }
 
 /*
