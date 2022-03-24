@@ -51,7 +51,7 @@ router.get('/initialize', (req,res) => {
     res.json(players)
 })
 
-.post('/scores', async (req, res) => {
+.post('/scores',  (req, res) => {
     const newPlayer = Object.values(req.body);
     newPlayer[1] = Number(newPlayer[1]);
     console.log(newPlayer)

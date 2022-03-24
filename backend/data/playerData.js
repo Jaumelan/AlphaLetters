@@ -1,4 +1,4 @@
-const client = require('../infra/database');
+const database = require('../infra/database');
 
 // exports.getPlayers  = function () {
 //     client.query(
@@ -8,15 +8,12 @@ const client = require('../infra/database');
 //     .catch(e => console.error(e.stack))
 //     .then(() => client.end())
 // }
-exports.savePlayer = async function (player) {
+exports.savePlayer =  function (player) {
+    console.log('entrou');
     try {
-        await client.query("INSERT INTO game.players (name, score, avatar_id) VALUES ($1,$2, $3);", player);
-        res.status(201).send('OK ' );
-        console.log('entrou');
-        client.release();
+        return database.query("INSERT INTO game.players (name, score, avatar_id) VALUES ($1,$2, $3);", player);
         } catch (err) {
             console.error(err);
-            res.send("Error " + err);
         }
     }
     // database
