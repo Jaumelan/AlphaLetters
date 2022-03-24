@@ -1,4 +1,4 @@
-const playerData = require('../infra/database')
+const playerData = require('../data/playerData')
 
 exports.getPlayers = function () {
     return playerData.getplayers();
