@@ -7,8 +7,8 @@ export function endGameByPass() {
   $("#winnerScore").html("");
   let score1 = Number($("#player1-score").text());
   let score2 = Number($("#player2-score").text());
-  let player1 = $("#player1-name").text();
-  let player2 = $("#player2-name").text();
+  let player1 = parseInt($("#player1-name").text()) ;
+  let player2 = parseInt($("#player2-name").text()) ;
   let player1Avatar = $("#avatarHolder1 img").attr("name");
   let player2Avatar = $("#avatarHolder2 img").attr("name");
   console.log("avatares ", player1Avatar , player2Avatar);
