@@ -2,8 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const port = 3000;
 const app = express();
-require("dotenv").config()
-console.log(process.env)
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
