@@ -1,6 +1,6 @@
 //declare the positions where the player gets bonuses
 import { boardCreator } from "./boardCreator.js";
-import { resetVariables, resetButtons } from "./resetVariables.js";
+import { resetVariables, resetButtons, restartGame } from "./resetVariables.js";
 import { pushLettersToNewBoard, verifyWordsOnBoard } from "./newBoard.js";
 import { validateTheMove, isNextToATile } from "./validateMove.js";
 import { findDirection } from "./findDirection.js";
@@ -17,7 +17,8 @@ import {
   firstMove,
   noTiles,
   newBoard,
-  userSession
+    userSession,
+    passTurnCounter
 } from "./constants.js";
 
 import { showRecord, endGameByPass } from "./getScore.js";
@@ -35,7 +36,6 @@ import {
   drawFirstTiles,
 } from "./player.js";
 import { requestScores, changePlayer } from "./getScore.js";
-let passTurnCounter = 0;
 
 $("#homeButton").on("click", () => {
   $("#style").attr("href", "css/game.css");
@@ -280,7 +280,7 @@ $(document).ready(function () {
             tilesPlayer2[i].letter = "";
             tilesPlayer2[i].value = 0;
         };
-        passTurnCounter = 0;
+        passTurnCounter.is = 0;
         boardRecord.length = 0;
         firstMove.is = false;
         firstPlayerTurn.is = true;
@@ -289,49 +289,23 @@ $(document).ready(function () {
         resetButtons();
         //delete players names
         showRecord(117);
-        $.get("http://localhost:3000/scrabble/reset", function () {
+        let url = "http://localhost:3000/scrabble/reset/";
+        $.get(url + userSession.is, function () {
             console.log("reset");
         }).done((ans) => console.log(ans));
         
     })
+   
+    $("#icons-restart").on("click", function () {
 
-    $("#resetGame").on("click", function () {
-        tilesPlayer1.forEach((tile) => {
-            $(`#${tile.id}`).remove();
-        });
-        tilesPlayer2.forEach((tile) => {
-            $(`#${tile.id}`).remove();
-        });
-        resetVariables();
-        for (let i = 0; i < newBoard.length; i++) {
-            for (let j = 0; j < newBoard[i].length; j++) {
-                newBoard[i][j] = "";
-            }
-        }
+        restartGame();
+        
+    });
+    $("#icons-home").on("click", function () {
 
-        for (let i = 0; i < tilesPlayer1.length; i++) {
-            tilesPlayer1[i].letter = "";
-            tilesPlayer1[i].value = 0;
-            tilesPlayer2[i].letter = "";
-            tilesPlayer2[i].value = 0;
-        }
-        boardRecord.length = 0;
-        firstMove.is = false;
-        firstPlayerTurn.is = true;
-        $("#gameboard").html("");
-        $(".meanings-box").html("");
-        $(".score").html("0");
-        $("#playButton1").removeClass().addClass("gameButton");
-        $("#playButton1").html("JOGAR");
-        $("#playButton2").removeClass().addClass("gameButtonWait");
-        $("#playButton2").html("ESPERAR");
-        boardCreator();
-        //delete players names
-        showRecord(117);
-        $.get("http://localhost:3000/scrabble/reset", function () {
-            console.log("reset");
-        }).done((ans) => console.log(ans));
-        /* $(".modal-avatar").css("display","flex"); */
+        restartGame();
+        location.reload();
+
     });
 
     function endPlayersTurn() {
@@ -453,18 +427,63 @@ $(document).ready(function () {
           console.log()
         } */
         if (allowedWord) {
-            passTurnCounter = 0;
+            passTurnCounter.is = 0;
         } else {
             console.log("tentei mudar pass");
-            passTurnCounter++;
+            passTurnCounter.is++;
 
-            if (passTurnCounter > 3) {
+            if (passTurnCounter.is > 3) {
 
                 endGameByPass();
             }
         }
         allowedWord = false;
     }
+    //config-modal
+    $("#icons-cog").on("click", function () {
+        let display = $("#icons-config").css("display");
+        console.log(display);
+        if( display === "none") {
+            $("#icons-config").css("display", "flex");
+        } else {
+           $("#icons-config").css("display", "none");
+        };
+        
+
+    });
+
+    //./images/buttons/pause.svg
+    const soundtrack = new Audio("./sounds/starsbyanbrArtlist.mp3");
+    $("#icons-play").click(() => {
+        let options = ["./images/buttons/pause.svg", "./images/buttons/play.svg"];
+        let source = $('#icons-play').attr("src");
+        
+        console.log(source);
+        console.log(options[1]);
+        if (source === options[1]) {
+            soundtrack.play();
+            $('#icons-play').attr("src", "./images/buttons/pause.svg")
+        } else {
+            soundtrack.pause();
+            $('#icons-play').attr("src", "./images/buttons/play.svg");
+        }
+    })
+
+    $("#icons-down").click(() => {
+        
+        soundtrack.volume -= 0.1;
+       
+    })
+
+    $("#icons-up").click(() => {
+
+        soundtrack.volume += 0.1;
+    })
+
+   /* soundtrack.addEventListener("canplaythrough", event => {
+        *//* the audio is now playable; play it if permissions allow *//*
+        soundtrack.play();
+    });*/
 
     // JS modal avatar
 
@@ -564,12 +583,12 @@ $(document).ready(function () {
     $("#player-two .avatar-id").val(`${$(".active .avatar").attr("id")}`);
     /*playAudio($("#player-two .avatar-id").val(), "mp3");*/
     const players = [
-      {
-        name: $("#player-one .player-name").val(),
+        {
+        name: $("#player-one .player-name").val().toUpperCase(),
         avatar_id: $("#player-one .avatar-id").val(),
       },
       {
-        name: $("#player-two .player-name").val(),
+        name: $("#player-two .player-name").val().toUpperCase(),
         avatar_id: $("#player-two .avatar-id").val(),
       },
     ];
@@ -588,8 +607,7 @@ $(document).ready(function () {
     );
     const initializeUrl = `http://localhost:3000/scrabble/initialize/`;
     $.get(initializeUrl).done(data =>  console.log(data)).done(ans => {
-        userSession.is = ans})
-        .fail(error => console.log(error));
+        userSession.is = ans}).fail(error => console.log(error));
   });
 
   $("#btn-tutorial-step-one").on("click", function () {

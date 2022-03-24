@@ -140,7 +140,7 @@
         <div>
           <div class="player form__group field" id="player-one">
             <div>
-              <input id="name1" type="text" class="player-name input-player form__field" placeholder="INSERIR APELIDO">
+              <input id="name1" type="text" class="player-name input-player form__field" maxlength="9" placeholder="INSERIR APELIDO">
               <label for="name1" class="form__label">INSERIR APELIDO</label>
             </div>
             <div class="button-modal-input">
@@ -150,7 +150,7 @@
           </div>
           <div class="player form__group field" id="player-two">
             <div>
-              <input id="name2" type="text" class="player-name input-player form__field" placeholder="INSERIR APELIDO">
+              <input id="name2" type="text" class="player-name input-player form__field" maxlength="9" placeholder="INSERIR APELIDO">
               <label for="name2" class="form__label">INSERIR APELIDO</label>
             </div>
             <div class="button-modal-input">
@@ -161,7 +161,17 @@
         </div>
       </div>
     </div>
-      <!--<button id="resetGame">reset</button>-->
+    <div id="config" style="height: 45px;">
+        <div id="icons-config">
+            <img id="icons-play" src="./images/buttons/play.svg">
+            <img id="icons-down" src="./images/buttons/down.svg">
+            <img id="icons-up" src="./images/buttons/up.svg">
+            <img id="icons-leaderboard" src="./images/buttons/leaderboard.svg">
+            <img id="icons-restart" src="./images/buttons/restart.svg">
+            <img id="icons-home" src="./images/buttons/home.svg">
+        </div>
+      <img id="icons-cog" src="./images/buttons/cog.svg">
+      </div>
   </div>
   <div id="modal-tutorial">
       <!-- ttt -->

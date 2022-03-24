@@ -94,9 +94,23 @@ router.get('/initialize', (req,res) => {
     let answer = usersSessions[index].game.sendScore(letters,positions[0]);
     res.send(JSON.stringify(answer));
 })
-.get('/reset', (req,res) => {
-    console.log("reset");
-    scrabblePortugues.resetVariables();
+    .get('/reset/:userSession', (req, res) => {
+    let data = req.params;
+    console.log("reset: " + data);
+    let exist = 0
+        for (let i = 0; i < usersSessions.length; i++) {
+            if (usersSessions[i].user === data.userSession) {
+            exist = 1;
+            index = i
+            console.log("user found");
+        }
+    }
+     
+    if (exist === 0) {
+        res.status(400).json({message: "user not found"}); //Bad Request
+        return;
+    }
+    usersSessions[index].game.resetVariables();
     res.sendStatus(200);
 })
 
