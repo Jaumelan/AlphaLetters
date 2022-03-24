@@ -1,13 +1,10 @@
 const database = require('../infra/database');
 
-// exports.getPlayers  = function () {
-//     client.query(
-//         "SELECT TOP 10 * FROM game.players \
-//         ORDER BY score DESC")
-//     .then(result => result)
-//     .catch(e => console.error(e.stack))
-//     .then(() => client.end())
-// }
+exports.getPlayers  = function () {
+    return database.query(
+        "SELECT TOP 10 * FROM game.players \
+        ORDER BY score DESC")
+}
 exports.savePlayer =  function (player) {
     try {
         return database.one("INSERT INTO game.players (name, score, avatar_id) VALUES ($1,$2, $3) returning *", player);
