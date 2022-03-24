@@ -55,7 +55,7 @@ router.get('/initialize', (req,res) => {
     const newPlayer = Object.values(req.body);
     newPlayer[1] = Number(newPlayer[1]);
     console.log(newPlayer)
-    const newPlayerData = await playerService.savePlayer(playerData);
+    const newPlayerData = await playerService.savePlayer(newPlayer);
     console.log(newPlayerData)
 })
 module.exports = router;
