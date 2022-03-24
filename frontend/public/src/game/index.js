@@ -1,4 +1,5 @@
 //declare the positions where the player gets bonuses
+const apiURL = '45.77.102.28'
 import { boardCreator } from "./boardCreator.js";
 import { resetVariables, resetButtons } from "./resetVariables.js";
 import { pushLettersToNewBoard, verifyWordsOnBoard } from "./newBoard.js";
@@ -115,7 +116,7 @@ $(document).ready(function () {
     //event listeners
 
     $("#playButton1").on("click", function () {
-        const url = "http://localhost:3000/scrabble/drawletters/";
+        const url = `http://${apiURL}:3000/scrabble/drawletters/`;
         let amount = 0;
         let remaining = 120;
         let display1 = $("#playButton1").text();
@@ -207,7 +208,7 @@ $(document).ready(function () {
     }
 
     $("#playButton2").on("click", function () {
-        const url = "http://localhost:3000/scrabble/drawletters/";
+        const url = `http://${apiURL}:3000/scrabble/drawletters/`;
         let display2 = $("#playButton2").text();
         let amount = 0;
         let remaining = 120;
@@ -288,7 +289,7 @@ $(document).ready(function () {
         resetButtons();
         //delete players names
         showRecord(117);
-        $.get("http://localhost:3000/scrabble/reset", function () {
+        $.get(`http://${apiURL}:3000/scrabble/reset`, function () {
             console.log("reset");
         }).done((ans) => console.log(ans));
         
@@ -327,7 +328,7 @@ $(document).ready(function () {
         boardCreator();
         //delete players names
         showRecord(117);
-        $.get("http://localhost:3000/scrabble/reset", function () {
+        $.get(`http://${apiURL}:3000/scrabble/reset`, function () {
             console.log("reset");
         }).done((ans) => console.log(ans));
         /* $(".modal-avatar").css("display","flex"); */
