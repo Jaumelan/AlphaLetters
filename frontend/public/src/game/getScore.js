@@ -12,10 +12,7 @@ export function endGameByPass() {
   let player1Avatar = $("#avatarHolder1 img").attr("name");
   let player2Avatar = $("#avatarHolder2 img").attr("name");
   console.log("avatares ", player1Avatar , player2Avatar);
-  let rankingData = [
-  {"player1Name": player1, "player1Score":JSON.stringify(score1), "player1Avatar": player1Avatar}, 
-  {"player2Name": player2, "player2Score":JSON.stringify(score2), "player2Avatar": player2Avatar}
-];
+  let rankingData = [{player1, score1,player1Avatar}, {player2, score2,  player2Avatar}];
 
   if (score1>score2) {
     $("#winnerName").text(`PARABENS, ${player1.toUpperCase()}!`);
