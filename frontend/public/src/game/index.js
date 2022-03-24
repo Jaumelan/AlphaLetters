@@ -531,11 +531,11 @@ $(document).ready(function () {
                 );
                 $("#tutorial-step-two-board").droppable('destroy');
                 $("#tutorial-piece").draggable('destroy');
-                $("#modal-tutorial-step-four, #modal-tutorial-step-four *").css(
-                    "display",
-                    "flex"
-                );
-            }
+                $("#modal-tutorial-step-three, #modal-tutorial-step-three *").css(
+                        "display",
+                        "flex"
+                    );
+                }
         });
     }
     
@@ -603,7 +603,7 @@ $(document).ready(function () {
     );
   });
 
-  /*$("#btn-tutorial-step-three").on("click", function () {
+  $("#btn-tutorial-step-three").on("click", function () {
     $("#modal-tutorial-step-three, #modal-tutorial-step-three *").css(
       "display",
       "none"
@@ -612,10 +612,21 @@ $(document).ready(function () {
       "display",
       "flex"
     );
-  });*/
+  });
 
-  $("#btn-tutorial-step-four").on("click", function () {
-    $("#modal-tutorial-step-four, #modal-tutorial-step-four *").css(
+    $("#btn-tutorial-step-four").on("click", function () {
+        $("#modal-tutorial-step-four, #modal-tutorial-step-four *").css(
+            "display",
+            "none"
+        );
+        $("#modal-tutorial-step-five, #modal-tutorial-step-five *").css(
+            "display",
+            "flex"
+        );
+    });
+
+    $("#btn-tutorial-step-five").on("click", function () {
+        $("#modal-tutorial-step-five, #modal-tutorial-step-five *").css(
       "display",
       "none"
     );
