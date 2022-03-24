@@ -2,15 +2,33 @@ const express = require('express');
 const router = express.Router();
 const scrabbleRules = require("../components/scrabbleRules");
 const playerService = require("../service/playerService")
-const scrabblePortugues = new scrabbleRules;
+/* const scrabblePortugues = new scrabbleRules; */
+const usersSessions = [];
+/*{name1: new ScrabbleRules}, {name2: new scrabbleRules} */
 //middlewares
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
+//more information https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+function makeid(length) {
+    let result           = '';
+    let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
 //organizar aqui as rotas
 router.get('/initialize', (req,res) => {
-        
-    res.send(scrabblePortugues.chooseLetters())
+
+    let name = makeid(7);
+    usersSessions.push( {name : new scrabbleRules});
+    console.log(usersSessions);
+    // send idSession to front
+    res.send(name);
+
 })
 .get('/drawletters/:whichplayer/:amountOfLetters', (req, res) => {
     let data = req.params;
@@ -27,7 +45,7 @@ router.get('/initialize', (req,res) => {
         res.status(400).json({ message: "invalid amount of letters" }); // Bad Request
         return;
     }
-
+//           usersSession[i].name      
     res.send(scrabblePortugues.drawLetters(data.whichplayer, data.amountOfLetters));
 
 })

@@ -12,7 +12,7 @@
     receivedData[1].letters = [];
     receivedData[1].values = [];
     receivedData[2];
-      
+
   };
   
   export function resetButtons() {
