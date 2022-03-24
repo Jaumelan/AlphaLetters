@@ -5,17 +5,17 @@ const apiURL = '45.77.102.28'
 export function endGameByPass() {
   $("#winnerName").html("");
   $("#winnerScore").html("");
-  let score1 = parseInt($("#player1-score").text());
-  let score2 = parseInt($("#player2-score").text());
-  let player1 =  $("#player1-name").text();
-  let player2 =  $("#player2-name").text();
+  let score1 = Number($("#player1-score").text());
+  let score2 = Number($("#player2-score").text());
+  let player1 = $("#player1-name").text();
+  let player2 = $("#player2-name").text();
   let player1Avatar = $("#avatarHolder1 img").attr("name");
   let player2Avatar = $("#avatarHolder2 img").attr("name");
   console.log("avatares ", player1Avatar , player2Avatar);
   let rankingData = [
-    [player1, score1, player1Avatar], 
-    [player2, score2, player2Avatar]
-  ];
+  {"player1Name": player1, "player1Score":JSON.stringify(score1), "player1Avatar": player1Avatar}, 
+  {"player2Name": player2, "player2Score":JSON.stringify(score2), "player2Avatar": player2Avatar}
+];
 
   if (score1>score2) {
     $("#winnerName").text(`PARABENS, ${player1.toUpperCase()}!`);
@@ -29,13 +29,9 @@ export function endGameByPass() {
   }
 
   $("#modal-winner").css("display","flex");
-  
-  for (let i = 0; i < rankingData.length; i++) {
-    $.post(`http://${apiURL}:3000/scrabble/scores`, rankingData[i] )
-  }
 
   rankingData.forEach(player => {
-    ;
+    $.post(`http://${apiURL}:3000/scrabble/scores`, player );
   })
   /* $.post("http://localhost:3000/scrabble/scores", {"player1Name":player1, "player1Score": JSON.stringify(score1), "player2Name":player2, "player2Score": JSON.stringify(score2)} ) */
   
