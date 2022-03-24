@@ -13,8 +13,8 @@ export function endGameByPass() {
   let player2Avatar = $("#avatarHolder2 img").attr("name");
   console.log("avatares ", player1Avatar , player2Avatar);
   let rankingData = [
-    {player1, score1,player1Avatar}, 
-    {player2, score2,  player2Avatar}
+    [player1, score1,player1Avatar], 
+    [player2, score2,  player2Avatar]
   ];
 
   if (score1>score2) {
