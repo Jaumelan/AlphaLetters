@@ -1,5 +1,4 @@
 const database = require('../infra/database');
-require('dotenv').config()
 exports.getPlayers  = function () {
     return database.query(
         "SELECT TOP 10 * FROM game.players \
