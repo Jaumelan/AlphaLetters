@@ -10,10 +10,11 @@ exports.getPlayers  = function () {
     .then(() => database.end())
 }
 exports.savePlayer = function (player) {
+    let [name, score, avatar_id] = [...player]
     database.connect().then(
         database.query(
             "INSERT INTO game.players(name, score, avatar_id) \
-            VALUES($1,$2,$3)", player)
+            VALUES($1,$2,$3)", [name, score, avatar_id])
             .then(result => result)
             .catch(e => console.error(e.stack))
             .then(() => database.end())
