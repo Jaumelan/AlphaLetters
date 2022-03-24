@@ -10,7 +10,6 @@ const client = require('../infra/database');
 // }
 exports.savePlayer = async function (player) {
     try {
-        client = await client.connect()
         await client.query("INSERT INTO game.players (name, score, avatar_id) VALUES ($1,$2, $3);", player);
         res.status(201).send('OK ' );
         console.log('entrou');
