@@ -9,9 +9,8 @@ const database = require('../infra/database');
 //     .then(() => client.end())
 // }
 exports.savePlayer =  function (player) {
-    console.log('entrou');
     try {
-        return database.query("INSERT INTO game.players (name, score, avatar_id) VALUES ($1,$2, $3);", player);
+        return database.one("INSERT INTO game.players (name, score, avatar_id) VALUES ($1,$2, $3) returning *", player);
         } catch (err) {
             console.error(err);
         }
