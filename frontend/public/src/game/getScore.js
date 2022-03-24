@@ -5,16 +5,16 @@ const apiURL = '45.77.102.28'
 export function endGameByPass() {
   $("#winnerName").html("");
   $("#winnerScore").html("");
-  let score1 = Number($("#player1-score").text());
-  let score2 = Number($("#player2-score").text());
+  let score1 = parseInt($("#player1-score").text());
+  let score2 = parseInt($("#player2-score").text());
   let player1 =  $("#player1-name").text();
   let player2 =  $("#player2-name").text();
   let player1Avatar = $("#avatarHolder1 img").attr("name");
   let player2Avatar = $("#avatarHolder2 img").attr("name");
   console.log("avatares ", player1Avatar , player2Avatar);
   let rankingData = [
-    [player1, score1,player1Avatar], 
-    [player2, score2,  player2Avatar]
+    [player1, score1, player1Avatar], 
+    [player2, score2, player2Avatar]
   ];
 
   if (score1>score2) {
