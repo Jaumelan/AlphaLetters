@@ -52,7 +52,7 @@ router.get('/initialize', (req,res) => {
 })
 
 .post('/scores', async (req, res) => {
-    let playerData = req.body;
+    let playerData = [Object.values(req.body)];
     console.log(playerData);
     const newPlayer = await playerService.savePlayer(playerData);
 })
