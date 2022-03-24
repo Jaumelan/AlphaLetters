@@ -1,7 +1,7 @@
 import { verifyWordsOnBoard, appendToBoard } from "./newBoard.js";
 import { submitedLetters, firstPlayerTurn } from "./constants.js";
 import { removeTiles } from "./deck.js";
-
+const apiURL = '45.77.102.28'
 export function endGameByPass() {
   $("#winnerName").html("");
   $("#winnerScore").html("");
@@ -29,7 +29,7 @@ export function endGameByPass() {
   $("#modal-winner").css("display","flex");
 
   rankingData.forEach(player => {
-    $.post("http://localhost:3000/scrabble/scores", player );
+    $.post(`${apiURL}:3000/scrabble/scores`, player );
   })
   /* $.post("http://localhost:3000/scrabble/scores", {"player1Name":player1, "player1Score": JSON.stringify(score1), "player2Name":player2, "player2Score": JSON.stringify(score2)} ) */
   
@@ -42,7 +42,7 @@ export function requestScores() {
     let letters = JSON.stringify(verifyWordsOnBoard(submitedLetters[2].boardId, 1));
     console.log("pos ", positions, "letters ", letters);
     console.log("antes do score ", submitedLetters);
-    $.get("http://localhost:3000/scrabble/score",{positions, letters})
+    $.get(`http://${apiURL}:3000/scrabble/score`,{positions, letters})
     .done(answer => {
       let score = JSON.parse(answer)
       return score}).done(score => {

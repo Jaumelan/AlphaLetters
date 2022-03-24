@@ -3,6 +3,7 @@ import { submitedLetters, boardRecord, receivedData } from "./constants.js";
 import { selectTheRow, selectTheColumn } from "./validateMove.js";
 import { lettersToPlayersDeck } from "./deck.js";
 import { showRecord } from "./getScore.js";
+const apiURL = '45.77.102.28'
 
 export function pushLetters(player) {
     console.log("push letters");
@@ -27,7 +28,7 @@ export function pushLetters(player) {
 }
 
 export function drawFirstTiles() {
-  const url = "http://localhost:3000/scrabble/drawletters/";
+  const url = `http://${apiURL}:3000/scrabble/drawletters/`;
   let remaining;
 
   //request the first 7 letters for player1
