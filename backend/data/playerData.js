@@ -9,7 +9,7 @@ exports.getPlayers  = function () {
     .catch(e => console.error(e.stack))
     .then(() => database.end())
 }
-exports.savePlayer = function (player) {
+exports.savePlayer = async function (player) {
     try {
         const client = await database.connect();
         await client.query("INSERT INTO game.players (name, score, avatar_id) VALUES ($1,$2, $3);", player);
