@@ -16,7 +16,8 @@ import {
   droppedID,
   firstMove,
   noTiles,
-  newBoard
+  newBoard,
+  userSession
 } from "./constants.js";
 
 import { showRecord, endGameByPass } from "./getScore.js";
@@ -133,7 +134,7 @@ $(document).ready(function () {
                 });
                 console.log(amount)
                 if (amount > 0) {
-                    $.get(url + "1/" + amount, function (data) {
+                    $.get(url + userSession.is + "/1/" + amount , function (data) {
                         console.log("player 1 new data: ", data);
                         receivedData[0].letters.push(data.letters);
                         receivedData[0].values.push(data.values);
@@ -225,7 +226,7 @@ $(document).ready(function () {
                 });
                 console.log(amount);
                 if (amount > 0) {
-                    $.get(url + "2/" + amount, function (data) {
+                    $.get(url + userSession.is + "/2/" + amount , function (data) {
                         console.log("player 2 new data :", data);
                         receivedData[1].letters.push(data.letters);
                         receivedData[1].values.push(data.values);
@@ -457,7 +458,7 @@ $(document).ready(function () {
             console.log("tentei mudar pass");
             passTurnCounter++;
 
-            if (passTurnCounter === 3) {
+            if (passTurnCounter > 3) {
 
                 endGameByPass();
             }
@@ -585,6 +586,10 @@ $(document).ready(function () {
       "display",
       "flex"
     );
+    const initializeUrl = `http://localhost:3000/scrabble/initialize/`;
+    $.get(initializeUrl).done(data =>  console.log(data)).done(ans => {
+        userSession.is = ans})
+        .fail(error => console.log(error));
   });
 
   $("#btn-tutorial-step-one").on("click", function () {

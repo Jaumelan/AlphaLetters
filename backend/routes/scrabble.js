@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const scrabbleRules = require("../components/scrabbleRules");
-const playerService = require("../service/playerService")
+const playerService = require("../service/playerService");
+const crypto = require("crypto");
 /* const scrabblePortugues = new scrabbleRules; */
 const usersSessions = [];
 /*{name1: new ScrabbleRules}, {name2: new scrabbleRules} */
@@ -23,18 +24,37 @@ function makeid(length) {
 //organizar aqui as rotas
 router.get('/initialize', (req,res) => {
 
-    let name = makeid(7);
-    usersSessions.push( {name : new scrabbleRules});
+    let userSession = crypto.randomUUID();
+    
+    let user = { user: userSession, game: new scrabbleRules };
+    usersSessions.push( user);
     console.log(usersSessions);
     // send idSession to front
-    res.send(name);
+    res.send(userSession);
 
 })
-.get('/drawletters/:whichplayer/:amountOfLetters', (req, res) => {
+
+//url + userSession.is + "/1/" + amount
+.get('/drawletters/:userSession/:whichplayer/:amountOfLetters', (req, res) => {
     let data = req.params;
     console.log(data);
+    /*let index = usersSessions.indexOf(userSession);
+    console.log(index);*/
     const whichplayerOptions = ["1", "2"];
     const amountLettersOptions = ["0","1", "2", "3", "4", "5", "6", "7"];
+    let exist = 0
+    for (let i=0 ; i< usersSessions.length; i++) {
+        if (usersSessions[i].user === data.userSession) {
+            exist = 1;
+            index = i
+            console.log("user found");
+        }
+    }
+     
+    if (exist === 0) {
+        res.status(400).json({message: "user not found"}); //Bad Request
+        return;
+    }
 
     if ( !whichplayerOptions.includes(data.whichplayer) ) {
         res.status(400).json({ message: "invalid player" }); // Bad Request
@@ -45,17 +65,33 @@ router.get('/initialize', (req,res) => {
         res.status(400).json({ message: "invalid amount of letters" }); // Bad Request
         return;
     }
-//           usersSession[i].name      
-    res.send(scrabblePortugues.drawLetters(data.whichplayer, data.amountOfLetters));
+      
+    res.send(usersSessions[index].game.drawLetters(data.whichplayer, data.amountOfLetters));
 
 })
 .get('/score', (req,res) => {
     let positions = JSON.parse(req.query.positions);
     let letters = req.query.letters;
+    let user = req.query.user;
+
+    let exist = 0
+    for (let i=0 ; i< usersSessions.length; i++) {
+        if (usersSessions[i].user === user) {
+            exist = 1;
+            index = i
+            console.log("user found");
+        }
+    }
+     
+    if (exist === 0) {
+        res.status(400).json({message: "user not found"}); //Bad Request
+        return;
+    }
+    
     console.log("positions", positions, "letters ", letters);
 
     console.log("positions 0:", positions[0]);
-    let answer = scrabblePortugues.sendScore(letters,positions[0]);
+    let answer = usersSessions[index].game.sendScore(letters,positions[0]);
     res.send(JSON.stringify(answer));
 })
 .get('/reset', (req,res) => {
