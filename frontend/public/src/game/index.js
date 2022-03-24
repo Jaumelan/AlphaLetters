@@ -281,6 +281,7 @@ $(document).ready(function () {
             tilesPlayer2[i].value = 0;
         };
         passTurnCounter = 0;
+        console.log(passTurnCounter)
         boardRecord.length = 0;
         firstMove.is = false;
         firstPlayerTurn.is = true;
