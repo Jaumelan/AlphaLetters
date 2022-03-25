@@ -37,6 +37,9 @@ body {
 	filter: drop-shadow(rgba(0, 0, 0, 0.25) 10px 10px 4px);
 	border-radius: 20px;
 }
+#modal-leaderboard {
+	display: none;
+}
 
 #home-page-top {
 	height:90%;

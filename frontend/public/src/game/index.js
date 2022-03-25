@@ -1,4 +1,5 @@
 //declare the positions where the player gets bonuses
+const apiURL = 'localhost'
 import { boardCreator } from "./boardCreator.js";
 import { resetVariables, resetButtons, restartGame } from "./resetVariables.js";
 import { pushLettersToNewBoard, verifyWordsOnBoard } from "./newBoard.js";
@@ -116,7 +117,7 @@ $(document).ready(function () {
     //event listeners
 
     $("#playButton1").on("click", function () {
-        const url = "http://localhost:3000/scrabble/drawletters/";
+        const url = `http://${apiURL}:3000/scrabble/drawletters/`;
         let amount = 0;
         let remaining = 120;
         let display1 = $("#playButton1").text();
@@ -208,7 +209,7 @@ $(document).ready(function () {
     }
 
     $("#playButton2").on("click", function () {
-        const url = "http://localhost:3000/scrabble/drawletters/";
+        const url = `http://${apiURL}:3000/scrabble/drawletters/`;
         let display2 = $("#playButton2").text();
         let amount = 0;
         let remaining = 120;
@@ -289,7 +290,7 @@ $(document).ready(function () {
         resetButtons();
         //delete players names
         showRecord(117);
-        let url = "http://localhost:3000/scrabble/reset/";
+        let url = `http://${apiURL}:3000/scrabble/reset/`;
         $.get(url + userSession.is, function () {
             console.log("reset");
         }).done((ans) => console.log(ans));
@@ -480,6 +481,17 @@ $(document).ready(function () {
         soundtrack.volume += 0.1;
     })
 
+    $("#icons-leaderboard").click(() => {
+
+        $("#modal-leaderboard").css("display", "flex");
+    })
+
+    $("#close-leaderboard").click(() => {
+
+        $("#modal-leaderboard").css("display", "none");
+    })
+    
+
    /* soundtrack.addEventListener("canplaythrough", event => {
         *//* the audio is now playable; play it if permissions allow *//*
         soundtrack.play();
@@ -605,7 +617,7 @@ $(document).ready(function () {
       "display",
       "flex"
     );
-    const initializeUrl = `http://localhost:3000/scrabble/initialize/`;
+      const initializeUrl = `http://${apiURL}:3000/scrabble/initialize/`;
     $.get(initializeUrl).done(data =>  console.log(data)).done(ans => {
         userSession.is = ans}).fail(error => console.log(error));
   });
