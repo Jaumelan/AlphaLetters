@@ -116,6 +116,7 @@ router.get('/initialize', (req,res) => {
 
 .get('/scores', async (req, res) => {
     const players = await playerService.getPlayers();
+    console.log(players);
     res.json(players)
 })
 
