@@ -2,7 +2,7 @@ const database = require('../infra/database');
 exports.getPlayers  = function () {
     return database.query('SELECT ${columns:name} FROM ${table:name}', {
         columns: ['*'],
-        table: 'players'
+        table: 'game.players'
     })
 }
 exports.savePlayer =  function (player) {
