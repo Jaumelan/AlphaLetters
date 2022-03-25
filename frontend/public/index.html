@@ -140,7 +140,7 @@
         <div>
           <div class="player form__group field" id="player-one">
             <div>
-              <input id="name1" type="text" class="player-name input-player form__field" placeholder="INSERIR APELIDO">
+              <input id="name1" type="text" class="player-name input-player form__field" maxlength="9" placeholder="INSERIR APELIDO">
               <label for="name1" class="form__label">INSERIR APELIDO</label>
             </div>
             <div class="button-modal-input">
@@ -150,7 +150,7 @@
           </div>
           <div class="player form__group field" id="player-two">
             <div>
-              <input id="name2" type="text" class="player-name input-player form__field" placeholder="INSERIR APELIDO">
+              <input id="name2" type="text" class="player-name input-player form__field" maxlength="9" placeholder="INSERIR APELIDO">
               <label for="name2" class="form__label">INSERIR APELIDO</label>
             </div>
             <div class="button-modal-input">
@@ -161,64 +161,92 @@
         </div>
       </div>
     </div>
-      <!--<button id="resetGame">reset</button>-->
+    <div id="config" style="height: 45px;">
+        <div id="icons-config">
+            <img id="icons-play" src="./images/buttons/play.svg">
+            <img id="icons-down" src="./images/buttons/down.svg">
+            <img id="icons-up" src="./images/buttons/up.svg">
+            <img id="icons-leaderboard" src="./images/buttons/leaderboard.svg">
+            <img id="icons-restart" src="./images/buttons/restart.svg">
+            <img id="icons-home" src="./images/buttons/home.svg">
+        </div>
+      <img id="icons-cog" src="./images/buttons/cog.svg">
+      </div>
   </div>
   <div id="modal-tutorial">
-    <!-- ttt -->
-    <div id="modal-tutorial-step-one" class="modal-tutorial-steps">
-      <div class="tutorial-content" id="tutorial-step-content-one">
-        <img src="images/tutorial/mr-cow.png" alt="mr-cow image" id="tutorial-mr-cow">
-        <div class="playerHolder" id="tutorial-card">
-          <figure id="avatar-tutorial">
-            <img src="images/tutorial/mr-cow-card.png" alt="">
-          </figure>
-          <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
-          <p class="score">10</p>
-          <button type="button" class="gameButton" id="btn-tutorial-step-one">JOGAR</button>
-        </div>
+      <!-- ttt -->
+      <div id="modal-tutorial-step-one" class="modal-tutorial-steps">
+          <div class="tutorial-content" id="tutorial-step-content-one">
+              <img src="images/tutorial/mr-cow.png" alt="mr-cow image" id="tutorial-mr-cow">
+              <div class="playerHolder" id="tutorial-card">
+                  <figure id="avatar-tutorial">
+                      <img src="images/tutorial/mr-cow-card.png" alt="">
+                  </figure>
+                  <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
+                  <p class="score">10</p>
+                  <button type="button" class="gameButton" id="btn-tutorial-step-one">JOGAR</button>
+              </div>
+          </div>
       </div>
-    </div>
 
-    <div id="modal-tutorial-step-two" class="modal-tutorial-steps">
-        <div class="tutorial-content" id="tutorial-step-content-two">
-            <img src="images/tutorial/arraste.png" alt="mr-cow image" id="tutorial-mr-cow">
-            <div>
-                <div id="tutorial-step-two-board"></div>
-                <!--<button type="button" class="gameButton" id="btn-tutorial-step-two">JOGAR</button>-->
-                <div id="tutorial-step-two-holder">
-                    <div id="tutorial-piece"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div id="modal-tutorial-step-two" class="modal-tutorial-steps">
+          <div class="tutorial-content" id="tutorial-step-content-two">
+              <img src="images/tutorial/arraste.png" alt="mr-cow image" id="tutorial-mr-cow">
+              <div>
+                  <div id="tutorial-step-two-board"></div>
+                  <!--<button type="button" class="gameButton" id="btn-tutorial-step-two">JOGAR</button>-->
+                  <div id="tutorial-step-two-holder">
+                      <div id="tutorial-piece"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div id="modal-tutorial-step-three" class="modal-tutorial-steps">
+          <div class="tutorial-content" id="tutorial-step-content-three">
+              <img src="images/tutorial/bonus.png" alt="mr-cow image" id="tutorial-mr-cow">
+              <div class="playerHolder" id="tutorial-card">
+                  <h3>LEGENDA:</h3>
+                  <div id="special-tiles">
 
-    <!--<div id="modal-tutorial-step-three" class="modal-tutorial-steps">
-        <div class="tutorial-content" id="tutorial-step-content-three">
-            <img src="images/tutorial/mr-cow.png" alt="mr-cow image" id="tutorial-mr-cow">
-            <div class="playerHolder" id="tutorial-card">
-                <figure id="avatar-tutorial">
-                    <img src="images/tutorial/mr-cow-card.png" alt="">
-                </figure>
-                <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
-                <p class="score">10</p>
-                <button type="button" class="gameButton" id="btn-tutorial-step-three">JOGAR</button>
-            </div>
-        </div>
-    </div>-->
+                      <div><div class="cell tripleLetter">TL</div><p> - TRIPLA LETRA</p></div>
+                      <div><div class="cell doubleLetter">DL</div><p> - DUPLA LETRA</p></div>
+                      <div><div class="cell tripleWord">TP</div><p> - TRIPLA PALAVRA</p></div>
+                      <div><div class="cell doubleWord">DP</div><p> - DUPLA PALAVRA</p></div>
+                  </div>
+                  <button type="button" class="gameButton" id="btn-tutorial-step-three">PRÓXIMO</button>
+              </div>
+          </div>
+      </div>
 
-    <div id="modal-tutorial-step-four" class="modal-tutorial-steps">
-        <div class="tutorial-content" id="tutorial-step-content-four">
-            <img src="images/tutorial/finalizar.png" alt="mr-cow image" id="tutorial-mr-cow">
-            <div class="playerHolder" id="tutorial-card">
-                <figure id="avatar-tutorial">
-                    <img src="images/tutorial/mr-cow-card.png" alt="">
-                </figure>
-                <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
-                <p class="score">10</p>
-                <button type="button" class="gameButtonEnd" id="btn-tutorial-step-four">FINALIZAR</button>
-            </div>
-        </div>
-    </div>
+      <div id="modal-tutorial-step-four" class="modal-tutorial-steps">
+          <div class="tutorial-content" id="tutorial-step-content-four">
+              <img src="images/tutorial/terminar.png" alt="mr-cow image" id="tutorial-mr-cow">
+              <div class="playerHolder" id="tutorial-card">
+                  <figure id="avatar-tutorial">
+                      <img src="images/tutorial/mr-cow-card.png" alt="">
+                  </figure>
+                  <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
+                  <p class="score">10</p>
+                  <button type="button" class="gameButtonEnd" id="btn-tutorial-step-four">FINALIZAR</button>
+              </div>
+          </div>
+      </div>
+
+
+
+      <div id="modal-tutorial-step-five" class="modal-tutorial-steps">
+          <div class="tutorial-content" id="tutorial-step-content-five">
+              <img src="images/tutorial/finalizar.png" alt="mr-cow image" id="tutorial-mr-cow">
+              <div class="playerHolder" id="tutorial-card">
+                  <figure id="avatar-tutorial">
+                      <img src="images/tutorial/mr-cow-card.png" alt="">
+                  </figure>
+                  <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
+                  <p class="score">10</p>
+                  <button type="button" class="gameButtonEnd" id="btn-tutorial-step-five">FINALIZAR</button>
+              </div>
+          </div>
+      </div>
 
   </div>
 

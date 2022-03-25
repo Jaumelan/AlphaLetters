@@ -1,5 +1,5 @@
 import { verifyWordsOnBoard, appendToBoard } from "./newBoard.js";
-import { submitedLetters, firstPlayerTurn } from "./constants.js";
+import { submitedLetters, firstPlayerTurn, userSession } from "./constants.js";
 import { removeTiles } from "./deck.js";
 const apiURL = '45.77.102.28'
 export function endGameByPass() {
@@ -44,11 +44,12 @@ export function requestScores() {
     let positions = verifyWordsOnBoard(submitedLetters[2].boardId, 2);
     positions = JSON.stringify(positions);
     let letters = JSON.stringify(verifyWordsOnBoard(submitedLetters[2].boardId, 1));
+    let user = userSession.is
     console.log("pos ", positions, "letters ", letters);
     console.log("antes do score ", submitedLetters);
     $.get(`http://${apiURL}:3000/scrabble/score`,{positions, letters})
     .done(answer => {
-      let score = JSON.parse(answer)
+        let score = JSON.parse(answer);
       return score}).done(score => {
       let value;
       console.log("score ",score)
@@ -67,7 +68,7 @@ export function requestScores() {
       
     }).done(()=> {
       //clonar o id clone()
-      appendToBoard(firstPlayerTurn.is)
+        appendToBoard(firstPlayerTurn.is);
       removeTiles(firstPlayerTurn.is);
      
     }).done(()=>{
