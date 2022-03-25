@@ -1,7 +1,8 @@
 const database = require('../infra/database');
 
 exports.getPlayers  = function () {
-    return database.query("SELECT * TOP 10 FROM game.players ORDER BY score 'DESC' ")
+    return database.query("SELECT * FROM game.players \
+    ORDER BY score 'DESC' limit 10")
 }
 exports.savePlayer =  function (player) {
     try {
