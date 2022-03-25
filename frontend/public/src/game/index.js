@@ -63,24 +63,24 @@ $(document).ready(function () {
             url: `https://significado.herokuapp.com/${word}`,
             statusCode: {
                 400: () => {
-                    console.log("code 400");
+                    /* console.log("code 400"); */
                     returnTilestoPlayersDeck(firstPlayerTurn.is);
                     changePlayer();
                 }
             },
         });
         wordCheck.done((data) => {
-            console.log("wordCheck data ", data);
+            /* console.log("wordCheck data ", data); */
             if (!classesNaoPermitidas.includes(data[0].class) && data[0].meanings.length > 0) {
                 allowedWord = true;
-                console.log("check word");
+                /* console.log("check word"); */
 
                 pushLetters(firstPlayerTurn.is);
                 requestScores();
                 removeFromDeck();
                 if (!firstMove.is) {
                     firstMove.is = true;
-                    console.log("now second move")
+                    /* console.log("now second move") */
                 }
             } else {
                 returnTilestoPlayersDeck(firstPlayerTurn.is);
@@ -121,22 +121,22 @@ $(document).ready(function () {
         let amount = 0;
         let remaining = 120;
         let display1 = $("#playButton1").text();
-        console.log("display do botão ", display1);
+        /* console.log("display do botão ", display1); */
 
         if (display1 === "JOGAR") {
             //first check if his turn
             if (firstPlayerTurn.is) {
                 //check if there are 7 letters on deck
-                console.log("first player");
+                /* console.log("first player"); */
                 tilesPlayer1.forEach((tile) => {
                     if (tile.letter === "") {
                         amount++;
                     }
                 });
-                console.log(amount)
+                /* console.log(amount) */
                 if (amount > 0) {
                     $.get(url + userSession.is + "/1/" + amount , function (data) {
-                        console.log("player 1 new data: ", data);
+                        /* console.log("player 1 new data: ", data); */
                         receivedData[0].letters.push(data.letters);
                         receivedData[0].values.push(data.values);
                         receivedData[0].whichPlayer = "player1";
@@ -154,7 +154,7 @@ $(document).ready(function () {
             changeDisplay();
         } else if (display1 === "FINALIZAR") {
             //do all the validations
-            console.log("vez de ", firstPlayerTurn.is)
+            /* console.log("vez de ", firstPlayerTurn.is) */
             endPlayersTurn();
             changeDisplay();
             if (noTiles.is) {
@@ -171,17 +171,17 @@ $(document).ready(function () {
         const displayValues = ["JOGAR", "FINALIZAR", "ESPERAR"];
         let display1 = $("#playButton1").text();
         let display2 = $("#playButton2").text();
-        console.log("change display do jogador ", firstPlayerTurn.is)
+       /*  console.log("change display do jogador ", firstPlayerTurn.is) */
 
         if (firstPlayerTurn.is) {
             if (display1 === displayValues[0]) {
-                console.log("changing display from ", displayValues[0]);
+                /* console.log("changing display from ", displayValues[0]); */
                 $("#playButton1").text("");
                 $("#playButton1").text(displayValues[1]);
                 $("#playButton1").removeClass("gameButton").addClass("gameButtonEnd");
                 $("#meaningPlayer2").html("");
             } else if (display1 === displayValues[1]) {
-                console.log("changing display from ", displayValues[1]);
+                /* console.log("changing display from ", displayValues[1]); */
                 $("#playButton1").text("");
                 $("#playButton1").text(displayValues[2]);
                 $("#playButton1").removeClass("gameButtonEnd").addClass("gameButtonWait");
@@ -191,13 +191,13 @@ $(document).ready(function () {
             }
         } else {
             if (display2 === displayValues[0]) {
-                console.log("changing display from ", displayValues[0]);
+                /* console.log("changing display from ", displayValues[0]); */
                 $("#playButton2").text("");
                 $("#playButton2").text(displayValues[1]);
                 $("#playButton2").removeClass("gameButton").addClass("gameButtonEnd");
                 $("#meaningPlayer1").html("");
             } else if (display2 === displayValues[1]) {
-                console.log("changing display from ", displayValues[1]);
+                /* console.log("changing display from ", displayValues[1]); */
                 $("#playButton2").text("");
                 $("#playButton2").text(displayValues[2]);
                 $("#playButton2").removeClass("gameButtonEnd").addClass("gameButtonWait");
@@ -213,22 +213,22 @@ $(document).ready(function () {
         let display2 = $("#playButton2").text();
         let amount = 0;
         let remaining = 120;
-        console.log(display2);
+        /* console.log(display2); */
         if (display2 === "JOGAR") {
             //first check if his turn
-            console.log("which player ", firstPlayerTurn.is);
+            /* console.log("which player ", firstPlayerTurn.is); */
             if (!firstPlayerTurn.is) {
                 //check if there are 7 letters on deck
-                console.log("Second player");
+                /* console.log("Second player"); */
                 tilesPlayer2.forEach((tile) => {
                     if (tile.letter === "") {
                         amount++;
                     }
                 });
-                console.log(amount);
+                /* console.log(amount); */
                 if (amount > 0) {
                     $.get(url + userSession.is + "/2/" + amount , function (data) {
-                        console.log("player 2 new data :", data);
+                        /* console.log("player 2 new data :", data); */
                         receivedData[1].letters.push(data.letters);
                         receivedData[1].values.push(data.values);
                         receivedData[1].whichPlayer = "player2";
@@ -321,31 +321,31 @@ $(document).ready(function () {
                 if (submittedDirection === "row") {
                     //sort letters by the column number
                     rearrangeRowbyColumn(firstPlayerTurn.is);
-                    console.log(submitedLetters);
+                    /* console.log(submitedLetters); */
                     //validation of player's move
-                    console.log(validateTheMove(submitedLetters[2].boardId, firstMove.is, submittedDirection));
+                    /* console.log(validateTheMove(submitedLetters[2].boardId, firstMove.is, submittedDirection)); */
                     if (validateTheMove(submitedLetters[2].boardId, firstMove.is, submittedDirection)) {
                         /* if() */
                         pushLettersToNewBoard(firstPlayerTurn.is);
                         draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
                         let pos = verifyWordsOnBoard(submitedLetters[2].boardId, 2);
-                        console.log(pos);
+                        /* console.log(pos); */
                         draft.forEach((array) => {
                             word = array.join("");
                             word = word.toLowerCase();
-                            console.log("fist player row ", word);
+                            /* console.log("fist player row ", word); */
                             wordChecker(word);
                         });
                     }
                 } else {
                     //sort letters by the row number
                     rearrangeColumnbyRow(firstPlayerTurn.is);
-                    console.log(submitedLetters);
+                    /* console.log(submitedLetters); */
                     if (validateTheMove(submitedLetters[2].boardId,firstMove.is,submittedDirection)) {
                         pushLettersToNewBoard(firstPlayerTurn.is);
                         draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
                         let pos = verifyWordsOnBoard(submitedLetters[2].boardId, 2);
-                        console.log(pos);
+                        /* console.log(pos); */
                         draft.forEach((array) => {
                             word = array.join("");
                             word = word.toLowerCase();
@@ -355,7 +355,7 @@ $(document).ready(function () {
                     }
                 }
             } else {
-                console.log("player1 didn't play any tile");
+                /* console.log("player1 didn't play any tile"); */
                 noTiles.is = true;
             }
             //player 2 validations
@@ -365,7 +365,7 @@ $(document).ready(function () {
                 if (submittedDirection === "row") {
                     //sort letters by the column number
                     rearrangeRowbyColumn(firstPlayerTurn.is);
-                    console.log(submitedLetters);
+                    /* console.log(submitedLetters); */
                     if (
                         validateTheMove(
                             submitedLetters[2].boardId,
@@ -378,14 +378,14 @@ $(document).ready(function () {
                         draft.forEach((array) => {
                             word = array.join("");
                             word = word.toLowerCase();
-                            console.log(word);
+                            /* console.log(word); */
                             wordChecker(word);
                         });
                     }
                 } else {
                     //sort letters by the row number
                     rearrangeColumnbyRow(firstPlayerTurn.is);
-                    console.log(submitedLetters);
+                    /* console.log(submitedLetters); */
                     if (
                         validateTheMove(
                             submitedLetters[2].boardId,
@@ -398,39 +398,36 @@ $(document).ready(function () {
                         draft.forEach((array) => {
                             word = array.join("");
                             word = word.toLowerCase();
-                            console.log(word);
+                            /* console.log(word); */
                             wordChecker(word);
                         });
                     }
                 }
             } else if (submitedLetters[1].player2.length === 1) {
                 if (isNextToATile(submitedLetters[2].boardId)) {
-                    console.log("validei");
+                    /* console.log("validei"); */
                     pushLettersToNewBoard(firstPlayerTurn.is);
                     draft = verifyWordsOnBoard(submitedLetters[2].boardId, 1);
                     let pos = verifyWordsOnBoard(submitedLetters[2].boardId, 2);
-                    console.log(pos);
+                    /* console.log(pos); */
                     draft.forEach((array) => {
                         word = array.join("");
                         word = word.toLowerCase();
-                        console.log(word);
+                        /* console.log(word); */
                         wordChecker(word);
                     });
                 }
             } else {
-                console.log("Player2 hasn't placed a tile");
+                /* console.log("Player2 hasn't placed a tile"); */
                 noTiles.is = true;
             }
         }
 
-        /* if (!firstMove.is) {
-          firstMove.is = true;
-          console.log()
-        } */
+        
         if (allowedWord) {
             passTurnCounter.is = 0;
         } else {
-            console.log("tentei mudar pass");
+            /* console.log("tentei mudar pass"); */
             passTurnCounter.is++;
 
             if (passTurnCounter.is > 3) {
@@ -443,7 +440,7 @@ $(document).ready(function () {
     //config-modal
     $("#icons-cog").on("click", function () {
         let display = $("#icons-config").css("display");
-        console.log(display);
+        /* console.log(display); */
         if( display === "none") {
             $("#icons-config").css("display", "flex");
         } else {
@@ -484,8 +481,6 @@ $(document).ready(function () {
         let options = ["./images/buttons/pause.svg", "./images/buttons/play.svg"];
         let source = $('#icons-play').attr("src");
         
-        console.log(source);
-        console.log(options[1]);
         if (source === options[1]) {
             soundtrack.play();
             $('#icons-play').attr("src", "./images/buttons/pause.svg")
