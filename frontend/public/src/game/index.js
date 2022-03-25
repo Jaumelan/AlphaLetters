@@ -1,5 +1,8 @@
 //declare the positions where the player gets bonuses
-const apiURL = '45.77.102.28'
+const apiURL = '45.77.102.28';
+const num = $(".ui-card").length;
+const even = num / 2;
+const odd = (num + 1) / 2;
 import { boardCreator } from "./boardCreator.js";
 import { resetVariables, resetButtons, restartGame } from "./resetVariables.js";
 import { pushLettersToNewBoard, verifyWordsOnBoard } from "./newBoard.js";
@@ -508,9 +511,7 @@ $(document).ready(function () {
 
     // JS modal avatar
 
-    const num = $(".ui-card").length;
-    const even = num / 2;
-    const odd = (num + 1) / 2;
+    
 
     if (num % 2 == 0) {
         $(".ui-card:nth-child(" + even + ")").addClass("active");

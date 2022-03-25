@@ -38,7 +38,7 @@ export const newBoard = [
 ];
 
 export const classesNaoPermitidas = ["prefixo", "sufixo"];
-export const nicknames = { player1: "Papagaio", player2: "Anta" };
+export const nicknames = { player1: "", player2: "" };
 export const tilesPlayer1 = [
   { id: "deck0_piece0", letter: "", value: 0 },
   { id: "deck0_piece1", letter: "", value: 0 },
