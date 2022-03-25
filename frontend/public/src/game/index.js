@@ -458,8 +458,13 @@ $(document).ready(function () {
         let rankingData;
         $.get(`http://${apiURL}:3000/scrabble/players`).done(data => rankingData = data);
         let ranking = rankingData.sort((a,b) => b.score - a.score);
+        let position = 1;
+        let tbody = document.getElementById("table-body-leaderboard");
         for (i = 0 ; i <=5; i++) {
-            console.log(ranking[i].name + " " + ranking[i].score);
+            let tr = `<tr><td>${position}</td><td>${ranking[i].name}</td>
+            <td class="score-table">${ranking[i].score}</td>`;
+            tbody.innerHTML += tr;
+            position ++
         }
         
     })
