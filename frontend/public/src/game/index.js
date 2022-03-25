@@ -453,11 +453,10 @@ $(document).ready(function () {
 
     });
 
-    $("#icons-leader").click(function(){
-
-
-        $.get(`http://${apiURL}:3000/scrabble/players`).done(data => data.json())
-        .done(res => console.log(res))
+    $("#icons-leaderboard").click(function(){
+        
+        $.get(`http://${apiURL}:3000/scrabble/players`).done(data => data.json()).done(ans => console.log(ans));
+        
     })
 
     //./images/buttons/pause.svg
