@@ -3,13 +3,10 @@
     "",
     "\\backend",
     "\\backend\\infra",
-    "\\backend\\routes",
-    "\\backend\\service",
     "\\frontend",
     "\\frontend\\public",
     "\\frontend\\public\\src",
-    "\\frontend\\public\\src\\game",
-    "\\frontend\\public\\src\\home"
+    "\\frontend\\public\\src\\game"
   ],
   "SelectedNode": "\\frontend\\public\\src\\game\\index.js",
   "PreviewInSolutionExplorer": false

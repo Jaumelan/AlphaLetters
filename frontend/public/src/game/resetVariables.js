@@ -62,7 +62,7 @@ export function restartGame() {
 
     //delete players names
     showRecord(117);
-    let url = "http://localhost:3000/scrabble/reset/";
+    let url = "http://45.77.102.28:3000/scrabble/reset/";
     $.get(url + userSession.is, function () {
         console.log("reset");
     }).done((ans) => console.log(ans));

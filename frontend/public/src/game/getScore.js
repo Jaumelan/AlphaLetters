@@ -47,7 +47,7 @@ export function requestScores() {
     let user = userSession.is
     console.log("pos ", positions, "letters ", letters);
     console.log("antes do score ", submitedLetters);
-    $.get(`http://${apiURL}:3000/scrabble/score`,{positions, letters})
+    $.get(`http://${apiURL}:3000/scrabble/score`,{positions, letters, user})
     .done(answer => {
         let score = JSON.parse(answer);
       return score}).done(score => {
