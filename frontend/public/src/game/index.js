@@ -463,7 +463,7 @@ $(document).ready(function () {
             let position = 1;
             let tbody = document.getElementById("table-body-leaderboard");
             tbody.innerHTML = "";
-            for (i = 0 ; i <=5; i++) {
+            for (let i = 0 ; i <=5; i++) {
                 let tr = `<tr><td>${position}</td><td>${ranking[i].name}</td>
                 <td class="score-table">${ranking[i].score}</td></tr>`;
                 tbody.innerHTML += tr;
