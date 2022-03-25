@@ -454,8 +454,12 @@ $(document).ready(function () {
     });
 
     $("#icons-leaderboard").click(function(){
-        
-        $.get(`http://${apiURL}:3000/scrabble/players`).done(data => data.json()).done(ans => console.log(ans));
+        let rankingData;
+        $.get(`http://${apiURL}:3000/scrabble/players`).done(data => rankingData = data);
+        let ranking = rankingData.sort((a,b) => b.score - a.score);
+        for (i = 0 ; i <=7; i++) {
+            console.log(ranking[i].name + " " + ranking[i].score);
+        }
         
     })
 
