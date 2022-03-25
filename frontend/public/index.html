@@ -17,329 +17,337 @@
 </head>
 
 <body>
-  <div id="gamePage">
+    <div id="gamePage">
 
-    <div id="upperGamePage">
+        <div id="upperGamePage">
 
-      <div id="sectionPlayer1" class="sectionPlayer">
-        <div id="player1-data" class="playerData">
-          <div class="playerHolder">
-            <figure id="avatarHolder1">
-              <img src="images/avatar/buffalo.png" name="">
-            </figure>
-            <p id="player1-name" class="playerNames expand">Player 1</p>
-            <p class="score" id="player1-score">0</p>
-            <button type="button" class="gameButton" id="playButton1">JOGAR</button>
-          </div>
-          <div class="meanings">
-              <div class="meanings-box" id="meaningPlayer1"></div>
-          </div>
+            <div id="sectionPlayer1" class="sectionPlayer">
+                <div id="player1-data" class="playerData">
+                    <div class="playerHolder">
+                        <figure id="avatarHolder1">
+                            <img src="images/avatar/buffalo.png" name="">
+                        </figure>
+                        <p id="player1-name" class="playerNames expand">Player 1</p>
+                        <p class="score" id="player1-score">0</p>
+                        <button type="button" class="gameButton" id="playButton1">JOGAR</button>
+                    </div>
+                    <div class="meanings">
+                        <div class="meanings-box" id="meaningPlayer1"></div>
+                    </div>
+                </div>
+                <div class="deckHolder">
+                    <div id="deck0" class="decks"></div>
+
+                </div>
+            </div>
+
+            <div id="gameboard-holder">
+                <div id="gameName">ALPHAZENDINHA</div>
+                <div id="gameboard"></div>
+
+            </div>
+
+            <div id="sectionPlayer2" class="sectionPlayer">
+                <div id="player2-data" class="playerData">
+                    <div class="playerHolder">
+                        <figure id="avatarHolder2">
+                            <img src="images/avatar/cow.png" name="">
+                        </figure>
+                        <p id="player2-name" class="playerNames expand">Player 2</p>
+                        <p class="score" id="player2-score">0</p>
+                        <button type="button" class="gameButtonWait" id="playButton2">ESPERAR</button>
+                    </div>
+                    <div class="meanings">
+                        <div class="meanings-box" id="meaningPlayer2">
+                        </div>
+                    </div>
+                    <div class="deckHolder">
+                        <div id="deck1" class="decks"></div>
+
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-        <div class="deckHolder">
-          <div id="deck0" class="decks"></div>
+        <div class="modal-avatar">
+            <div class="modal-avatar-content">
+                <div class="heading">
+                    <h1 id="headingPlayer">AVATAR DO PRIMEIRO JOGADOR</h1>
+                    <h6>( SELECIONE O SEU AVATAR )</h6>
+                </div>
 
+                <div class="container">
+                    <div class="ui-card">
+                        <img src="images/avatar/zebra.png" alt="" id="zebra" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/cow.png" alt="" id="cow" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/pig.png" alt="" id="pig" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/owl.png" alt="" id="owl" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/buffalo.png" alt="" id="buffalo" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/gorilla.png" alt="" id="gorilla" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/whale.png" alt="" id="whale" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/elephant.png" alt="" id="elephant" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/frog.png" alt="" id="frog" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/giraffe.png" alt="" id="giraffe" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/chick.png" alt="" id="chick" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/chicken.png" alt="" id="chicken" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/bear.png" alt="" id="bear" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/duck.png" alt="" id="duck" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/panda.png" alt="" id="panda" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/parrot.png" alt="" id="parrot" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/snake.png" alt="" id="snake" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/walrus.png" alt="" id="walrus" class="images avatar">
+                    </div>
+                    <div class="ui-card">
+                        <img src="images/avatar/horse.png" alt="" id="horse" class="images avatar">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="player form__group field" id="player-one">
+                        <div>
+                            <input id="name1" type="text" class="player-name input-player form__field" maxlength="9" placeholder="INSERIR APELIDO">
+                            <label for="name1" class="form__label">INSERIR APELIDO</label>
+                        </div>
+                        <div class="button-modal-input">
+                            <button class="input input-player" id="btn-choose">ESCOLHER</button>
+                            <input type="hidden" class="avatar-id">
+                        </div>
+                    </div>
+                    <div class="player form__group field" id="player-two">
+                        <div>
+                            <input id="name2" type="text" class="player-name input-player form__field" maxlength="9" placeholder="INSERIR APELIDO">
+                            <label for="name2" class="form__label">INSERIR APELIDO</label>
+                        </div>
+                        <div class="button-modal-input">
+                            <button class="input input-player" type="button" id="btn-start">ESCOLHER</button>
+                            <input type="hidden" class="avatar-id">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div id="gameboard-holder">
-        <div id="gameName">ALPHAZENDINHA</div>
-        <div id="gameboard"></div>
-
-      </div>
-
-      <div id="sectionPlayer2" class="sectionPlayer">
-        <div id="player2-data" class="playerData">
-          <div class="playerHolder">
-            <figure id="avatarHolder2">
-              <img src= "images/avatar/cow.png" name="">
-            </figure>
-            <p id="player2-name" class="playerNames expand">Player 2</p>
-            <p class="score" id="player2-score">0</p>
-            <button type="button" class="gameButtonWait" id="playButton2">ESPERAR</button>
-          </div>
-          <div class="meanings">
-              <div class="meanings-box" id="meaningPlayer2">
-          </div>
-          </div>
-          <div class="deckHolder">
-            <div id="deck1" class="decks"></div>
-
-          </div>
-
+        <div id="config" style="height: 45px;">
+            <div id="icons-config">
+                <img id="icons-play" src="./images/buttons/play.svg">
+                <img id="icons-down" src="./images/buttons/down.svg">
+                <img id="icons-up" src="./images/buttons/up.svg">
+                <img id="icons-leaderboard" src="./images/buttons/leaderboard.svg">
+                <img id="icons-restart" src="./images/buttons/restart.svg">
+                <img id="icons-home" src="./images/buttons/home.svg">
+            </div>
+            <img id="icons-cog" src="./images/buttons/cog.svg">
         </div>
-      </div>
+    </div>
+    <div id="modal-tutorial">
+        <!-- ttt -->
+        <div id="modal-tutorial-step-one" class="modal-tutorial-steps">
+            <div class="tutorial-content" id="tutorial-step-content-one">
+                <img src="images/tutorial/mr-cow.png" alt="mr-cow image" id="tutorial-mr-cow">
+                <div class="playerHolder" id="tutorial-card">
+                    <figure id="avatar-tutorial">
+                        <img src="images/tutorial/mr-cow-card.png" alt="">
+                    </figure>
+                    <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
+                    <p class="score">10</p>
+                    <button type="button" class="gameButton" id="btn-tutorial-step-one">JOGAR</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-tutorial-step-two" class="modal-tutorial-steps">
+            <div class="tutorial-content" id="tutorial-step-content-two">
+                <img src="images/tutorial/arraste.png" alt="mr-cow image" id="tutorial-mr-cow">
+                <div>
+                    <div id="tutorial-step-two-board"></div>
+                    <!--<button type="button" class="gameButton" id="btn-tutorial-step-two">JOGAR</button>-->
+                    <div id="tutorial-step-two-holder">
+                        <div id="tutorial-piece"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-tutorial-step-three" class="modal-tutorial-steps">
+            <div class="tutorial-content" id="tutorial-step-content-three">
+                <img src="images/tutorial/bonus.png" alt="mr-cow image" id="tutorial-mr-cow">
+                <div class="playerHolder" id="tutorial-card">
+                    <h3>LEGENDA:</h3>
+                    <div id="special-tiles">
+
+                        <div><div class="cell tripleLetter">TL</div><p> - TRIPLA LETRA</p></div>
+                        <div><div class="cell doubleLetter">DL</div><p> - DUPLA LETRA</p></div>
+                        <div><div class="cell tripleWord">TP</div><p> - TRIPLA PALAVRA</p></div>
+                        <div><div class="cell doubleWord">DP</div><p> - DUPLA PALAVRA</p></div>
+                    </div>
+                    <button type="button" class="gameButton" id="btn-tutorial-step-three">PRÓXIMO</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-tutorial-step-four" class="modal-tutorial-steps">
+            <div class="tutorial-content" id="tutorial-step-content-four">
+                <img src="images/tutorial/terminar.png" alt="mr-cow image" id="tutorial-mr-cow">
+                <div class="playerHolder" id="tutorial-card">
+                    <figure id="avatar-tutorial">
+                        <img src="images/tutorial/mr-cow-card.png" alt="">
+                    </figure>
+                    <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
+                    <p class="score">10</p>
+                    <button type="button" class="gameButtonEnd" id="btn-tutorial-step-four">FINALIZAR</button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="modal-tutorial-step-five" class="modal-tutorial-steps">
+            <div class="tutorial-content" id="tutorial-step-content-five">
+                <img src="images/tutorial/finalizar.png" alt="mr-cow image" id="tutorial-mr-cow">
+                <div class="playerHolder" id="tutorial-card">
+                    <figure id="avatar-tutorial">
+                        <img src="images/tutorial/mr-cow-card.png" alt="">
+                    </figure>
+                    <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
+                    <p class="score">10</p>
+                    <button type="button" class="gameButtonEnd" id="btn-tutorial-step-five">FINALIZAR</button>
+                </div>
+            </div>
+        </div>
 
     </div>
-    <div class="modal-avatar">
-      <div class="modal-avatar-content">
-        <div class="heading">
-          <h1 id="headingPlayer">AVATAR DO PRIMEIRO JOGADOR</h1>
-          <h6>( SELECIONE O SEU AVATAR )</h6>
-        </div>
 
-        <div class="container">
-          <div class="ui-card">
-            <img src="images/avatar/zebra.png" alt="" id="zebra" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/cow.png" alt="" id="cow" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/pig.png" alt="" id="pig" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/owl.png" alt="" id="owl" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/buffalo.png" alt="" id="buffalo" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/gorilla.png" alt="" id="gorilla" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/whale.png" alt="" id="whale" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/elephant.png" alt="" id="elephant" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/frog.png" alt="" id="frog" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/giraffe.png" alt="" id="giraffe" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/chick.png" alt="" id="chick" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/chicken.png" alt="" id="chicken" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/bear.png" alt="" id="bear" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/duck.png" alt="" id="duck" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/panda.png" alt="" id="panda" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/parrot.png" alt="" id="parrot" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/snake.png" alt="" id="snake" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/walrus.png" alt="" id="walrus" class="images avatar">
-          </div>
-          <div class="ui-card">
-            <img src="images/avatar/horse.png" alt="" id="horse" class="images avatar">
-          </div>
-        </div>
-
-        <div>
-          <div class="player form__group field" id="player-one">
+    <div id="modal-leaderboard">
+        <div id="holder-positions">
             <div>
-              <input id="name1" type="text" class="player-name input-player form__field" maxlength="9" placeholder="INSERIR APELIDO">
-              <label for="name1" class="form__label">INSERIR APELIDO</label>
+                <img id="close-leaderboard" src="./images/buttons/close_black_24dp.svg" alt="">
             </div>
-            <div class="button-modal-input">
-              <button class="input input-player" id="btn-choose">ESCOLHER</button>
-              <input type="hidden" class="avatar-id">
+            <div id="holder-mrlogo">
+                <figure id="mrLogo-leaderboard">
+                    <img src="./images/mrLogo.png" alt="">
+                </figure>
+                <table id="table-leaderboard">
+                    <thead>
+                        <tr>
+                            <th>POSIÇÃO</th>
+                            <th>NOME</th>
+                            <th>PLACAR</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body-leaderboard">
+                        <tr>
+                            <td>Peter</td>
+                            <td>Griffin</td>
+                            <td class="score-table">$100</td>
+                        </tr>
+                        <tr>
+                            <td>Lois</td>
+                            <td>Griffin</td>
+                            <td class="score-table">$150</td>
+                        </tr>
+                        <tr>
+                            <td>Joe</td>
+                            <td>Swanson</td>
+                            <td class="score-table">$300</td>
+                        </tr>
+                        <tr>
+                            <td>Lois</td>
+                            <td>Griffin</td>
+                            <td class="score-table">$150</td>
+                        </tr>
+                        <tr>
+                            <td>Joe</td>
+                            <td>Swanson</td>
+                            <td class="score-table">$300</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-          </div>
-          <div class="player form__group field" id="player-two">
-            <div>
-              <input id="name2" type="text" class="player-name input-player form__field" maxlength="9" placeholder="INSERIR APELIDO">
-              <label for="name2" class="form__label">INSERIR APELIDO</label>
-            </div>
-            <div class="button-modal-input">
-              <button class="input input-player" type="button" id="btn-start">ESCOLHER</button>
-              <input type="hidden" class="avatar-id">
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-    <div id="config" style="height: 45px;">
-        <div id="icons-config">
-            <img id="icons-play" src="./images/buttons/play.svg">
-            <img id="icons-down" src="./images/buttons/down.svg">
-            <img id="icons-up" src="./images/buttons/up.svg">
-            <img id="icons-leaderboard" src="./images/buttons/leaderboard.svg">
-            <img id="icons-restart" src="./images/buttons/restart.svg">
-            <img id="icons-home" src="./images/buttons/home.svg">
+
+    <div id="modal-winner">
+        <div id="holder-winner">
+            <div>
+                <img id="closeModal" src="./images/buttons/close_black_24dp.svg" alt="">
+            </div>
+            <div id="holder-mrlogo">
+                <figure id="mrLogo">
+                    <img src="./images/mrLogo.png" alt="">
+                </figure>
+                <div id="winnerData">
+                    <h2 id="winnerName">texto</h2>
+                    <p id="winnerScore">exemplo</p>
+
+                </div>
+            </div>
         </div>
-      <img id="icons-cog" src="./images/buttons/cog.svg">
-      </div>
-  </div>
-  <div id="modal-tutorial">
-      <!-- ttt -->
-      <div id="modal-tutorial-step-one" class="modal-tutorial-steps">
-          <div class="tutorial-content" id="tutorial-step-content-one">
-              <img src="images/tutorial/mr-cow.png" alt="mr-cow image" id="tutorial-mr-cow">
-              <div class="playerHolder" id="tutorial-card">
-                  <figure id="avatar-tutorial">
-                      <img src="images/tutorial/mr-cow-card.png" alt="">
-                  </figure>
-                  <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
-                  <p class="score">10</p>
-                  <button type="button" class="gameButton" id="btn-tutorial-step-one">JOGAR</button>
-              </div>
-          </div>
-      </div>
+    </div>
 
-      <div id="modal-tutorial-step-two" class="modal-tutorial-steps">
-          <div class="tutorial-content" id="tutorial-step-content-two">
-              <img src="images/tutorial/arraste.png" alt="mr-cow image" id="tutorial-mr-cow">
-              <div>
-                  <div id="tutorial-step-two-board"></div>
-                  <!--<button type="button" class="gameButton" id="btn-tutorial-step-two">JOGAR</button>-->
-                  <div id="tutorial-step-two-holder">
-                      <div id="tutorial-piece"></div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div id="modal-tutorial-step-three" class="modal-tutorial-steps">
-          <div class="tutorial-content" id="tutorial-step-content-three">
-              <img src="images/tutorial/bonus.png" alt="mr-cow image" id="tutorial-mr-cow">
-              <div class="playerHolder" id="tutorial-card">
-                  <h3>LEGENDA:</h3>
-                  <div id="special-tiles">
+    <div id="homePage">
+        
+        <div id="home-page-top">
+            <div id="home-page-left">
+                <div id="game-name">
+                    <h1>ALPHAZENDINHA</h1>
+                    <h2>SCRABBLE</h2>
+                </div>
+                <figure id="mr-cow">
+                    <img src="/images/mrLogo.png" />
+                </figure>
+            </div>
+            <div id="home-page-right">
+                <div id="homeButton">
+                    <button>
+                        JOGAR
+                    </button>
+                </div>
+            </div>
 
-                      <div><div class="cell tripleLetter">TL</div><p> - TRIPLA LETRA</p></div>
-                      <div><div class="cell doubleLetter">DL</div><p> - DUPLA LETRA</p></div>
-                      <div><div class="cell tripleWord">TP</div><p> - TRIPLA PALAVRA</p></div>
-                      <div><div class="cell doubleWord">DP</div><p> - DUPLA PALAVRA</p></div>
-                  </div>
-                  <button type="button" class="gameButton" id="btn-tutorial-step-three">PRÓXIMO</button>
-              </div>
-          </div>
-      </div>
-
-      <div id="modal-tutorial-step-four" class="modal-tutorial-steps">
-          <div class="tutorial-content" id="tutorial-step-content-four">
-              <img src="images/tutorial/terminar.png" alt="mr-cow image" id="tutorial-mr-cow">
-              <div class="playerHolder" id="tutorial-card">
-                  <figure id="avatar-tutorial">
-                      <img src="images/tutorial/mr-cow-card.png" alt="">
-                  </figure>
-                  <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
-                  <p class="score">10</p>
-                  <button type="button" class="gameButtonEnd" id="btn-tutorial-step-four">FINALIZAR</button>
-              </div>
-          </div>
-      </div>
-
-
-
-      <div id="modal-tutorial-step-five" class="modal-tutorial-steps">
-          <div class="tutorial-content" id="tutorial-step-content-five">
-              <img src="images/tutorial/finalizar.png" alt="mr-cow image" id="tutorial-mr-cow">
-              <div class="playerHolder" id="tutorial-card">
-                  <figure id="avatar-tutorial">
-                      <img src="images/tutorial/mr-cow-card.png" alt="">
-                  </figure>
-                  <p class="playerNames expand" id="tutorial-card-name">Mr. Cow</p>
-                  <p class="score">10</p>
-                  <button type="button" class="gameButtonEnd" id="btn-tutorial-step-five">FINALIZAR</button>
-              </div>
-          </div>
-      </div>
-
-  </div>
-
-  <div id="modal-winner">
-    <div id="holder-winner">
-      <div>
-        <img id="closeModal" src="./images/buttons/close_black_24dp.svg" alt="">
-      </div>
-      <div id="holder-mrlogo">
-        <figure id="mrLogo">
-          <img src="./images/mrLogo.png" alt="">
+        </div>
+        <figure id="fence">
+            <img src="/images/fence.png" />
         </figure>
-        <div id="winnerData">
-          <h2 id="winnerName">texto</h2>
-          <p id="winnerScore">exemplo</p>
 
-        </div>
-      </div>
+
     </div>
-  </div>
 
-  <div id="homePage">
-      <!--<div id="title">
-      <div id="firstTitle">
-        <div class="piece rotate1">
-          A <span class="piece-number">1</span>
-        </div>
-        <div class="piece">
-          L <span class="piece-number">2</span>
-        </div>
-        <div class="piece rotate2">
-          P <span class="piece-number">1</span>
-        </div>
-        <div class="piece rotate1">
-          H <span class="piece-number">3</span>
-        </div>
-        <div class="piece">
-          A <span class="piece-number">1</span>
-        </div>
-      </div>
-      <div id="secondTitle">
-        <div class="piece">
-          L <span class="piece-number">2</span>
-        </div>
-        <div class="piece rotate1">
-          E <span class="piece-number">1</span>
-        </div>
-        <div class="piece rotate2">
-          T <span class="piece-number">3</span>
-        </div>
-        <div class="piece">
-          T <span class="piece-number">3</span>
-        </div>
-        <div class="piece">
-          E <span class="piece-number">1</span>
-        </div>
-        <div class="piece rotate1">
-          R <span class="piece-number">2</span>
-        </div>
-        <div class="piece rotate2">
-          S <span class="piece-number">2</span>
-        </div>
-      </div>
-    </div>-->
-      <div id="home-page-top">
-          <div id="home-page-left">
-              <div id="game-name">
-                  <h1>ALPHAZENDINHA</h1>
-                  <h2>SCRABBLE</h2>
-              </div>
-              <figure id="mr-cow">
-                  <img src="/images/mrLogo.png" />
-              </figure>
-          </div>
-          <div id="home-page-right">
-              <div id="homeButton">
-                  <button>
-                      JOGAR
-                  </button>
-              </div>
-          </div>
-          
-      </div>
-      <figure id="fence">
-          <img src="/images/fence.png" />
-      </figure>
-
-
-  </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script type="module" src="./src/game/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="module" src="./src/game/index.js"></script>
 </body>
 
 </html>

@@ -454,13 +454,19 @@ $(document).ready(function () {
     });
 
     $("#icons-leaderboard").click(function(){
+        $("#modal-leaderboard").css("display", "flex");
         let rankingData;
         $.get(`http://${apiURL}:3000/scrabble/players`).done(data => rankingData = data);
         let ranking = rankingData.sort((a,b) => b.score - a.score);
-        for (i = 0 ; i <=7; i++) {
+        for (i = 0 ; i <=5; i++) {
             console.log(ranking[i].name + " " + ranking[i].score);
         }
         
+    })
+
+    $("#close-leaderboard").click(() => {
+
+        $("#modal-leaderboard").css("display", "none");
     })
 
     //./images/buttons/pause.svg
