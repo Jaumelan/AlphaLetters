@@ -3,23 +3,11 @@ const router = express.Router();
 const scrabbleRules = require("../components/scrabbleRules");
 const playerService = require("../service/playerService");
 const crypto = require("crypto");
-/* const scrabblePortugues = new scrabbleRules; */
 const usersSessions = [];
-/*{name1: new ScrabbleRules}, {name2: new scrabbleRules} */
+
 //middlewares
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
-
-//more information https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
-function makeid(length) {
-    let result           = '';
-    let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let charactersLength = characters.length;
-    for ( let i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-   }
-   return result;
-}
 
 //organizar aqui as rotas
 router.get('/initialize', (req,res) => {
@@ -114,13 +102,13 @@ router.get('/initialize', (req,res) => {
     res.sendStatus(200);
 })
 
-.get('/scores', async (req, res) => {
+.get('/players', async (req, res) => {
     const players = await playerService.getPlayers();
     console.log(players);
     res.json(players)
 })
 
-.post('/scores',  async (req, res) => {
+.post('/player',  async (req, res) => {
     const newPlayer = Object.values(req.body);
     newPlayer[1] = Number(newPlayer[1]);
     console.log(newPlayer)

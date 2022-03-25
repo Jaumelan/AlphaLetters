@@ -31,12 +31,10 @@ export function endGameByPass() {
   $("#modal-winner").css("display","flex");
 
   rankingData.forEach(player => {
-    $.post(`http://${apiURL}:3000/scrabble/scores`, player );
+    $.post(`http://${apiURL}:3000/scrabble/player`, player );
   })
-  /* $.post("http://localhost:3000/scrabble/scores", {"player1Name":player1, "player1Score": JSON.stringify(score1), "player2Name":player2, "player2Score": JSON.stringify(score2)} ) */
-  $.get(`http://${apiURL}:3000/scrabble/scores`).done(
-    data => data.json()
-  ).done(res => console.log(res))
+  
+  
   return true;
 }
 

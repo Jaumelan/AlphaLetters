@@ -453,6 +453,13 @@ $(document).ready(function () {
 
     });
 
+    $("#icons-leader").click(function(){
+
+
+        $.get(`http://${apiURL}:3000/scrabble/players`).done(data => data.json())
+        .done(res => console.log(res))
+    })
+
     //./images/buttons/pause.svg
     const soundtrack = new Audio("./sounds/starsbyanbrArtlist.mp3");
     $("#icons-play").click(() => {
